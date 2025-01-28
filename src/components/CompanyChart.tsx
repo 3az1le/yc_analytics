@@ -8,7 +8,9 @@ import {
 } from '@/lib/chartUtils'
 import {
   initializeChart,
-  updateChart
+  drawStackedArea,
+  updateChart,
+  calculateYDomain
 } from '@/lib/chartDrawing'
 import '@/styles/main.css'
 
@@ -41,7 +43,7 @@ export default function CompanyChart({
 
   const chartId = useMemo(() => title.toLowerCase().replace(/\s+/g, '-'), [title])
 
-  const legendItemHeight = 40
+  const legendItemHeight = 31
   const maxVisibleItems = Math.floor((500 - 80) / legendItemHeight)
   const maxScroll = Math.max(0, (categories.length - maxVisibleItems) * legendItemHeight)
 
@@ -92,32 +94,6 @@ export default function CompanyChart({
     setSelectedCategory(prev => prev === category ? null : category)
   }, [selectedCategory])
 
-  // Initialize chart
-  useEffect(() => {
-    if (!svgRef.current || !data?.length) return
-
-    const svg = d3.select(svgRef.current)
-    const containerBounds = svgRef.current.parentElement?.getBoundingClientRect()
-    const dimensions = {
-      width: containerBounds?.width ?? 600,
-      height: containerBounds?.height ?? 400,
-      margin: { top: 20, right: 200, bottom: 60, left: 60 }
-    }
-
-    const { categories: newCategories } = createScales(data, dimensions.width, dimensions.height, dimensions.margin, dataType)
-    setCategories(newCategories)
-    colorScale.domain(newCategories)
-
-    initializeChart(svg, chartId, dimensions, {
-      data,
-      dataType,
-      selectedCategory,
-      previousSelectedCategory,
-      colorScale,
-      categories: newCategories
-    })
-  }, [])
-
   // Update chart on data or category changes
   useEffect(() => {
     if (!svgRef.current || !data?.length) return
@@ -130,6 +106,23 @@ export default function CompanyChart({
       margin: { top: 20, right: 200, bottom: 60, left: 60 }
     }
 
+    // Initialize chart if it doesn't exist
+    if (svg.select('g.chart-container').empty()) {
+      const { categories: newCategories } = createScales(data, dimensions.width, dimensions.height, dimensions.margin, dataType)
+      setCategories(newCategories)
+      colorScale.domain(newCategories)
+
+      initializeChart(svg, chartId, dimensions, {
+        data,
+        dataType,
+        selectedCategory,
+        previousSelectedCategory,
+        colorScale,
+        categories: newCategories
+      })
+    }
+
+    // Update chart
     updateChart(svg, dimensions, {
       data,
       dataType,
@@ -137,7 +130,7 @@ export default function CompanyChart({
       previousSelectedCategory,
       colorScale,
       categories
-    }, false)
+    })
   }, [data, selectedCategory, previousSelectedCategory])
 
   return (

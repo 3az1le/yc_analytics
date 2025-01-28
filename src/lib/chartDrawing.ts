@@ -49,15 +49,15 @@ export function initializeChart(
   const areaContainer = chartContainer.append('g')
     .attr('class', 'area-container')
     .attr('clip-path', `url(#${clipId})`)
-
+  
+  
   return { chartContainer, areaContainer }
 }
 
 export function updateChart(
   svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
   dimensions: { width: number; height: number; margin: any },
-  state: ChartState,
-  isDateRangeUpdate = false
+  state: ChartState
 ) {
   const { width, height, margin } = dimensions
   const { data, dataType, selectedCategory, previousSelectedCategory, colorScale, categories } = state
@@ -76,42 +76,20 @@ export function updateChart(
     })
     .remove()
   
-  addAxes(chartContainer, x, y, height, margin, width)
+  addAxes(
+    chartContainer as unknown as d3.Selection<SVGGElement, unknown, null, undefined>,
+    x,
+    y,
+    height,
+    margin,
+    width
+  )
 
   // Update areas
   const areaContainer = svg.select('g.area-container')
-  if (isDateRangeUpdate) {
-    updateAreasForDateRange(areaContainer, state, x, y)
-  } else {
-    drawStackedArea(areaContainer, data, categories, x, y, colorScale, dataType, selectedCategory, previousSelectedCategory)
-  }
-}
 
-function updateAreasForDateRange(
-  container: d3.Selection<SVGGElement, unknown, null, undefined>,
-  state: ChartState,
-  x: d3.ScaleBand<string>,
-  y: d3.ScaleLinear<number, number>
-) {
-  const { data, dataType, selectedCategory } = state
-
-  if (selectedCategory) {
-    const singleArea = d3.area<BatchData>()
-      .x(d => x(d.name) ?? 0)
-      .y0(y(0))
-      .y1(d => y(d[dataType]?.[selectedCategory] || 0))
-
-    container.selectAll('path.area')
-      .attr('d', singleArea(data))
-  } else {
-    const area = d3.area<d3.SeriesPoint<any>>()
-      .x(d => x(d.data.name) ?? 0)
-      .y0(d => y(d[0]))
-      .y1(d => y(d[1]))
-
-    container.selectAll('path.area')
-      .attr('d', area)
-  }
+  drawStackedArea(areaContainer, data, categories, x, y, colorScale, dataType, selectedCategory, previousSelectedCategory)
+  
 }
 
 export function drawStackedArea(
@@ -186,7 +164,7 @@ export function drawStackedArea(
         }
         
         // If switching between categories
-        const previousPath = container.selectAll('path.area')
+        const previousPath = container.selectAll<SVGPathElement, AreaData>('path.area')
           .filter(p => p.key === previousSelectedCategory);
         return !previousPath.empty() ? previousPath.attr('d') : area(d);
       })
@@ -208,7 +186,7 @@ export function drawStackedArea(
           prevD = !stackedPath.empty() ? stackedPath.attr('d') : '';
         } else {
           // If switching between categories
-          const previousPath = container.selectAll('path.area')
+          const previousPath = container.selectAll<SVGPathElement, AreaData>('path.area')
             .filter(p => p.key === previousSelectedCategory);
           prevD = !previousPath.empty() ? previousPath.attr('d') : '';
         }
@@ -237,7 +215,7 @@ export function drawStackedArea(
       .attr('d', (d: AreaData) => {
         // If coming from single category view, start from that shape
         if (wasShowingSingleCategory && d.key === previousSelectedCategory) {
-          const previousPath = container.selectAll('path.area')
+          const previousPath = container.selectAll<SVGPathElement, AreaData>('path.area')
             .filter(p => p.key === previousSelectedCategory);
           return !previousPath.empty() ? previousPath.attr('d') : area(d);
         }
@@ -253,3 +231,4 @@ export function drawStackedArea(
       .attr('opacity', 1);
   }
 }
+export { calculateYDomain } from '@/lib/chartUtils'
