@@ -160,8 +160,17 @@ export function addAxes(
   // Add x-axis with filtered ticks (keeping tick lines)
   const xAxis = container.append('g')
     .attr('transform', `translate(0,${height - margin.bottom})`)
-    .call(d3.axisBottom(x))
-    .attr('color', 'black')
+    .call(d3.axisBottom(x)
+    .tickSize(6)
+    .tickPadding(10))
+    .style('font-family', 'Avenir, system-ui, -apple-system, sans-serif')
+    .style('font-size', '10px')
+  
+    xAxis.select('.domain')
+    .style('stroke', '#000')
+    .style('stroke-width', '1px')
+    .style('opacity', '1')
+    .attr('d', `M${margin.left},0H${width - margin.right}`)
   
   // Add x-axis label
   container.append('text')
@@ -170,6 +179,8 @@ export function addAxes(
     .attr('x', (x.range()[1] - x.range()[0]) / 2 + margin.left)
     .attr('y', height - 10)
     .attr('fill', 'black')
+    .style('font-family', 'Avenir, system-ui, -apple-system, sans-serif')
+    .style('font-size', '16px')
     .text('Batch')
 
   // Filter out every other tick if they're too close

@@ -4,12 +4,9 @@ import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import * as d3 from 'd3'
 import { ChartProps } from '@/types/chart'
 import { 
-  createScales, 
-  calculateYDomain,
-  addAxes 
+  createScales
 } from '@/lib/chartUtils'
 import {
-  drawStackedArea,
   initializeChart,
   updateChart
 } from '@/lib/chartDrawing'

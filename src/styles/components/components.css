@@ -42,11 +42,7 @@
     z-index: 1; /* Ensure charts stay below the slider */
   }
 
-  .chart-wrapper {
-    height: 600px; /* Fixed height for each chart */
-    position: relative;
-    z-index: 1; /* Ensure charts stay below the slider */
-  }
+ 
 
   .container-default {
     width: 60%;
