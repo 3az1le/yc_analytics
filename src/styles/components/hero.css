@@ -1,0 +1,33 @@
+.hero-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: #FB651E;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 70vh;
+  width: auto;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3.75rem;
+  }
+} 

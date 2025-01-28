@@ -1,0 +1,11 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Import other stylesheets */
+@import './base/variables.css';
+@import './components/header.css';
+@import './components/hero.css';
+@import './components/slider.css';
+@import './components/components.css';
+@import './layouts/graph.css';

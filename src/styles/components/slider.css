@@ -1,0 +1,149 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.year-selector-wrapper {
+  margin: 0 auto;
+  max-width: 36rem;
+  width: 100%;
+}
+
+.slider-container {
+  background: white;
+  border-radius: 1.5rem;
+  bottom: 2rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  left: 50%;
+  max-width: 600px;
+  padding: 1.5rem;
+  position: fixed;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.05s;
+}
+
+.slider-container.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.slider-root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 20px;
+  touch-action: none;
+  user-select: none;
+}
+
+.slider-track {
+  background: rgb(254 215 170);
+  position: relative;
+  flex-grow: 1;
+  height: 0.5rem;
+  border-radius: 9999px;
+}
+
+.slider-range {
+  position: absolute;
+  background: rgb(251 146 60);
+  height: 100%;
+  border-radius: 9999px;
+}
+
+.slider-thumb {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 70%;
+  cursor: pointer;
+}
+
+.slider-thumb:hover {
+  background: rgb(255 247 237);
+}
+
+.slider-thumb:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgb(251 146 60);
+  background: white;
+}
+
+.slider-thumb:active {
+  background: rgb(254 215 170);
+}
+
+.year-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  color: rgb(75 85 99);
+  font-size: 0.875rem;
+}
+
+.year-label {
+  font-weight: 500;
+}
+
+.year-range-sliders {
+  height: 0.5rem;
+  position: relative;
+  width: 100%;
+}
+
+.year-range-slider {
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  height: 0.5rem;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.year-range-slider-start {
+  z-index: 20;
+}
+
+.year-range-slider-end {
+  z-index: 10;
+}
+
+/* Slider Thumb */
+.year-range-slider::-webkit-slider-thumb {
+  appearance: none;
+  background: white;
+  border-radius: 9999px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  height: 1.25rem;
+  pointer-events: auto;
+  transition: background-color 200ms;
+  width: 1.25rem;
+  z-index: 40;
+}
+
+.year-range-slider::-webkit-slider-thumb:hover {
+  background-color: rgb(255 247 237);
+}
+
+/* Slider Track */
+.year-range-slider::-webkit-slider-runnable-track {
+  background-color: rgb(251 146 60);
+  border-radius: 9999px;
+  height: 0.5rem;
+}
+
+.year-range-dates {
+  color: rgb(75 85 99);
+  display: flex;
+  font-size: 0.875rem;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding: 0 0.5rem;
+}
