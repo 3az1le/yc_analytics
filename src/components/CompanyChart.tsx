@@ -131,7 +131,7 @@ export default function CompanyChart({
       colorScale,
       categories
     })
-  }, [data, selectedCategory, previousSelectedCategory])
+  }, [data, selectedCategory, previousSelectedCategory, dataType, chartId, categories, colorScale])
 
   return (
     <div className="chart-wrapper">
