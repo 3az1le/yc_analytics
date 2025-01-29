@@ -143,16 +143,20 @@ export function addAxes(
   if (!width || isNaN(width)) {
     console.error('Invalid width:', width);
     width = container.node()?.getBoundingClientRect().width || 600; // fallback width
-  }
+  }  // Remove existing axes and labels first
+  container.selectAll('.x-axis').remove();
+  container.selectAll('.y-axis').remove();
+  container.selectAll('.x-axis-label').remove();
+  container.selectAll('.y-axis-label').remove();
+  container.selectAll('.grid-lines').remove();
 
-  console.log('Using width:', width);
-  console.log('Margin:', margin);
-  console.log('Actual drawing width:', width - margin.right - margin.left);
 
-  // Create a separate group for grid lines to control z-index
+
+
+  // Create grid lines
   const gridGroup = container.append('g')
     .attr('class', 'grid-lines')
-    .lower()
+    .lower();
 
   // Add horizontal background lines
   gridGroup.selectAll('.grid-line')
@@ -165,14 +169,15 @@ export function addAxes(
     .attr('y2', d => y(d))
     .attr('stroke', '#e5e7eb')
     .attr('stroke-width', 1)
-    .attr('stroke-dasharray', '2,2')
+    .attr('stroke-dasharray', '2,2');
 
-  // Add x-axis with filtered ticks (keeping tick lines)
+  // Add x-axis
   const xAxis = container.append('g')
+    .attr('class', 'x-axis')
     .attr('transform', `translate(0,${height - margin.bottom})`)
     .call(d3.axisBottom(x)
-    .tickSize(6)
-    .tickPadding(10))
+      .tickSize(6)
+      .tickPadding(10))
     .style('font-family', 'Avenir, system-ui, -apple-system, sans-serif')
     .style('font-size', '10px')
   

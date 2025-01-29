@@ -52,7 +52,6 @@ export default function Home() {
     <div className="page-container">
       <Header />
       <Hero />
-
       <YearRangeSlider
         value={yearRange}
         onChange={setYearRange}
@@ -60,20 +59,12 @@ export default function Home() {
         max={2025}
         isVisible={isSliderVisible}
       />
-
       <main className="main-content">
         <div className="charts-container">
           <CompanyChart
             data={processedData.byBatch}
-            title="Industry Distribution Over Time"
+            title="Distribution Over Time"
             type="stacked-area"
-            dataType="industries"
-          />
-          <CompanyChart
-            data={processedData.byBatch}
-            title="Tags Distribution Over Time"
-            type="stacked-area"
-            dataType="tags"
           />
         </div>
       </main>

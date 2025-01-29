@@ -22,15 +22,6 @@
   z-index: 1;
 }
 
-.chart-title {
-  font-size: 1.25rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-  color: black;
-  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
-  font-size: 28px;
-
-}
 
 .chart-container {
   display: flex;

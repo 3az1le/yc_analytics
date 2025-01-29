@@ -29,8 +29,8 @@ export default function CompanyChart({
   data, 
   title, 
   type, 
-  dataType = 'industries' 
-}: ChartProps) {
+}: Omit<ChartProps, 'dataType'>) {
+  const [dataType, setDataType] = useState<'industries' | 'tags'>('industries')
   const svgRef = useRef<SVGSVGElement>(null)
   const scrollRef = useRef<number>(0)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
@@ -46,25 +46,42 @@ export default function CompanyChart({
   const maxVisibleItems = Math.floor((500 - 80) / legendItemHeight)
   const maxScroll = Math.max(0, (categories.length - maxVisibleItems) * legendItemHeight)
 
+  // Memoize categories to prevent unnecessary re-renders
+  const { categories: newCategories } = useMemo(() => {
+    if (!data?.length) return { categories: [] }
+    return {
+      categories: Array.from(
+        new Set(data.flatMap(d => Object.keys(d[dataType] || {})))
+      ).sort()
+    }
+  }, [data, dataType])
+
+  // Update categories only when necessary
+  useEffect(() => {
+    setCategories(newCategories)
+    colorScale.domain(newCategories)
+  }, [newCategories, colorScale])
+
+  // Optimize legend scroll handler
   const handleWheel = useCallback((e: WheelEvent) => {
     e.preventDefault()
     e.stopPropagation()
 
-    const delta = e.deltaY * 2
-    const legendHeight = 500 // Visible container height
-    const totalContentHeight = categories.length * legendItemHeight
-    const maxScroll = Math.max(0, totalContentHeight - legendHeight)
-    
-    const newOffset = Math.max(0, Math.min(scrollRef.current + delta, maxScroll))
-    
-    scrollRef.current = newOffset
-    requestAnimationFrame(() => {
-      const legendScroll = document.querySelector(`.legend-wrapper-${chartId} .legend-scroll`) as HTMLElement
-      if (legendScroll) {
-        legendScroll.style.transform = `translateY(-${newOffset}px)`
-      }
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current)
+    }
+
+    rafRef.current = requestAnimationFrame(() => {
+      const delta = e.deltaY * 2
+      const legendHeight = 500
+      const totalContentHeight = categories.length * legendItemHeight
+      const maxScroll = Math.max(0, totalContentHeight - legendHeight)
+      
+      const newOffset = Math.max(0, Math.min(scrollRef.current + delta, maxScroll))
+      scrollRef.current = newOffset
+      setLegendScrollOffset(newOffset)
     })
-  }, [chartId, categories.length])
+  }, [categories.length, legendItemHeight])
 
   useEffect(() => {
     const element = document.querySelector(`.legend-wrapper-${title.toLowerCase().replace(/\s+/g, '-')}`) as HTMLElement
@@ -78,14 +95,6 @@ export default function CompanyChart({
       }
     }
   }, [handleWheel, title])
-
-  const processedData = useMemo(() => {
-    if (!data?.length) return null
-    const newCategories = Array.from(
-      new Set(data.flatMap(d => Object.keys(d[dataType] || {})))
-    ).sort()
-    return { data, categories: newCategories }
-  }, [data, dataType])
 
   // Handle category selection
   const handleCategoryClick = useCallback((category: string) => {
@@ -132,9 +141,96 @@ export default function CompanyChart({
     })
   }, [data, selectedCategory, previousSelectedCategory, dataType, chartId, categories, colorScale])
 
+  // Memoize legend items to prevent re-renders
+  const legendItems = useMemo(() => (
+    categories.map((category) => (
+      <div
+        key={category}
+        className="legend-item"
+        style={{
+          opacity: selectedCategory && selectedCategory !== category ? 0.5 : 1,
+        }}
+        onClick={() => handleCategoryClick(category)}
+      >
+        <div
+          className="legend-color"
+          style={{
+            backgroundColor: colorScale(category)
+          }}
+        />
+        <span>{category}</span>
+      </div>
+    ))
+  ), [categories, selectedCategory, colorScale, handleCategoryClick])
+
   return (
     <div className="chart-wrapper">
-      <h2 className="chart-title">{title}</h2>
+      <div className="chart-header">
+        <div className="chart-type-selector">
+          <button
+            onClick={() => {
+              setDataType('industries')
+              // Clear and reinitialize chart
+              setSelectedCategory(null)
+
+              const svg = d3.select(svgRef.current)
+              svg.selectAll('*').remove()
+              const containerBounds = svgRef.current.parentElement?.getBoundingClientRect()
+              const dimensions = {
+                width: containerBounds?.width ?? 600,
+                height: containerBounds?.height ?? 400,
+                margin: { top: 20, right: 200, bottom: 60, left: 60 }
+              }
+              const { categories: newCategories } = createScales(data, dimensions.width, dimensions.height, dimensions.margin, 'industries')
+              setCategories(newCategories)
+              colorScale.domain(newCategories)
+              initializeChart(svg, chartId, dimensions, {
+                data,
+                dataType: 'industries',
+                selectedCategory,
+                previousSelectedCategory,
+                colorScale,
+                categories: newCategories
+              })
+            }}
+            className={`chart-type-option ${dataType === 'industries' ? 'active' : ''}`}
+          >
+            Industries
+          </button>
+          <span className="chart-type-separator">/</span>
+          <button
+            onClick={() => {
+              setDataType('tags')
+              // Clear and reinitialize chart
+              //set selected category to null
+              setSelectedCategory(null)
+              const svg = d3.select(svgRef.current)
+              svg.selectAll('*').remove()
+              const containerBounds = svgRef.current.parentElement?.getBoundingClientRect()
+              const dimensions = {
+                width: containerBounds?.width ?? 600,
+                height: containerBounds?.height ?? 400,
+                margin: { top: 20, right: 200, bottom: 60, left: 60 }
+              }
+              const { categories: newCategories } = createScales(data, dimensions.width, dimensions.height, dimensions.margin, 'tags')
+              setCategories(newCategories)
+              colorScale.domain(newCategories)
+              initializeChart(svg, chartId, dimensions, {
+                data,
+                dataType: 'tags',
+                selectedCategory,
+                previousSelectedCategory,
+                colorScale,
+                categories: newCategories
+              })
+            }}
+            className={`chart-type-option ${dataType === 'tags' ? 'active' : ''}`}
+          >
+            Tags
+          </button>
+        </div>
+        <h2 className="chart-title">{title} </h2>
+      </div>
       <div className="chart-container">
         <svg
           ref={svgRef}
@@ -150,24 +246,7 @@ export default function CompanyChart({
               willChange: 'transform'
             }}
           >
-            {categories.map((category) => (
-              <div
-                key={category}
-                className="legend-item"
-                style={{
-                  opacity: selectedCategory && selectedCategory !== category ? 0.5 : 1,
-                }}
-                onClick={() => handleCategoryClick(category)}
-              >
-                <div
-                  className="legend-color"
-                  style={{
-                    backgroundColor: colorScale(category)
-                  }}
-                />
-                <span>{category}</span>
-              </div>
-            ))}
+            {legendItems}
           </div>
         </div>
       </div>

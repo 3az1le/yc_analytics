@@ -230,11 +230,19 @@ export function drawStackedArea(
       });
 
     // MERGE + UPDATE
-    enterSelection.merge(paths)
-      .transition()
-      .duration(600)
-      .attr('fill', (d: AreaData) => color(d.key))
-      .attr('d', (d: AreaData) => area(d))
-      .attr('opacity', 1);
+    //if previous selected category, transition, else no transition
+    if (previousSelectedCategory) {
+      enterSelection.merge(paths)
+        .transition()
+        .duration(600)
+        .attr('fill', (d: AreaData) => color(d.key))
+        .attr('d', (d: AreaData) => area(d))
+        .attr('opacity', 1);
+    } else if (previousSelectedCategory && !selectedCategory) {
+      enterSelection.merge(paths)
+        .attr('fill', (d: AreaData) => color(d.key))
+        .attr('d', (d: AreaData) => area(d))
+        .attr('opacity', 1);
+    }
   }
 }
