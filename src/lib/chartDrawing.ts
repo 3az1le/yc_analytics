@@ -16,6 +16,16 @@ type ChartState = {
   categories: string[]
 }
 
+/**
+ * Initializes the SVG chart structure with necessary containers and clipping paths.
+ * This function is called once when the chart is first created.
+ * 
+ * @param svg - The main SVG element
+ * @param chartId - Unique identifier for the chart (used for clip paths)
+ * @param dimensions - Chart dimensions including width, height, and margins
+ * @param state - Current chart state including data and visual properties
+ * @returns Object containing references to the created containers
+ */
 export function initializeChart(
   svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
   chartId: string,
@@ -23,16 +33,17 @@ export function initializeChart(
   state: ChartState
 ) {
   const { width, height, margin } = dimensions
+  // Clear any existing content
   svg.selectAll('*').remove()
 
-  // Set explicit SVG dimensions
+  // Configure the SVG viewport
   svg
     .attr('width', width)
     .attr('height', height)
     .attr('viewBox', `0 0 ${width} ${height}`)
     .attr('preserveAspectRatio', 'xMidYMid meet')
 
-  // Add clip path
+  // Create a clip path to ensure the chart doesn't overflow its bounds
   const clipId = `clip-${chartId}`
   svg.append('defs')
     .append('clipPath')
@@ -43,18 +54,26 @@ export function initializeChart(
     .attr('width', width - margin.left - margin.right)
     .attr('height', height - margin.top - margin.bottom)
 
-  // Create containers
+  // Create main container for the chart
   const chartContainer = svg.append('g')
     .attr('class', 'chart-container')
 
+  // Create container for the area paths with clipping applied
   const areaContainer = chartContainer.append('g')
     .attr('class', 'area-container')
     .attr('clip-path', `url(#${clipId})`)
   
-  
   return { chartContainer, areaContainer }
 }
 
+/**
+ * Updates the chart visualization based on new data or state changes.
+ * This function handles transitions between different views and data updates.
+ * 
+ * @param svg - The main SVG element
+ * @param dimensions - Chart dimensions including width, height, and margins
+ * @param state - Current chart state including data and visual properties
+ */
 export function updateChart(
   svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
   dimensions: { width: number; height: number; margin: any },
@@ -63,20 +82,25 @@ export function updateChart(
   const { width, height, margin } = dimensions
   const { data, dataType, selectedCategory, previousSelectedCategory, colorScale, categories } = state
 
+  // Create scales for x and y axes
   const { x } = createScales(data, width, height, margin, dataType)
   const yDomain = calculateYDomain(data, categories, selectedCategory, dataType)
   const y = d3.scaleLinear()
     .domain(yDomain)
     .range([height - margin.bottom, margin.top])
 
-  // Update axes
+  // Update axes with transition
   const chartContainer = svg.select('g.chart-container')
   chartContainer.selectAll('g')
     .filter(function() {
       return !d3.select(this).classed('area-container')
     })
+    .transition()
+    .duration(600)
+    .style('opacity', 0)
     .remove()
   
+  // Add new axes with updated scales
   addAxes(
     chartContainer as unknown as d3.Selection<SVGGElement, unknown, null, undefined>,
     x,
@@ -88,13 +112,25 @@ export function updateChart(
     dataType
   )
 
-  // Update areas
+  // Update the stacked area chart
   const areaContainer = svg.select('g.area-container')
-
   drawStackedArea(areaContainer, data, categories, x, y, colorScale, dataType, selectedCategory, previousSelectedCategory)
-  
 }
 
+/**
+ * Draws the stacked area chart with transitions between different states.
+ * Handles both stacked view and single category focus view.
+ * 
+ * @param container - The container element for the area paths
+ * @param data - Array of batch data to visualize
+ * @param categories - Array of category names
+ * @param x - X-axis scale
+ * @param y - Y-axis scale
+ * @param color - Color scale for categories
+ * @param dataType - Type of data being displayed (industries/tags)
+ * @param selectedCategory - Currently selected category (if any)
+ * @param previousSelectedCategory - Previously selected category (for transitions)
+ */
 export function drawStackedArea(
   container: d3.Selection<SVGGElement, unknown, null, undefined>,
   data: BatchData[],
@@ -106,7 +142,7 @@ export function drawStackedArea(
   selectedCategory: string | null,
   previousSelectedCategory: string | null
 ) {
-  // Calculate "Other" percentage for each data point
+  // Process data to include "Other" category
   const processedData = data.map(d => {
     const currentData = dataType === 'industries' 
       ? d.percentage_industries_among_total_industries 
@@ -115,7 +151,6 @@ export function drawStackedArea(
     const total = Object.values(currentData).reduce((sum, val) => sum + (val || 0), 0);
     const otherPercentage = Math.max(0, 100 - total);
     
-    // Create a new object with the processed data
     const newData = { ...d };
     if (dataType === 'industries') {
       newData.percentage_industries_among_total_industries = {
@@ -131,17 +166,20 @@ export function drawStackedArea(
     return newData;
   });
 
-  // Always include "Other" in categories
+  // Include "Other" in categories list
   const extendedCategories = [...categories, 'Other'];
 
+  // Create stack generator
   const stack = d3.stack<BatchData>()
     .keys(extendedCategories)
     .value((d, key) => {
       if (selectedCategory) {
+        // When category is selected, show percentage per companies
         return dataType === 'industries'
           ? d.percentage_companies_per_industries[key] || 0
           : d.percentage_companies_per_tags[key] || 0;
       } else {
+        // In stacked view, show percentage among total
         const data = dataType === 'industries'
           ? d.percentage_industries_among_total_industries
           : d.percentage_tags_among_total_tags;
@@ -151,32 +189,28 @@ export function drawStackedArea(
 
   const stackedData = stack(processedData);
 
-  // Area generator for stacked
+  // Create area generators for both stacked and single category views
   const area = d3.area<d3.SeriesPoint<BatchData>>()
     .x(d => (x(d.data.name) ?? 0) + x.bandwidth() / 2)
     .y0(d => y(d[0]))
     .y1(d => y(d[1]))
     .curve(d3.curveCatmullRom.alpha(0.5));
 
-  // Area generator for single category
   const singleArea = d3.area<AreaData>()
     .x(d => (x(d.name) ?? 0) + x.bandwidth() / 2)
     .y0(() => y(0))
     .y1(d => {
-      // Only selectedCategory gets a non-zero height
       const value = selectedCategory ? d[dataType]?.[selectedCategory] || 0 : 0;
       return y(value);
     })
     .curve(d3.curveCatmullRom.alpha(0.5));
 
-  /**
-   * Data bound to paths changes depending on whether we're in "stacked" mode
-   * or focusing on a single category.
-   */
+  // Determine which data to bind based on view mode
   const boundData = selectedCategory
     ? [{ key: selectedCategory, index: 0, data } as AreaData]
     : stackedData;
 
+  // Bind data to paths
   const paths = container.selectAll<SVGPathElement, AreaData>('path.area')
     .data(boundData, (d: any) => d.key);
 
@@ -207,6 +241,7 @@ export function drawStackedArea(
     tooltip.classed('visible', false);
   };
 
+  // Handle transitions based on view mode
   if (selectedCategory) {
     // First transition: fade out non-selected categories
     paths.exit()

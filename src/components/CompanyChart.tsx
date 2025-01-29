@@ -178,26 +178,32 @@ export default function CompanyChart({
         <div className="chart-type-selector">
           <button
             onClick={() => {
+              // If already on industries, don't reinitialize
+              if (dataType === 'industries') return;
+              
               setDataType('industries')
-              // Clear and reinitialize chart
               setSelectedCategory(null)
+              setPreviousSelectedCategory(null)
 
               const svg = d3.select(svgRef.current)
               svg.selectAll('*').remove()
+              
               const containerBounds = svgRef.current.parentElement?.getBoundingClientRect()
               const dimensions = {
                 width: containerBounds?.width ?? 600,
                 height: containerBounds?.height ?? 400,
                 margin: { top: 20, right: 200, bottom: 60, left: 60 }
               }
+              
               const { categories: newCategories } = createScales(data, dimensions.width, dimensions.height, dimensions.margin, 'industries')
               setCategories(newCategories)
               colorScale.domain(newCategories)
+              
               initializeChart(svg, chartId, dimensions, {
                 data,
                 dataType: 'industries',
-                selectedCategory,
-                previousSelectedCategory,
+                selectedCategory: null,
+                previousSelectedCategory: null,
                 colorScale,
                 categories: newCategories
               })
@@ -209,26 +215,32 @@ export default function CompanyChart({
           <span className="chart-type-separator">/</span>
           <button
             onClick={() => {
+              // If already on tags, don't reinitialize
+              if (dataType === 'tags') return;
+              
               setDataType('tags')
-              // Clear and reinitialize chart
-              //set selected category to null
               setSelectedCategory(null)
+              setPreviousSelectedCategory(null)
+
               const svg = d3.select(svgRef.current)
               svg.selectAll('*').remove()
+              
               const containerBounds = svgRef.current.parentElement?.getBoundingClientRect()
               const dimensions = {
                 width: containerBounds?.width ?? 600,
                 height: containerBounds?.height ?? 400,
                 margin: { top: 20, right: 200, bottom: 60, left: 60 }
               }
+              
               const { categories: newCategories } = createScales(data, dimensions.width, dimensions.height, dimensions.margin, 'tags')
               setCategories(newCategories)
               colorScale.domain(newCategories)
+              
               initializeChart(svg, chartId, dimensions, {
                 data,
                 dataType: 'tags',
-                selectedCategory,
-                previousSelectedCategory,
+                selectedCategory: null,
+                previousSelectedCategory: null,
                 colorScale,
                 categories: newCategories
               })
