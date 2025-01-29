@@ -106,21 +106,51 @@ export function drawStackedArea(
   selectedCategory: string | null,
   previousSelectedCategory: string | null
 ) {
-  // Sort categories by total representation
-  const sortedCategories = [...categories].sort((a, b) => {
-    const totalA = data.reduce((sum, d) => {
+  // Calculate "Other" percentage for each data point
+  const processedData = data.map(d => {
+    const total = Object.values(dataType === 'industries' 
+      ? d.percentage_industries_among_total_industries 
+      : d.percentage_tags_among_total_tags
+    ).reduce((sum, val) => sum + (val || 0), 0);
+
+    const otherPercentage = Math.max(0, 100 - total);
+    
+    return {
+      ...d,
+      percentage_industries_among_total_industries: {
+        ...d.percentage_industries_among_total_industries,
+        Other: dataType === 'industries' ? otherPercentage : 0
+      },
+      percentage_tags_among_total_tags: {
+        ...d.percentage_tags_among_total_tags,
+        Other: dataType === 'tags' ? otherPercentage : 0
+      }
+    };
+  });
+
+  // Add "Other" to categories if it's not already there
+  const extendedCategories = categories.includes('Other') 
+    ? categories 
+    : [...categories, 'Other'];
+
+  // Sort categories including "Other"
+  const sortedCategories = [...extendedCategories].sort((a, b) => {
+    if (a === 'Other') return 1;  // "Other" always goes on top
+    if (b === 'Other') return -1;
+    
+    const totalA = processedData.reduce((sum, d) => {
       return sum + (dataType === 'industries' 
         ? (d.percentage_industries_among_total_industries[a] || 0)
         : (d.percentage_tags_among_total_tags[a] || 0));
     }, 0);
     
-    const totalB = data.reduce((sum, d) => {
+    const totalB = processedData.reduce((sum, d) => {
       return sum + (dataType === 'industries'
         ? (d.percentage_industries_among_total_industries[b] || 0)
         : (d.percentage_tags_among_total_tags[b] || 0));
     }, 0);
     
-    return totalB - totalA; // Largest values at the bottom
+    return totalB - totalA;
   });
 
   const stack = d3.stack<BatchData>()
@@ -139,7 +169,7 @@ export function drawStackedArea(
       }
     });
 
-  const stackedData = stack(data);
+  const stackedData = stack(processedData);
 
   // Area generator for stacked
   const area = d3.area<d3.SeriesPoint<BatchData>>()
