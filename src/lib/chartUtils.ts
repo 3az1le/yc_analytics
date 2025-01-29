@@ -22,17 +22,25 @@ export function calculateYDomain(
   selectedCategory: string | null,
   dataType: 'industries' | 'tags'
 ): [number, number] {
-  // Always calculate the max value from all categories
   const maxY = d3.max(data, d => {
     if (selectedCategory) {
-      return d[dataType]?.[selectedCategory] || 0
+      // When category is selected, use percentage per companies
+      return dataType === 'industries' 
+        ? d.percentage_companies_per_industries[selectedCategory] || 0
+        : d.percentage_companies_per_tags[selectedCategory] || 0;
+    } else {
+      // When showing all categories, sum up the appropriate percentages
+      const percentageField = dataType === 'industries' 
+        ? 'percentage_industries_among_total_industries'
+        : 'percentage_tags_among_total_tags';
+      
+      return Object.values(d[percentageField] || {})
+        .reduce((sum, val) => sum + (val || 0), 0);
     }
-    // Sum all categories for stacked view
-    return Object.values(d[dataType] || {}).reduce((sum, val) => sum + (val || 0), 0)
-  }) || 0
+  }) || 0;
 
-  // Add some padding to the max value
-  return [0, Math.ceil(maxY / 10) * 10]
+  // Add 10% padding to the max value and round to nearest 10
+  return [0, Math.ceil((maxY * 1.1) / 1) * 1];
 }
 
 export function createLegend(
@@ -127,7 +135,9 @@ export function addAxes(
   y: d3.ScaleLinear<number, number>,
   height: number,
   margin: { top: number; right: number; bottom: number; left: number },
-  width: number
+  width: number,
+  selectedCategory: string | null = null,
+  dataType: 'industries' | 'tags' = 'industries'
 ) {
   // Validate width parameter
   if (!width || isNaN(width)) {
@@ -207,4 +217,23 @@ export function addAxes(
 
   // Remove the domain lines
   yAxis.select('.domain').remove()
+
+  // Add y-axis label with data type specific text
+  container.select('.y-axis-label').remove()
+  
+  const yAxisLabel = container.append('text')
+    .attr('class', 'y-axis-label')
+    .attr('text-anchor', 'middle')
+    .attr('transform', 'rotate(-90)')
+    .attr('x', -(height - margin.bottom + margin.top) / 2)
+    .attr('y', margin.left - 40)
+    .attr('fill', 'black')
+    .style('font-family', 'Avenir, system-ui, -apple-system, sans-serif')
+    .style('font-size', '16px')
+    .text(selectedCategory ? 
+      `% of Companies in ${selectedCategory}` : 
+      dataType === 'industries' ?
+        'Distribution Among Industries' :
+        'Distribution Among Tags'
+    )
 } 

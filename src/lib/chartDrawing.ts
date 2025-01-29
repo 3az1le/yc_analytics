@@ -3,6 +3,7 @@ import 'd3-transition'; // Ensure .transition() is recognized
 import { interpolatePath } from 'd3-interpolate-path';
 import { BatchData } from '@/lib/processData'; // Adjust to your actual import
 import { createScales, calculateYDomain, addAxes } from '@/lib/chartUtils';
+import { stack } from 'd3';
 
 type AreaData = d3.Series<BatchData, string> & { data?: BatchData[] };
 
@@ -82,7 +83,9 @@ export function updateChart(
     y,
     height,
     margin,
-    width
+    width,
+    selectedCategory,
+    dataType
   )
 
   // Update areas
@@ -103,13 +106,23 @@ export function drawStackedArea(
   selectedCategory: string | null,
   previousSelectedCategory: string | null
 ) {
-  // Guard if no valid data
-  if (!data?.[0]?.[dataType]) return;
-
-  // Build stacked data
   const stack = d3.stack<BatchData>()
     .keys(categories)
-    .value((d, key) => d[dataType]?.[key] || 0);
+    .value((d, key) => {
+      if (selectedCategory) {
+        // When category is selected, show percentage per companies
+        if (dataType === 'industries') {
+          return d.percentage_companies_per_industries[key] || 0
+        }
+        return d.percentage_companies_per_tags[key] || 0
+      } else {
+        // When no category is selected, show percentage among total
+        if (dataType === 'industries') {
+          return d.percentage_industries_among_total_industries[key] || 0
+        }
+        return d.percentage_tags_among_total_tags[key] || 0
+      }
+    });
 
   const stackedData = stack(data);
 

@@ -14,7 +14,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const [isSliderVisible, setIsSliderVisible] = useState(false)
 
-  const stats = useMemo(() => {
+  const processedData = useMemo(() => {
     try {
       return processData(yearRange[0].toString(), yearRange[1].toString())
     } catch (error) {
@@ -42,7 +42,7 @@ export default function Home() {
     }
   }, [])
 
-  if (isLoading || !stats) {
+  if (isLoading || !processedData) {
     return <div className="loading-container">
       <div className="loading-text">Loading data...</div>
     </div>
@@ -64,13 +64,13 @@ export default function Home() {
       <main className="main-content">
         <div className="charts-container">
           <CompanyChart
-            data={stats.byBatch}
+            data={processedData.byBatch}
             title="Industry Distribution Over Time"
             type="stacked-area"
             dataType="industries"
           />
           <CompanyChart
-            data={stats.byBatch}
+            data={processedData.byBatch}
             title="Tags Distribution Over Time"
             type="stacked-area"
             dataType="tags"

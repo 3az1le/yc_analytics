@@ -9,8 +9,7 @@ import {
 import {
   initializeChart,
   drawStackedArea,
-  updateChart,
-  calculateYDomain
+  updateChart
 } from '@/lib/chartDrawing'
 import '@/styles/main.css'
 
