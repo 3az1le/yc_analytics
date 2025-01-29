@@ -107,7 +107,7 @@ export function drawStackedArea(
   previousSelectedCategory: string | null
 ) {
   const stack = d3.stack<BatchData>()
-    .keys(categories)
+    .keys(categories.slice().reverse())
     .value((d, key) => {
       if (selectedCategory) {
         // When category is selected, show percentage per companies
@@ -154,6 +154,33 @@ export function drawStackedArea(
 
   const paths = container.selectAll<SVGPathElement, AreaData>('path.area')
     .data(boundData, (d: any) => d.key);
+
+  // Create tooltip if it doesn't exist
+  let tooltip = d3.select('body').select('.area-tooltip')
+  if (tooltip.empty()) {
+    tooltip = d3.select('body')
+      .append('div')
+      .attr('class', 'area-tooltip')
+  }
+
+  // Add hover handlers to the paths
+  const handleMouseOver = (event: MouseEvent, d: any) => {
+    tooltip
+      .classed('visible', true)
+      .html(d.key)
+      .style('left', `${event.pageX + 10}px`)
+      .style('top', `${event.pageY - 10}px`);
+  };
+
+  const handleMouseMove = (event: MouseEvent) => {
+    tooltip
+      .style('left', `${event.pageX + 10}px`)
+      .style('top', `${event.pageY - 10}px`);
+  };
+
+  const handleMouseOut = () => {
+    tooltip.classed('visible', false);
+  };
 
   if (selectedCategory) {
     // First transition: fade out non-selected categories
@@ -202,6 +229,13 @@ export function drawStackedArea(
         return interpolatePath(prevD, newD);
       })
       .attr('fill', d => color(d.key));
+
+    // Add the handlers to both enter and update selections
+    singleEnter.merge(paths)
+      .style('cursor', 'pointer')
+      .on('mouseover', handleMouseOver)
+      .on('mousemove', handleMouseMove)
+      .on('mouseout', handleMouseOut);
   } else {
     // When returning to stacked view
     const wasShowingSingleCategory = previousSelectedCategory !== null;
@@ -244,5 +278,12 @@ export function drawStackedArea(
         .attr('d', (d: AreaData) => area(d))
         .attr('opacity', 1);
     }
+
+    // Add the handlers to both enter and update selections
+    enterSelection.merge(paths)
+      .style('cursor', 'pointer')
+      .on('mouseover', handleMouseOver)
+      .on('mousemove', handleMouseMove)
+      .on('mouseout', handleMouseOut);
   }
 }

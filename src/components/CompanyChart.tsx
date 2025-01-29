@@ -14,15 +14,15 @@ import {
 import '@/styles/main.css'
 
 const orangeScale = [
+  '#DC510F',
   '#F5CFBD',
   '#EC9065',
   '#E99C77',
   '#FC844B',
   '#F67537',
   '#FBAF8B',
-  '#FFE2D4',
-  '#FF5B0E',
-  '#DC510F'
+  '#DC510E',
+  '#FF5B0E'
 ]
 
 export default function CompanyChart({ 
