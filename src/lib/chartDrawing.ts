@@ -106,17 +106,32 @@ export function drawStackedArea(
   selectedCategory: string | null,
   previousSelectedCategory: string | null
 ) {
+  // Sort categories by total representation
+  const sortedCategories = [...categories].sort((a, b) => {
+    const totalA = data.reduce((sum, d) => {
+      return sum + (dataType === 'industries' 
+        ? (d.percentage_industries_among_total_industries[a] || 0)
+        : (d.percentage_tags_among_total_tags[a] || 0));
+    }, 0);
+    
+    const totalB = data.reduce((sum, d) => {
+      return sum + (dataType === 'industries'
+        ? (d.percentage_industries_among_total_industries[b] || 0)
+        : (d.percentage_tags_among_total_tags[b] || 0));
+    }, 0);
+    
+    return totalB - totalA; // Largest values at the bottom
+  });
+
   const stack = d3.stack<BatchData>()
-    .keys(categories.slice().reverse())
+    .keys(sortedCategories)
     .value((d, key) => {
       if (selectedCategory) {
-        // When category is selected, show percentage per companies
         if (dataType === 'industries') {
           return d.percentage_companies_per_industries[key] || 0
         }
         return d.percentage_companies_per_tags[key] || 0
       } else {
-        // When no category is selected, show percentage among total
         if (dataType === 'industries') {
           return d.percentage_industries_among_total_industries[key] || 0
         }
@@ -252,9 +267,11 @@ export function drawStackedArea(
       .append('path')
       .attr('class', 'area')
       .attr('fill', (d: AreaData) => color(d.key))
-      // .attr('opacity', 0)
+      .style('cursor', 'pointer')
+      .on('mouseover', handleMouseOver)
+      .on('mousemove', handleMouseMove)
+      .on('mouseout', handleMouseOut)
       .attr('d', (d: AreaData) => {
-        // If coming from single category view, start from that shape
         if (wasShowingSingleCategory && d.key === previousSelectedCategory) {
           const previousPath = container.selectAll<SVGPathElement, AreaData>('path.area')
             .filter(p => p.key === previousSelectedCategory);
@@ -278,12 +295,5 @@ export function drawStackedArea(
         .attr('d', (d: AreaData) => area(d))
         .attr('opacity', 1);
     }
-
-    // Add the handlers to both enter and update selections
-    enterSelection.merge(paths)
-      .style('cursor', 'pointer')
-      .on('mouseover', handleMouseOver)
-      .on('mousemove', handleMouseMove)
-      .on('mouseout', handleMouseOut);
   }
 }

@@ -20,9 +20,9 @@ const orangeScale = [
   '#E99C77',
   '#FC844B',
   '#F67537',
-  '#FBAF8B',
   '#DC510E',
-  '#FF5B0E'
+  '#FF5B0E',
+  '#FBAF8B'
 ]
 
 export default function CompanyChart({ 
