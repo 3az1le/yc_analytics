@@ -108,64 +108,44 @@ export function drawStackedArea(
 ) {
   // Calculate "Other" percentage for each data point
   const processedData = data.map(d => {
-    const total = Object.values(dataType === 'industries' 
+    const currentData = dataType === 'industries' 
       ? d.percentage_industries_among_total_industries 
-      : d.percentage_tags_among_total_tags
-    ).reduce((sum, val) => sum + (val || 0), 0);
+      : d.percentage_tags_among_total_tags;
 
+    const total = Object.values(currentData).reduce((sum, val) => sum + (val || 0), 0);
     const otherPercentage = Math.max(0, 100 - total);
     
-    return {
-      ...d,
-      percentage_industries_among_total_industries: {
-        ...d.percentage_industries_among_total_industries,
-        Other: dataType === 'industries' ? otherPercentage : 0
-      },
-      percentage_tags_among_total_tags: {
-        ...d.percentage_tags_among_total_tags,
-        Other: dataType === 'tags' ? otherPercentage : 0
-      }
-    };
+    // Create a new object with the processed data
+    const newData = { ...d };
+    if (dataType === 'industries') {
+      newData.percentage_industries_among_total_industries = {
+        ...currentData,
+        Other: otherPercentage
+      };
+    } else {
+      newData.percentage_tags_among_total_tags = {
+        ...currentData,
+        Other: otherPercentage
+      };
+    }
+    return newData;
   });
 
-  // Add "Other" to categories if it's not already there
-  const extendedCategories = categories.includes('Other') 
-    ? categories 
-    : [...categories, 'Other'];
-
-  // Sort categories including "Other"
-  const sortedCategories = [...extendedCategories].sort((a, b) => {
-    if (a === 'Other') return 1;  // "Other" always goes on top
-    if (b === 'Other') return -1;
-    
-    const totalA = processedData.reduce((sum, d) => {
-      return sum + (dataType === 'industries' 
-        ? (d.percentage_industries_among_total_industries[a] || 0)
-        : (d.percentage_tags_among_total_tags[a] || 0));
-    }, 0);
-    
-    const totalB = processedData.reduce((sum, d) => {
-      return sum + (dataType === 'industries'
-        ? (d.percentage_industries_among_total_industries[b] || 0)
-        : (d.percentage_tags_among_total_tags[b] || 0));
-    }, 0);
-    
-    return totalB - totalA;
-  });
+  // Always include "Other" in categories
+  const extendedCategories = [...categories, 'Other'];
 
   const stack = d3.stack<BatchData>()
-    .keys(sortedCategories)
+    .keys(extendedCategories)
     .value((d, key) => {
       if (selectedCategory) {
-        if (dataType === 'industries') {
-          return d.percentage_companies_per_industries[key] || 0
-        }
-        return d.percentage_companies_per_tags[key] || 0
+        return dataType === 'industries'
+          ? d.percentage_companies_per_industries[key] || 0
+          : d.percentage_companies_per_tags[key] || 0;
       } else {
-        if (dataType === 'industries') {
-          return d.percentage_industries_among_total_industries[key] || 0
-        }
-        return d.percentage_tags_among_total_tags[key] || 0
+        const data = dataType === 'industries'
+          ? d.percentage_industries_among_total_industries
+          : d.percentage_tags_among_total_tags;
+        return data[key] || 0;
       }
     });
 

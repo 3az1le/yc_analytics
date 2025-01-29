@@ -49,10 +49,20 @@ export default function CompanyChart({
   // Memoize categories to prevent unnecessary re-renders
   const { categories: newCategories } = useMemo(() => {
     if (!data?.length) return { categories: [] }
+    
+    // Get initial categories from data
+    const cats = Array.from(
+      new Set(data.flatMap(d => {
+        const currentData = dataType === 'industries' 
+          ? d.percentage_industries_among_total_industries 
+          : d.percentage_tags_among_total_tags;
+        return Object.keys(currentData || {});
+      }))
+    ).sort();
+
+    // Always include "Other" category
     return {
-      categories: Array.from(
-        new Set(data.flatMap(d => Object.keys(d[dataType] || {})))
-      ).sort()
+      categories: [...cats, 'Other']
     }
   }, [data, dataType])
 
@@ -116,7 +126,6 @@ export default function CompanyChart({
 
     // Initialize chart if it doesn't exist
     if (svg.select('g.chart-container').empty()) {
-      const { categories: newCategories } = createScales(data, dimensions.width, dimensions.height, dimensions.margin, dataType)
       setCategories(newCategories)
       colorScale.domain(newCategories)
 
@@ -137,9 +146,9 @@ export default function CompanyChart({
       selectedCategory,
       previousSelectedCategory,
       colorScale,
-      categories
+      categories: newCategories
     })
-  }, [data, selectedCategory, previousSelectedCategory, dataType, chartId, categories, colorScale])
+  }, [data, selectedCategory, previousSelectedCategory, dataType, chartId, newCategories, colorScale])
 
   // Memoize legend items to prevent re-renders
   const legendItems = useMemo(() => (

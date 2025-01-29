@@ -22,25 +22,21 @@ export function calculateYDomain(
   selectedCategory: string | null,
   dataType: 'industries' | 'tags'
 ): [number, number] {
-  const maxY = d3.max(data, d => {
-    if (selectedCategory) {
+
+  if (selectedCategory) {
+    const maxY = d3.max(data, d => {
       // When category is selected, use percentage per companies
       return dataType === 'industries' 
         ? d.percentage_companies_per_industries[selectedCategory] || 0
         : d.percentage_companies_per_tags[selectedCategory] || 0;
-    } else {
-      // When showing all categories, sum up the appropriate percentages
-      const percentageField = dataType === 'industries' 
-        ? 'percentage_industries_among_total_industries'
-        : 'percentage_tags_among_total_tags';
-      
-      return Object.values(d[percentageField] || {})
-        .reduce((sum, val) => sum + (val || 0), 0);
-    }
-  }) || 0;
+    }) || 0;
 
-  // Add 10% padding to the max value and round to nearest 10
-  return [0, Math.ceil((maxY * 1.1) / 1) * 1];
+    return [0, Math.ceil((maxY * 1.1) / 1) * 1];
+  } else {
+
+    // Add 10% padding to the max value and round to nearest 10
+    return [0, 100];
+  }
 }
 
 export function createLegend(
