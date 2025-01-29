@@ -162,16 +162,15 @@ export function drawStackedArea(
             .filter(p => p.key === selectedCategory);
           return !stackedPath.empty() ? stackedPath.attr('d') : area(d);
         }
-        
         // If switching between categories
-        const previousPath = container.selectAll<SVGPathElement, AreaData>('path.area')
+        const previousPath = container.selectAll('path.area')
           .filter(p => p.key === previousSelectedCategory);
         return !previousPath.empty() ? previousPath.attr('d') : area(d);
       })
-      .attr('fill', d => color(d.key))
       // .attr('opacity', 0);
 
     // Morph the selected category's path
+    /// PROBLEM IS IN HERE !!!!!
     singleEnter.merge(paths)
       .transition()
       .duration(600)
@@ -179,17 +178,12 @@ export function drawStackedArea(
       .attrTween('d', function(d) {
         let prevD = '';
         
-        // If coming from stacked view
-        if (!previousSelectedCategory) {
-          const stackedPath = container.selectAll('path.area')
-            .filter(p => p.key === selectedCategory);
-          prevD = !stackedPath.empty() ? stackedPath.attr('d') : '';
-        } else {
-          // If switching between categories
-          const previousPath = container.selectAll<SVGPathElement, AreaData>('path.area')
-            .filter(p => p.key === previousSelectedCategory);
-          prevD = !previousPath.empty() ? previousPath.attr('d') : '';
-        }
+       
+        // If switching between categories
+        const previousPath = container.selectAll('path.area')
+          .filter(p => p.key === selectedCategory);
+        prevD = !previousPath.empty() ? previousPath.attr('d') : '';
+      
         
         const newD = singleArea(d.data!);
         return interpolatePath(prevD, newD);
@@ -231,4 +225,3 @@ export function drawStackedArea(
       .attr('opacity', 1);
   }
 }
-export { calculateYDomain } from '@/lib/chartUtils'
