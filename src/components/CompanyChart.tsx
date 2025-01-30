@@ -32,7 +32,6 @@ export default function CompanyChart({
   const scrollRef = useRef<number>(0)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [previousSelectedCategory, setPreviousSelectedCategory] = useState<string | null>(null)
-  const [previousDataType, setPreviousDataType] = useState<'industries' | 'tags'>(dataType)
   const [legendScrollOffset, setLegendScrollOffset] = useState(0)
   const [categories, setCategories] = useState<string[]>([])
   const colorScale = useMemo(() => d3.scaleOrdinal(orangeScale), [])
@@ -70,15 +69,10 @@ export default function CompanyChart({
     colorScale.domain(newCategories)
   }, [newCategories, colorScale])
 
-  // Add effect to reset category selection when dataType changes
+  // Remove the effect that updates previousDataType
   useEffect(() => {
     setSelectedCategory(null)
     setPreviousSelectedCategory(null)
-  }, [dataType])
-
-  // Update previousDataType when dataType changes
-  useEffect(() => {
-    setPreviousDataType(dataType)
   }, [dataType])
 
   // Optimize legend scroll handler
@@ -157,8 +151,7 @@ export default function CompanyChart({
           selectedCategory,
           previousSelectedCategory,
           colorScale,
-          categories: newCategories,
-          previousDataType
+          categories: newCategories
         })
       } catch (error) {
         console.error('Error initializing chart:', error)
@@ -173,13 +166,12 @@ export default function CompanyChart({
         selectedCategory,
         previousSelectedCategory,
         colorScale,
-        categories: newCategories,
-        previousDataType
+        categories: newCategories
       })
     } catch (error) {
       console.error('Error updating chart:', error)
     }
-  }, [data, selectedCategory, previousSelectedCategory, dataType, chartId, newCategories, colorScale, previousDataType])
+  }, [data, selectedCategory, previousSelectedCategory, dataType, chartId, newCategories, colorScale])
 
   // Memorize legend items to prevent re-renders
   const legendItems = useMemo(() => (

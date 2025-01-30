@@ -220,10 +220,19 @@ export function drawStackedArea(
       stackedArea,
       tooltip
     })
-  } else {
+  } else if (previousSelectedCategory) {
+    // Only use stacked transition when unselecting a category
     handleStackedViewTransition(paths, containerElement, {
       previousSelectedCategory,
       selectedCategory,
+      colorScale,
+      stackedArea,
+      tooltip,
+      dataType
+    })
+  } else {
+    // For dataType changes or date range updates, update immediately without transition
+    handleImmediateStackedUpdate(paths, containerElement, {
       colorScale,
       stackedArea,
       tooltip
@@ -335,4 +344,35 @@ function handleStackedViewTransition(
   }
 
   setupTooltipHandlers(mergedSelection, tooltip)
+}
+
+function handleImmediateStackedUpdate(
+  paths: d3.Selection<SVGPathElement, any, any, any>,
+  container: Element,
+  config: {
+    colorScale: d3.ScaleOrdinal<string, string>
+    stackedArea: d3.Area<any>
+    tooltip: d3.Selection<any, any, any, any>
+  }
+) {
+  const { colorScale, stackedArea, tooltip } = config
+
+  // Exit old paths immediately
+  paths.exit().remove()
+
+  // Enter new paths
+  const enterSelection = paths.enter()
+    .append('path')
+    .attr('class', 'area')
+    .attr('fill', (d: any) => colorScale(d.key))
+    .attr('d', stackedArea)
+    .attr('opacity', 1)
+
+  // Update existing paths immediately
+  paths
+    .attr('d', stackedArea)
+    .attr('opacity', 1)
+    .attr('fill', (d: any) => colorScale(d.key))
+
+  setupTooltipHandlers(enterSelection.merge(paths), tooltip)
 }
