@@ -3,9 +3,6 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import * as d3 from 'd3'
 import { ChartProps } from '@/types/chart'
-import { 
-  createScales
-} from '@/lib/chartUtils'
 import {
   initializeChart,
   drawStackedArea,
@@ -13,7 +10,7 @@ import {
 } from '@/lib/chartDrawing'
 import '@/styles/main.css'
 
-const orangeScale = [
+export const orangeScale = [
   '#DC510F',
   '#F5CFBD',
   '#EC9065',
@@ -28,13 +25,14 @@ const orangeScale = [
 export default function CompanyChart({ 
   data, 
   title, 
-  type, 
-}: Omit<ChartProps, 'dataType'>) {
-  const [dataType, setDataType] = useState<'industries' | 'tags'>('industries')
+  type,
+  dataType,
+}: ChartProps) {
   const svgRef = useRef<SVGSVGElement>(null)
   const scrollRef = useRef<number>(0)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [previousSelectedCategory, setPreviousSelectedCategory] = useState<string | null>(null)
+  const [previousDataType, setPreviousDataType] = useState<'industries' | 'tags'>(dataType)
   const [legendScrollOffset, setLegendScrollOffset] = useState(0)
   const [categories, setCategories] = useState<string[]>([])
   const colorScale = useMemo(() => d3.scaleOrdinal(orangeScale), [])
@@ -71,6 +69,17 @@ export default function CompanyChart({
     setCategories(newCategories)
     colorScale.domain(newCategories)
   }, [newCategories, colorScale])
+
+  // Add effect to reset category selection when dataType changes
+  useEffect(() => {
+    setSelectedCategory(null)
+    setPreviousSelectedCategory(null)
+  }, [dataType])
+
+  // Update previousDataType when dataType changes
+  useEffect(() => {
+    setPreviousDataType(dataType)
+  }, [dataType])
 
   // Optimize legend scroll handler
   const handleWheel = useCallback((e: WheelEvent) => {
@@ -118,39 +127,61 @@ export default function CompanyChart({
 
     const svg = d3.select(svgRef.current)
     const containerBounds = svgRef.current.parentElement?.getBoundingClientRect()
+    
+    if (!containerBounds) {
+      console.error('Container bounds not available')
+      return
+    }
+
+    // Define dimensions object explicitly with default values
     const dimensions = {
       width: containerBounds?.width ?? 600,
       height: containerBounds?.height ?? 400,
-      margin: { top: 20, right: 200, bottom: 60, left: 60 }
-    }
+      margin: { 
+        top: 20, 
+        right: 200, 
+        bottom: 60, 
+        left: 60 
+      }
+    } as const
 
     // Initialize chart if it doesn't exist
     if (svg.select('g.chart-container').empty()) {
       setCategories(newCategories)
       colorScale.domain(newCategories)
 
-      initializeChart(svg, chartId, dimensions, {
+      try {
+        initializeChart(svg, chartId, dimensions, {
+          data,
+          dataType,
+          selectedCategory,
+          previousSelectedCategory,
+          colorScale,
+          categories: newCategories,
+          previousDataType
+        })
+      } catch (error) {
+        console.error('Error initializing chart:', error)
+      }
+    }
+
+    // Update chart
+    try {
+      updateChart(svg, dimensions, {
         data,
         dataType,
         selectedCategory,
         previousSelectedCategory,
         colorScale,
-        categories: newCategories
+        categories: newCategories,
+        previousDataType
       })
+    } catch (error) {
+      console.error('Error updating chart:', error)
     }
+  }, [data, selectedCategory, previousSelectedCategory, dataType, chartId, newCategories, colorScale, previousDataType])
 
-    // Update chart
-    updateChart(svg, dimensions, {
-      data,
-      dataType,
-      selectedCategory,
-      previousSelectedCategory,
-      colorScale,
-      categories: newCategories
-    })
-  }, [data, selectedCategory, previousSelectedCategory, dataType, chartId, newCategories, colorScale])
-
-  // Memoize legend items to prevent re-renders
+  // Memorize legend items to prevent re-renders
   const legendItems = useMemo(() => (
     categories.map((category) => (
       <div
@@ -174,84 +205,6 @@ export default function CompanyChart({
 
   return (
     <div className="chart-wrapper">
-      <div className="chart-header">
-        <div className="chart-type-selector">
-          <button
-            onClick={() => {
-              // If already on industries, don't reinitialize
-              if (dataType === 'industries') return;
-              
-              setDataType('industries')
-              setSelectedCategory(null)
-              setPreviousSelectedCategory(null)
-
-              const svg = d3.select(svgRef.current)
-              svg.selectAll('*').remove()
-              
-              const containerBounds = svgRef.current.parentElement?.getBoundingClientRect()
-              const dimensions = {
-                width: containerBounds?.width ?? 600,
-                height: containerBounds?.height ?? 400,
-                margin: { top: 20, right: 200, bottom: 60, left: 60 }
-              }
-              
-              const { categories: newCategories } = createScales(data, dimensions.width, dimensions.height, dimensions.margin, 'industries')
-              setCategories(newCategories)
-              colorScale.domain(newCategories)
-              
-              initializeChart(svg, chartId, dimensions, {
-                data,
-                dataType: 'industries',
-                selectedCategory: null,
-                previousSelectedCategory: null,
-                colorScale,
-                categories: newCategories
-              })
-            }}
-            className={`chart-type-option ${dataType === 'industries' ? 'active' : ''}`}
-          >
-            Industries
-          </button>
-          <span className="chart-type-separator">/</span>
-          <button
-            onClick={() => {
-              // If already on tags, don't reinitialize
-              if (dataType === 'tags') return;
-              
-              setDataType('tags')
-              setSelectedCategory(null)
-              setPreviousSelectedCategory(null)
-
-              const svg = d3.select(svgRef.current)
-              svg.selectAll('*').remove()
-              
-              const containerBounds = svgRef.current.parentElement?.getBoundingClientRect()
-              const dimensions = {
-                width: containerBounds?.width ?? 600,
-                height: containerBounds?.height ?? 400,
-                margin: { top: 20, right: 200, bottom: 60, left: 60 }
-              }
-              
-              const { categories: newCategories } = createScales(data, dimensions.width, dimensions.height, dimensions.margin, 'tags')
-              setCategories(newCategories)
-              colorScale.domain(newCategories)
-              
-              initializeChart(svg, chartId, dimensions, {
-                data,
-                dataType: 'tags',
-                selectedCategory: null,
-                previousSelectedCategory: null,
-                colorScale,
-                categories: newCategories
-              })
-            }}
-            className={`chart-type-option ${dataType === 'tags' ? 'active' : ''}`}
-          >
-            Tags
-          </button>
-        </div>
-        <h2 className="chart-title">{title} </h2>
-      </div>
       <div className="chart-main-container">
         <svg
           ref={svgRef}

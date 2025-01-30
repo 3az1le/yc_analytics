@@ -1,42 +1,75 @@
 import * as d3 from 'd3'
 import { BatchData } from '@/lib/processData'
 
-export function createScales(data: BatchData[], width: number, height: number, margin: any, dataType: 'industries' | 'tags') {
+type Dimensions = {
+  width: number
+  height: number
+  margin: { top: number; right: number; bottom: number; left: number }
+}
+
+export function createScales(
+  data: BatchData[], 
+  dimensions: Dimensions,
+  dataType: 'industries' | 'tags'
+) {
+  // More detailed validation
+  if (!dimensions) {
+    throw new Error('Dimensions object is undefined')
+  }
+  if (!dimensions.margin) {
+    throw new Error('Dimensions margin is undefined')
+  }
+  if (!dimensions.width || !dimensions.height) {
+    throw new Error(`Invalid dimensions: width=${dimensions.width}, height=${dimensions.height}`)
+  }
+
+  const { width, height, margin } = dimensions
+
   const x = d3.scaleBand()
     .domain(data.map(d => d.name))
     .range([margin.left, width - margin.right])
     .padding(0.1)
 
+  const y = d3.scaleLinear()
+    .range([height - margin.bottom, margin.top])
+
   const categories = Array.from(
     new Set(
-      data.flatMap(d => Object.keys(d[dataType] || {}))
+      data.flatMap(d => {
+        const values = dataType === 'industries' 
+          ? d.percentage_industries_among_total_industries 
+          : d.percentage_tags_among_total_tags;
+        return Object.keys(values || {});
+      })
     )
   ).sort()
 
-  return { x, categories }
+  // Add "Other" category
+  categories.push('Other')
+
+  return { x, y, categories }
 }
 
-export function calculateYDomain(
-  data: BatchData[], 
-  categories: string[], 
+export function updateYScale(
+  y: d3.ScaleLinear<number, number>,
+  data: BatchData[],
   selectedCategory: string | null,
   dataType: 'industries' | 'tags'
-): [number, number] {
-
+) {
   if (selectedCategory) {
     const maxY = d3.max(data, d => {
-      // When category is selected, use percentage per companies
-      return dataType === 'industries' 
-        ? d.percentage_companies_per_industries[selectedCategory] || 0
-        : d.percentage_companies_per_tags[selectedCategory] || 0;
-    }) || 0;
+      const percentages = dataType === 'industries' 
+        ? d.percentage_companies_per_industries
+        : d.percentage_companies_per_tags
+      return percentages[selectedCategory] || 0
+    }) || 0
 
-    return [0, Math.ceil((maxY * 1.1) / 1) * 1];
+    y.domain([0, Math.ceil((maxY * 1.1) / 1) * 1])
   } else {
-
-    // Add 10% padding to the max value and round to nearest 10
-    return [0, 100];
+    y.domain([0, 100])
   }
+
+  return y
 }
 
 export function createLegend(
@@ -127,34 +160,23 @@ export function createLegend(
 
 export function addAxes(
   container: d3.Selection<SVGGElement, unknown, null, undefined>,
-  x: d3.ScaleBand<string>,
-  y: d3.ScaleLinear<number, number>,
-  height: number,
-  margin: { top: number; right: number; bottom: number; left: number },
-  width: number,
-  selectedCategory: string | null = null,
-  dataType: 'industries' | 'tags' = 'industries'
+  dimensions: Dimensions,
+  scales: { x: d3.ScaleBand<string>; y: d3.ScaleLinear<number, number> },
+  config: { selectedCategory: string | null; dataType: 'industries' | 'tags' }
 ) {
-  // Validate width parameter
-  if (!width || isNaN(width)) {
-    console.error('Invalid width:', width);
-    width = container.node()?.getBoundingClientRect().width || 600; // fallback width
-  }  // Remove existing axes and labels first
-  container.selectAll('.x-axis').remove();
-  container.selectAll('.y-axis').remove();
-  container.selectAll('.x-axis-label').remove();
-  container.selectAll('.y-axis-label').remove();
-  container.selectAll('.grid-lines').remove();
+  const { width, height, margin } = dimensions
+  const { x, y } = scales
+  const { selectedCategory, dataType } = config
 
+  // Clear existing axes and grid lines, but preserve labels
+  container.selectAll('.axis').remove()
+  container.selectAll('.grid-lines').remove()
 
-
-
-  // Create grid lines
+  // Add grid lines
   const gridGroup = container.append('g')
     .attr('class', 'grid-lines')
-    .lower();
+    .lower()
 
-  // Add horizontal background lines
   gridGroup.selectAll('.grid-line')
     .data(y.ticks())
     .join('line')
@@ -165,76 +187,61 @@ export function addAxes(
     .attr('y2', d => y(d))
     .attr('stroke', '#e5e7eb')
     .attr('stroke-width', 1)
-    .attr('stroke-dasharray', '2,2');
+    .attr('stroke-dasharray', '2,2')
 
   // Add x-axis
   const xAxis = container.append('g')
-    .attr('class', 'x-axis')
+    .attr('class', 'axis x-axis')
     .attr('transform', `translate(0,${height - margin.bottom})`)
     .call(d3.axisBottom(x)
       .tickSize(6)
       .tickPadding(10))
     .style('font-family', 'Avenir, system-ui, -apple-system, sans-serif')
     .style('font-size', '10px')
-  
-    xAxis.select('.domain')
-    .style('stroke', '#000')
-    .style('stroke-width', '1px')
-    .style('opacity', '1')
-    .attr('d', `M${margin.left},0H${width - margin.right}`)
-  
+
+  // Add y-axis
+  container.append('g')
+    .attr('class', 'axis y-axis')
+    .attr('transform', `translate(${margin.left},0)`)
+    .call(d3.axisLeft(y).tickFormat(d => `${d}%`))
+
   // Add x-axis label
   container.append('text')
-    .attr('class', 'x-axis-label')
+    .attr('class', 'axis-label x-label')
     .attr('text-anchor', 'middle')
-    .attr('x', (x.range()[1] - x.range()[0]) / 2 + margin.left)
+    .attr('x', (width - margin.left - margin.right) / 2 + margin.left)
     .attr('y', height - 10)
-    .attr('fill', 'black')
-    .style('font-family', 'Avenir, system-ui, -apple-system, sans-serif')
-    .style('font-size', '16px')
     .text('Batch')
 
-  // Filter out every other tick if they're too close
-  const ticks = xAxis.selectAll('.tick')
-  const tickCount = ticks.size()
-  
-  if (tickCount > 30) {
-    ticks.each(function(d, i) {
-      if (i % 2 !== 0) {
-        d3.select(this).remove()
-      }
-    })
+  // Update or create y-axis label
+  let yLabel = container.select<SVGTextElement>('.axis-label.y-label')
+  const yLabelText = selectedCategory ? 
+    `% of Companies in ${selectedCategory}` : 
+    `Distribution Among ${dataType === 'industries' ? 'Industries' : 'Tags'}`
+
+  if (yLabel.empty()) {
+    // Create new y-axis label if it doesn't exist
+    yLabel = container.append<SVGTextElement>('text')
+      .attr('class', 'axis-label y-label')
+      .attr('text-anchor', 'middle')
+      .attr('transform', 'rotate(-90)')
+      .attr('x', -(height - margin.bottom + margin.top) / 2)
+      .attr('y', margin.left - 40)
+      .style('opacity', 0)
   }
 
-  // Add y-axis with percentage label (without tick lines)
-  const yAxis = container.append('g')
-    .attr('transform', `translate(${margin.left},0)`)
-    .call(
-      d3.axisLeft(y)
-        .tickFormat(d => `${d}%`)
-        .tickSize(0) // Remove tick lines only for y-axis
-    )
-    .attr('color', 'black')
-
-  // Remove the domain lines
-  yAxis.select('.domain').remove()
-
-  // Add y-axis label with data type specific text
-  container.select('.y-axis-label').remove()
-  
-  const yAxisLabel = container.append('text')
-    .attr('class', 'y-axis-label')
-    .attr('text-anchor', 'middle')
-    .attr('transform', 'rotate(-90)')
-    .attr('x', -(height - margin.bottom + margin.top) / 2)
-    .attr('y', margin.left - 40)
-    .attr('fill', 'black')
-    .style('font-family', 'Avenir, system-ui, -apple-system, sans-serif')
-    .style('font-size', '16px')
-    .text(selectedCategory ? 
-      `% of Companies in ${selectedCategory}` : 
-      dataType === 'industries' ?
-        'Distribution Among Industries' :
-        'Distribution Among Tags'
-    )
+  // Update the label text with transition only if it's changing
+  if (yLabel.text() !== yLabelText) {
+    yLabel.transition()
+      .duration(300)
+      .style('opacity', 0)
+      .end()
+      .then(() => {
+        yLabel
+          .text(yLabelText)
+          .transition()
+          .duration(300)
+          .style('opacity', 1)
+      })
+  }
 } 

@@ -21,13 +21,13 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
       if (!mapRef.current || !data?.length) return
 
       const svg = d3.select(mapRef.current)
-      const width = 800
-      const height = 500
+      const width = 1200
+      const height = 600
 
       svg.selectAll('*').remove()
 
       const projection = d3.geoMercator()
-        .scale(150)
+        .scale(180)
         .center([0, 20])
         .translate([width / 2, height / 2])
 
@@ -111,9 +111,9 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
       </div>
       <svg
         ref={mapRef}
-        width="1000"
-        height="500"
-        viewBox="0 0 920 500"
+        width="1200"
+        height="600"
+        viewBox="0 0 1200 600"
         preserveAspectRatio="xMidYMid meet"
       />
     </div>

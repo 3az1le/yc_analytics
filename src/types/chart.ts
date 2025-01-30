@@ -6,7 +6,7 @@ export interface ChartProps {
   data: BatchData[]
   title: string
   type: 'stacked-area'
-  dataType?: ChartDataType
+  dataType: ChartDataType
 }
 
 export interface ChartDimensions {

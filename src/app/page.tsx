@@ -7,11 +7,13 @@ import Hero from '@/components/Hero'
 import CompanyChart from '@/components/CompanyChart'
 import YearRangeSlider from '@/components/YearRangeSlider'
 import DensityMap from '@/components/DensityMap'
+import ChartHeader from '@/components/ChartHeader'
 import '@/styles/main.css'
 import { debounce } from 'lodash'
 
 export default function Home() {
   const [yearRange, setYearRange] = useState<[number, number]>([2005, 2025])
+  const [dataType, setDataType] = useState<'industries' | 'tags'>('industries')
   const [isLoading, setIsLoading] = useState(true)
   const [isSliderVisible, setIsSliderVisible] = useState(false)
 
@@ -62,10 +64,17 @@ export default function Home() {
       />
       <main className="main-content">
         <div className="charts-container">
+          <ChartHeader
+            data={processedData.byBatch}
+            title="Distribution Over Time"
+            dataType={dataType}
+            onDataTypeChange={setDataType}
+          />
           <CompanyChart
             data={processedData.byBatch}
             title="Distribution Over Time"
             type="stacked-area"
+            dataType={dataType}
           />
         </div>
         <div className='map-container'>

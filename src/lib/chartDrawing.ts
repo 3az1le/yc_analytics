@@ -2,10 +2,7 @@ import * as d3 from 'd3';
 import 'd3-transition'; // Ensure .transition() is recognized
 import { interpolatePath } from 'd3-interpolate-path';
 import { BatchData } from '@/lib/processData'; // Adjust to your actual import
-import { createScales, calculateYDomain, addAxes } from '@/lib/chartUtils';
-import { stack } from 'd3';
-
-type AreaData = d3.Series<BatchData, string> & { data?: BatchData[] };
+import { createScales, updateYScale, addAxes } from './chartUtils';
 
 type ChartState = {
   data: BatchData[]
@@ -14,6 +11,12 @@ type ChartState = {
   previousSelectedCategory: string | null
   colorScale: d3.ScaleOrdinal<string, string>
   categories: string[]
+}
+
+type Dimensions = {
+  width: number
+  height: number
+  margin: { top: number; right: number; bottom: number; left: number }
 }
 
 /**
@@ -29,40 +32,34 @@ type ChartState = {
 export function initializeChart(
   svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
   chartId: string,
-  dimensions: { width: number; height: number; margin: any },
+  dimensions: Dimensions,
   state: ChartState
 ) {
-  const { width, height, margin } = dimensions
-  // Clear any existing content
+  if (!dimensions || !dimensions.margin) {
+    throw new Error('Invalid dimensions provided to initializeChart')
+  }
+
   svg.selectAll('*').remove()
-
-  // Configure the SVG viewport
   svg
-    .attr('width', width)
-    .attr('height', height)
-    .attr('viewBox', `0 0 ${width} ${height}`)
-    .attr('preserveAspectRatio', 'xMidYMid meet')
+    .attr('width', dimensions.width)
+    .attr('height', dimensions.height)
+    .attr('viewBox', `0 0 ${dimensions.width} ${dimensions.height}`)
 
-  // Create a clip path to ensure the chart doesn't overflow its bounds
   const clipId = `clip-${chartId}`
   svg.append('defs')
     .append('clipPath')
     .attr('id', clipId)
     .append('rect')
-    .attr('x', margin.left)
-    .attr('y', margin.top)
-    .attr('width', width - margin.left - margin.right)
-    .attr('height', height - margin.top - margin.bottom)
+    .attr('x', dimensions.margin.left)
+    .attr('y', dimensions.margin.top)
+    .attr('width', dimensions.width - dimensions.margin.left - dimensions.margin.right)
+    .attr('height', dimensions.height - dimensions.margin.top - dimensions.margin.bottom)
 
-  // Create main container for the chart
-  const chartContainer = svg.append('g')
-    .attr('class', 'chart-container')
-
-  // Create container for the area paths with clipping applied
+  const chartContainer = svg.append('g').attr('class', 'chart-container')
   const areaContainer = chartContainer.append('g')
     .attr('class', 'area-container')
     .attr('clip-path', `url(#${clipId})`)
-  
+
   return { chartContainer, areaContainer }
 }
 
@@ -76,20 +73,22 @@ export function initializeChart(
  */
 export function updateChart(
   svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
-  dimensions: { width: number; height: number; margin: any },
+  dimensions: Dimensions,
   state: ChartState
 ) {
-  const { width, height, margin } = dimensions
+  if (!dimensions || !dimensions.margin) {
+    throw new Error('Invalid dimensions provided to updateChart')
+  }
+
   const { data, dataType, selectedCategory, previousSelectedCategory, colorScale, categories } = state
 
-  // Create scales for x and y axes
-  const { x } = createScales(data, width, height, margin, dataType)
-  const yDomain = calculateYDomain(data, categories, selectedCategory, dataType)
-  const y = d3.scaleLinear()
-    .domain(yDomain)
-    .range([height - margin.bottom, margin.top])
+  // Create scales
+  const { x, y } = createScales(data, dimensions, dataType)
+  // log createscale called from updatechart
+  console.log('createscale called from updatechart')
+  updateYScale(y, data, selectedCategory, dataType)
 
-  // Update axes with transition
+  // Update axes
   const chartContainer = svg.select('g.chart-container')
   chartContainer.selectAll('g')
     .filter(function() {
@@ -103,242 +102,237 @@ export function updateChart(
   // Add new axes with updated scales
   addAxes(
     chartContainer as unknown as d3.Selection<SVGGElement, unknown, null, undefined>,
-    x,
-    y,
-    height,
-    margin,
-    width,
-    selectedCategory,
-    dataType
+    dimensions,
+    { x, y },
+    { selectedCategory: selectedCategory || '', dataType }
   )
 
-  // Update the stacked area chart
+  // Update areas
   const areaContainer = svg.select('g.area-container')
-  drawStackedArea(areaContainer, data, categories, x, y, colorScale, dataType, selectedCategory, previousSelectedCategory)
+  drawStackedArea(areaContainer, data, categories, x, y, colorScale, state)
 }
 
-/**
- * Draws the stacked area chart with transitions between different states.
- * Handles both stacked view and single category focus view.
- * 
- * @param container - The container element for the area paths
- * @param data - Array of batch data to visualize
- * @param categories - Array of category names
- * @param x - X-axis scale
- * @param y - Y-axis scale
- * @param color - Color scale for categories
- * @param dataType - Type of data being displayed (industries/tags)
- * @param selectedCategory - Currently selected category (if any)
- * @param previousSelectedCategory - Previously selected category (for transitions)
- */
+type AreaGenerators = {
+  stacked: d3.Area<d3.SeriesPoint<BatchData>>
+  single: d3.Area<any>
+}
+
+function createAreaGenerators(
+  x: d3.ScaleBand<string>,
+  y: d3.ScaleLinear<number, number>,
+  selectedCategory: string | null,
+  dataType: 'industries' | 'tags'
+): AreaGenerators {
+  const stacked = d3.area<d3.SeriesPoint<BatchData>>()
+    .x(d => (x(d.data.name) ?? 0) + x.bandwidth() / 2)
+    .y0(d => y(d[0]))
+    .y1(d => y(d[1]))
+    .curve(d3.curveCatmullRom.alpha(0.5))
+
+  const single = d3.area<any>()
+    .x(d => (x(d.name) ?? 0) + x.bandwidth() / 2)
+    .y0(() => y(0))
+    .y1(d => {
+      const value = selectedCategory ? d[dataType]?.[selectedCategory] || 0 : 0
+      return y(value)
+    })
+    .curve(d3.curveCatmullRom.alpha(0.5))
+
+  return { stacked, single }
+}
+
+function createTooltip() {
+  let tooltip = d3.select<HTMLDivElement, unknown>('body').select<HTMLDivElement>('.area-tooltip')
+  if (tooltip.empty()) {
+    tooltip = d3.select('body')
+      .append<HTMLDivElement>('div')
+      .attr('class', 'area-tooltip')
+  }
+  return tooltip
+}
+
+function setupTooltipHandlers(selection: d3.Selection<any, any, any, any>, tooltip: d3.Selection<any, any, any, any>) {
+  selection
+    .style('cursor', 'pointer')
+    .on('mouseover', (event: MouseEvent, d: any) => {
+      tooltip
+        .classed('visible', true)
+        .html(d.key)
+        .style('left', `${event.pageX + 10}px`)
+        .style('top', `${event.pageY - 10}px`)
+    })
+    .on('mousemove', (event: MouseEvent) => {
+      tooltip
+        .style('left', `${event.pageX + 10}px`)
+        .style('top', `${event.pageY - 10}px`)
+    })
+    .on('mouseout', () => {
+      tooltip.classed('visible', false)
+    })
+}
+
 export function drawStackedArea(
-  container: d3.Selection<SVGGElement, unknown, null, undefined>,
+  container: d3.Selection<Element | d3.BaseType, unknown, null, undefined>,
   data: BatchData[],
   categories: string[],
   x: d3.ScaleBand<string>,
   y: d3.ScaleLinear<number, number>,
-  color: d3.ScaleOrdinal<string, string>,
-  dataType: 'industries' | 'tags',
-  selectedCategory: string | null,
-  previousSelectedCategory: string | null
+  colorScale: d3.ScaleOrdinal<string, string>,
+  state: ChartState
 ) {
-  // Process data to include "Other" category
-  const processedData = data.map(d => {
-    const currentData = dataType === 'industries' 
-      ? d.percentage_industries_among_total_industries 
-      : d.percentage_tags_among_total_tags;
-
-    const total = Object.values(currentData).reduce((sum, val) => sum + (val || 0), 0);
-    const otherPercentage = Math.max(0, 100 - total);
-    
-    const newData = { ...d };
-    if (dataType === 'industries') {
-      newData.percentage_industries_among_total_industries = {
-        ...currentData,
-        Other: otherPercentage
-      };
-    } else {
-      newData.percentage_tags_among_total_tags = {
-        ...currentData,
-        Other: otherPercentage
-      };
-    }
-    return newData;
-  });
-
-  // Include "Other" in categories list
-  const extendedCategories = [...categories, 'Other'];
+  const { dataType, selectedCategory, previousSelectedCategory } = state
+  const { stacked: stackedArea, single: singleArea } = createAreaGenerators(x, y, selectedCategory, dataType)
+  const tooltip = createTooltip()
 
   // Create stack generator
-  const stack = d3.stack<BatchData>()
-    .keys(extendedCategories)
+  const stackGen = d3.stack<BatchData>()
+    .keys(categories)
     .value((d, key) => {
       if (selectedCategory) {
-        // When category is selected, show percentage per companies
         return dataType === 'industries'
           ? d.percentage_companies_per_industries[key] || 0
-          : d.percentage_companies_per_tags[key] || 0;
-      } else {
-        // In stacked view, show percentage among total
-        const data = dataType === 'industries'
-          ? d.percentage_industries_among_total_industries
-          : d.percentage_tags_among_total_tags;
-        return data[key] || 0;
+          : d.percentage_companies_per_tags[key] || 0
       }
-    });
-
-  const stackedData = stack(processedData);
-
-  // Create area generators for both stacked and single category views
-  const area = d3.area<d3.SeriesPoint<BatchData>>()
-    .x(d => (x(d.data.name) ?? 0) + x.bandwidth() / 2)
-    .y0(d => y(d[0]))
-    .y1(d => y(d[1]))
-    .curve(d3.curveCatmullRom.alpha(0.5));
-
-  const singleArea = d3.area<AreaData>()
-    .x(d => (x(d.name) ?? 0) + x.bandwidth() / 2)
-    .y0(() => y(0))
-    .y1(d => {
-      const value = selectedCategory ? d[dataType]?.[selectedCategory] || 0 : 0;
-      return y(value);
+      const data = dataType === 'industries'
+        ? d.percentage_industries_among_total_industries
+        : d.percentage_tags_among_total_tags
+      return data[key] || 0
     })
-    .curve(d3.curveCatmullRom.alpha(0.5));
 
-  // Determine which data to bind based on view mode
-  const boundData = selectedCategory
-    ? [{ key: selectedCategory, index: 0, data } as AreaData]
-    : stackedData;
+  const stackedData = selectedCategory
+    ? [{ key: selectedCategory, index: 0, data }]
+    : stackGen(data)
 
   // Bind data to paths
-  const paths = container.selectAll<SVGPathElement, AreaData>('path.area')
-    .data(boundData, (d: any) => d.key);
-
-  // Create tooltip if it doesn't exist
-  let tooltip = d3.select('body').select('.area-tooltip')
-  if (tooltip.empty()) {
-    tooltip = d3.select('body')
-      .append('div')
-      .attr('class', 'area-tooltip')
-  }
-
-  // Add hover handlers to the paths
-  const handleMouseOver = (event: MouseEvent, d: any) => {
-    tooltip
-      .classed('visible', true)
-      .html(d.key)
-      .style('left', `${event.pageX + 10}px`)
-      .style('top', `${event.pageY - 10}px`);
-  };
-
-  const handleMouseMove = (event: MouseEvent) => {
-    tooltip
-      .style('left', `${event.pageX + 10}px`)
-      .style('top', `${event.pageY - 10}px`);
-  };
-
-  const handleMouseOut = () => {
-    tooltip.classed('visible', false);
-  };
+  const paths = container.selectAll<SVGPathElement, any>('path.area')
+    .data(stackedData as d3.Series<BatchData, string>[], (d: any) => d.key || '')
 
   // Handle transitions based on view mode
+  const containerElement = container.node()
+  if (!containerElement || !(containerElement instanceof Element)) return
+
   if (selectedCategory) {
-    // First transition: fade out non-selected categories
-    paths.exit()
-      .filter(d => d.key !== selectedCategory)
-      .transition()
-      .duration(600)
-      .attr('opacity', 0)
-      .remove();
-
-    // Keep the selected category's path
-    const singleEnter = paths.enter()
-      .append('path')
-      .attr('class', 'area')
-      .attr('d', d => {
-        // If coming from stacked view (no previous category)
-        if (!previousSelectedCategory) {
-          const stackedPath = container.selectAll('path.area')
-            .filter(p => p.key === selectedCategory);
-          return !stackedPath.empty() ? stackedPath.attr('d') : area(d);
-        }
-        // If switching between categories
-        const previousPath = container.selectAll('path.area')
-          .filter(p => p.key === previousSelectedCategory);
-        return !previousPath.empty() ? previousPath.attr('d') : area(d);
-      })
-      // .attr('opacity', 0);
-
-    // Morph the selected category's path
-    /// PROBLEM IS IN HERE !!!!!
-    singleEnter.merge(paths)
-      .transition()
-      .duration(600)
-      .attr('opacity', 1)
-      .attrTween('d', function(d) {
-        let prevD = '';
-        
-       
-        // If switching between categories
-        const previousPath = container.selectAll('path.area')
-          .filter(p => p.key === selectedCategory);
-        prevD = !previousPath.empty() ? previousPath.attr('d') : '';
-      
-        
-        const newD = singleArea(d.data!);
-        return interpolatePath(prevD, newD);
-      })
-      .attr('fill', d => color(d.key));
-
-    // Add the handlers to both enter and update selections
-    singleEnter.merge(paths)
-      .style('cursor', 'pointer')
-      .on('mouseover', handleMouseOver)
-      .on('mousemove', handleMouseMove)
-      .on('mouseout', handleMouseOut);
+    handleSingleCategoryTransition(paths, containerElement, {
+      previousSelectedCategory,
+      selectedCategory,
+      colorScale,
+      singleArea,
+      stackedArea,
+      tooltip
+    })
   } else {
-    // When returning to stacked view
-    const wasShowingSingleCategory = previousSelectedCategory !== null;
-    
-    // EXIT old paths
-    paths.exit()
-      .transition()
-      .duration(400)
-      // .attr('opacity', 0)
-      .remove();
-
-    // ENTER new stacked paths
-    const enterSelection = paths.enter()
-      .append('path')
-      .attr('class', 'area')
-      .attr('fill', (d: AreaData) => color(d.key))
-      .style('cursor', 'pointer')
-      .on('mouseover', handleMouseOver)
-      .on('mousemove', handleMouseMove)
-      .on('mouseout', handleMouseOut)
-      .attr('d', (d: AreaData) => {
-        if (wasShowingSingleCategory && d.key === previousSelectedCategory) {
-          const previousPath = container.selectAll<SVGPathElement, AreaData>('path.area')
-            .filter(p => p.key === previousSelectedCategory);
-          return !previousPath.empty() ? previousPath.attr('d') : area(d);
-        }
-        return area(d);
-      });
-
-    // MERGE + UPDATE
-    //if previous selected category, transition, else no transition
-    if (previousSelectedCategory) {
-      enterSelection.merge(paths)
-        .transition()
-        .duration(600)
-        .attr('fill', (d: AreaData) => color(d.key))
-        .attr('d', (d: AreaData) => area(d))
-        .attr('opacity', 1);
-    } else if (previousSelectedCategory && !selectedCategory) {
-      enterSelection.merge(paths)
-        .attr('fill', (d: AreaData) => color(d.key))
-        .attr('d', (d: AreaData) => area(d))
-        .attr('opacity', 1);
-    }
+    handleStackedViewTransition(paths, containerElement, {
+      previousSelectedCategory,
+      selectedCategory,
+      colorScale,
+      stackedArea,
+      tooltip
+    })
   }
+}
+
+function handleSingleCategoryTransition(
+  paths: d3.Selection<SVGPathElement, any, any, any>,
+  container: Element,
+  config: {    
+    previousSelectedCategory: string | null
+    selectedCategory: string | null
+    colorScale: d3.ScaleOrdinal<string, string>
+    singleArea: d3.Area<any>
+    stackedArea: d3.Area<any>
+    tooltip: d3.Selection<any, any, any, any>
+  }
+) {
+  const { selectedCategory, previousSelectedCategory, colorScale, singleArea, tooltip } = config
+  const containerSelection = d3.select(container)
+
+  // Exit non-selected categories
+  paths.exit()
+    .filter((d: any) => d.key !== selectedCategory)
+    .transition()
+    .duration(600)
+    .attr('opacity', 0)
+    .remove()
+
+  // Enter new path for selected category
+  const singleEnter = paths.enter()
+    .append('path')
+    .attr('class', 'area')
+    .attr('d', d => {
+      const existingPath = containerSelection.selectAll('path.area')
+        .filter((p: any) => p.key === (previousSelectedCategory || selectedCategory))
+      return !existingPath.empty() ? existingPath.attr('d') || '' : singleArea(d)
+    })
+
+  // Update with transition
+  singleEnter.merge(paths)
+    .transition()
+    .duration(600)
+    .attr('opacity', 1)
+    .attrTween('d', function(d) {
+      const previousPath = containerSelection.selectAll('path.area')
+        .filter((p: any) => p.key === selectedCategory)
+      const prevD = !previousPath.empty() ? previousPath.attr('d') || '' : ''
+      const newD = singleArea(d.data) || ''
+      return interpolatePath(prevD, newD)
+    })
+    .attr('fill', d => colorScale(d.key))
+
+  setupTooltipHandlers(singleEnter.merge(paths), tooltip)
+}
+
+function handleStackedViewTransition(
+  paths: d3.Selection<SVGPathElement, any, any, any>,
+  container: Element,
+  config: {
+    previousSelectedCategory: string | null
+    selectedCategory: string | null
+    colorScale: d3.ScaleOrdinal<string, string>
+    stackedArea: d3.Area<any>
+    tooltip: d3.Selection<any, any, any, any>
+    dataType: 'industries' | 'tags'
+  }
+) {
+  const { previousSelectedCategory, colorScale, stackedArea, tooltip, dataType } = config
+  const containerSelection = d3.select(container)
+
+  // Exit old paths immediately
+  paths.exit().remove()
+
+  // Enter new paths
+  const enterSelection = paths.enter()
+    .append('path')
+    .attr('class', 'area')
+    .attr('fill', (d: any) => colorScale(d.key))
+    .attr('d', (d: any) => {
+      // If this is the previously selected category, start from its single area shape
+      if (previousSelectedCategory && d.key === previousSelectedCategory) {
+        const previousPath = containerSelection.selectAll('path.area')
+          .filter((p: any) => p.key === previousSelectedCategory)
+        return !previousPath.empty() ? previousPath.attr('d') || '' : stackedArea(d)
+      }
+      return stackedArea(d)
+    })
+    .attr('opacity', previousSelectedCategory ? 0 : 1)
+
+  // Update paths
+  const mergedSelection = enterSelection.merge(paths)
+  
+  if (previousSelectedCategory) {
+    // Transition when deselecting a category
+    mergedSelection
+      .transition()
+      .duration(600)
+      .attr('d', stackedArea)
+      .attr('opacity', 1)
+      .attr('fill', (d: any) => colorScale(d.key))
+  } else {
+    // Immediate update for date range changes
+    mergedSelection
+      .attr('d', stackedArea)
+      .attr('opacity', 1)
+      .attr('fill', (d: any) => colorScale(d.key))
+  }
+
+  setupTooltipHandlers(mergedSelection, tooltip)
 }
