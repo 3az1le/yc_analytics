@@ -252,7 +252,7 @@ export default function CompanyChart({
         </div>
         <h2 className="chart-title">{title} </h2>
       </div>
-      <div className="chart-container">
+      <div className="chart-main-container">
         <svg
           ref={svgRef}
           className="chart-svg"

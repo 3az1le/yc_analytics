@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import CompanyChart from '@/components/CompanyChart'
 import YearRangeSlider from '@/components/YearRangeSlider'
+import DensityMap from '@/components/DensityMap'
 import '@/styles/main.css'
 import { debounce } from 'lodash'
 
@@ -65,6 +66,12 @@ export default function Home() {
             data={processedData.byBatch}
             title="Distribution Over Time"
             type="stacked-area"
+          />
+        </div>
+        <div className='map-container'>
+          <DensityMap 
+            data={processedData.byBatch}
+            dateRange={yearRange}
           />
         </div>
       </main>

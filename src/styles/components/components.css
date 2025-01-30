@@ -33,15 +33,6 @@
     padding-bottom: 120px; /* Space for the slider */
   }
 
-  .charts-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding-bottom: 120px; /* Space for the slider */
-    position: relative;
-    z-index: 1; /* Ensure charts stay below the slider */
-  }
-
  
 
   .container-default {

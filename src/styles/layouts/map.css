@@ -1,0 +1,50 @@
+.map-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.map-container svg {
+  width: 100%;
+  height: auto;
+}
+
+.map-tooltip {
+  position: absolute;
+  visibility: hidden;
+  background: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 1000;
+  transition: visibility 0.2s ease;
+  color: black;
+}
+
+.map-title {
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  text-anchor: middle;
+  fill: black;
+}
+
+.map-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+.chart-title {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+    color: black;
+  }
