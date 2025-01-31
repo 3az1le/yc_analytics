@@ -17,11 +17,11 @@
   perspective: 1000px;
   font-family: 'Avenir', system-ui, -apple-system, sans-serif;
   font-size: 10px;
-  height: 600px; /* Fixed height for each chart */
+  height: 600px;
+  /* Fixed height for each chart */
   position: relative;
   z-index: 1;
 }
-
 
 .chart-main-container {
   display: flex;
@@ -29,6 +29,10 @@
   min-height: 0;
   position: relative;
   width: 100%;
+  gap: 20px;
+  align-content: center;
+  flex-direction: row;
+  align-items: center;
 }
 
 .chart-container {
@@ -36,7 +40,8 @@
   justify-content: center;
   position: relative;
   height: 500px;
-  width: 100%;
+  width: calc(100% - 220px);
+  /* Account for legend width + gap */
 }
 
 .chart-svg {
@@ -49,21 +54,19 @@
 
 /* Legend Styles */
 .legend-wrapper {
-  background: white;
-  height: 450px;
-  overflow: hidden;
-  position: absolute;
-  right: 0;
-  top: 0;
-  touch-action: none;
-  width: 200px;
-  z-index: 10;
-  overscroll-behavior: contain;
-  will-change: transform;
-  color: black;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
+    background: white;
+    height: 390px;
+    overflow: hidden;
+    width: 200px;
+    touch-action: none;
+    overscroll-behavior: contain;
+    will-change: transform;
+    color: black;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    flex-shrink: 0;
+    margin-bottom: 30px;
 }
 
 .legend-scroll {
@@ -119,7 +122,7 @@
 
 .area-tooltip.visible {
   opacity: 1;
-} 
+}
 
 .charts-container {
   display: flex;
@@ -130,11 +133,61 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding-bottom: 120px; /* Space for the slider */
+  padding-bottom: 40px;
+  padding-top: 40px;
+  /* Space for the slider */
   position: relative;
-  z-index: 1; /* Ensure charts stay below the slider */
+  z-index: 1;
+  /* Ensure charts stay below the slider */
 }
 
+
+
+.chart-header {
+  display: flex;
+  align-items: baseline;
+}
+
+:root {
+  --chart-title-size: 2rem;
+}
+
+.chart-type-selector {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: var(--chart-title-size);
+  font-weight: 600;
+  margin-right: 0.5rem;
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+}
+
+.first-chart-title {
+  font-size: var(--chart-title-size);
+  font-weight: 600;
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  color: black;
+}
+
+.chart-type-option {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: var(--chart-title-size);
+  font-weight: 600;
+  font-family: inherit;
+  color: #9CA3AF;
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.chart-type-option.active {
+  color: #F67537;
+}
+
+.chart-type-separator {
+  margin: 0 0.5rem;
+  color: #9CA3AF;
+}
 
 .chart-svg {
   flex: 1;
@@ -152,4 +205,57 @@
 .map-container svg {
   width: 100%;
   height: auto;
+}
+
+/* Axis Styles */
+.axis {
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  font-size: 10px;
+}
+
+.grid-line {
+  stroke: #e5e7eb;
+  stroke-width: 1;
+  stroke-dasharray: 2,2;
+}
+
+.x-axis-line {
+  stroke: #000;
+  stroke-width: 1;
+}
+
+.axis-label {
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.x-label {
+  text-anchor: middle;
+}
+
+.y-label {
+  text-anchor: middle;
+}
+
+/* Legend Item Styles */
+.legend-item-rect {
+  pointer-events: all;
+}
+
+.legend-item-color {
+  width: 12px;
+  height: 12px;
+}
+
+.legend-item-text {
+  font-size: 12px;
+}
+
+.legend-item-text.dimmed {
+  fill: #999;
+}
+
+.legend-item-color.dimmed {
+  opacity: 0.2;
 }

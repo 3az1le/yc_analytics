@@ -36,6 +36,7 @@ export default function CompanyChart({
   const [categories, setCategories] = useState<string[]>([])
   const colorScale = useMemo(() => d3.scaleOrdinal(orangeScale), [])
   const rafRef = useRef<number>()
+  const prevDataTypeRef = useRef(dataType)
 
   const chartId = useMemo(() => title.toLowerCase().replace(/\s+/g, '-'), [title])
 
@@ -69,11 +70,15 @@ export default function CompanyChart({
     colorScale.domain(newCategories)
   }, [newCategories, colorScale])
 
-  // Remove the effect that updates previousDataType
-  useEffect(() => {
-    setSelectedCategory(null)
-    setPreviousSelectedCategory(null)
-  }, [dataType])
+  // Handle data type changes immediately
+  if (prevDataTypeRef.current !== dataType) {
+    prevDataTypeRef.current = dataType
+    if (selectedCategory !== null) {
+      setSelectedCategory(null)
+      setPreviousSelectedCategory(null)
+      return null // Return null to prevent rendering until state is updated
+    }
+  }
 
   // Optimize legend scroll handler
   const handleWheel = useCallback((e: WheelEvent) => {
@@ -111,6 +116,9 @@ export default function CompanyChart({
 
   // Handle category selection
   const handleCategoryClick = useCallback((category: string) => {
+    // Prevent clicking on "Other" category
+    if (category === 'Other') return;
+    
     setPreviousSelectedCategory(selectedCategory)
     setSelectedCategory(prev => prev === category ? null : category)
   }, [selectedCategory])
@@ -129,11 +137,11 @@ export default function CompanyChart({
 
     // Define dimensions object explicitly with default values
     const dimensions = {
-      width: containerBounds?.width ?? 600,
+      width: containerBounds?.width ?? 500,
       height: containerBounds?.height ?? 400,
       margin: { 
         top: 20, 
-        right: 200, 
+        right: 0,
         bottom: 60, 
         left: 60 
       }
@@ -181,6 +189,7 @@ export default function CompanyChart({
         className="legend-item"
         style={{
           opacity: selectedCategory && selectedCategory !== category ? 0.5 : 1,
+          cursor: category === 'Other' ? 'default' : 'pointer'
         }}
         onClick={() => handleCategoryClick(category)}
       >

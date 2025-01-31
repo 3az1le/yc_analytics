@@ -11,12 +11,19 @@ type ChartState = {
   previousSelectedCategory: string | null
   colorScale: d3.ScaleOrdinal<string, string>
   categories: string[]
+  isTransitioning?: boolean
 }
 
 type Dimensions = {
   width: number
   height: number
   margin: { top: number; right: number; bottom: number; left: number }
+}
+
+type AxesConfig = {
+  selectedCategory: string | null
+  dataType: 'industries' | 'tags'
+  isTransitioning?: boolean
 }
 
 /**
@@ -84,32 +91,44 @@ export function updateChart(
 
   // Create scales
   const { x, y } = createScales(data, dimensions, dataType)
-  // log createscale called from updatechart
-  console.log('createscale called from updatechart')
   updateYScale(y, data, selectedCategory, dataType)
+
+  // Determine if we should use transitions
+  const isTransitioning = selectedCategory !== null || previousSelectedCategory !== null
 
   // Update axes
   const chartContainer = svg.select('g.chart-container')
-  chartContainer.selectAll('g')
-    .filter(function() {
-      return !d3.select(this).classed('area-container')
-    })
-    .transition()
-    .duration(600)
-    .style('opacity', 0)
-    .remove()
+  if (isTransitioning) {
+    chartContainer.selectAll('g')
+      .filter(function() {
+        return !d3.select(this).classed('area-container')
+      })
+      .transition()
+      .duration(600)
+      .style('opacity', 0)
+      .remove()
+  } else {
+    chartContainer.selectAll('g')
+      .filter(function() {
+        return !d3.select(this).classed('area-container')
+      })
+      .remove()
+  }
   
   // Add new axes with updated scales
   addAxes(
     chartContainer as unknown as d3.Selection<SVGGElement, unknown, null, undefined>,
     dimensions,
     { x, y },
-    { selectedCategory: selectedCategory || '', dataType }
+    { selectedCategory: selectedCategory || '', dataType, isTransitioning }
   )
 
   // Update areas
   const areaContainer = svg.select('g.area-container')
-  drawStackedArea(areaContainer, data, categories, x, y, colorScale, state)
+  drawStackedArea(areaContainer, data, categories, x, y, colorScale, {
+    ...state,
+    isTransitioning
+  })
 }
 
 type AreaGenerators = {
@@ -153,7 +172,7 @@ function createTooltip() {
 
 function setupTooltipHandlers(selection: d3.Selection<any, any, any, any>, tooltip: d3.Selection<any, any, any, any>) {
   selection
-    .style('cursor', 'pointer')
+    .style('cursor', d => d.key === 'Other' ? 'default' : 'pointer')
     .on('mouseover', (event: MouseEvent, d: any) => {
       tooltip
         .classed('visible', true)
@@ -168,6 +187,17 @@ function setupTooltipHandlers(selection: d3.Selection<any, any, any, any>, toolt
     })
     .on('mouseout', () => {
       tooltip.classed('visible', false)
+    })
+    .on('click', (event: MouseEvent, d: any) => {
+      // Prevent clicking on "Other" category
+      if (d.key === 'Other') return;
+      
+      // Dispatch the click event for other categories
+      const customEvent = new CustomEvent('categoryClick', {
+        detail: { category: d.key },
+        bubbles: true
+      });
+      event.target?.dispatchEvent(customEvent);
     })
 }
 
@@ -193,6 +223,18 @@ export function drawStackedArea(
           ? d.percentage_companies_per_industries[key] || 0
           : d.percentage_companies_per_tags[key] || 0
       }
+
+      if (key === 'Other') {
+        // Calculate Other as the remaining percentage to reach 100%
+        const data = dataType === 'industries'
+          ? d.percentage_industries_among_total_industries
+          : d.percentage_tags_among_total_tags
+        const sum = Object.entries(data || {})
+          .filter(([k]) => k !== 'Other')
+          .reduce((acc, [, value]) => acc + (value || 0), 0)
+        return Math.max(0, 100 - sum)
+      }
+
       const data = dataType === 'industries'
         ? d.percentage_industries_among_total_industries
         : d.percentage_tags_among_total_tags
@@ -228,14 +270,19 @@ export function drawStackedArea(
       colorScale,
       stackedArea,
       tooltip,
-      dataType
+      dataType,
+      isUnselecting: true
     })
   } else {
     // For dataType changes or date range updates, update immediately without transition
-    handleImmediateStackedUpdate(paths, containerElement, {
+    handleStackedViewTransition(paths, containerElement, {
+      previousSelectedCategory,
+      selectedCategory,
       colorScale,
       stackedArea,
-      tooltip
+      tooltip,
+      dataType,
+      isUnselecting: false
     })
   }
 }
@@ -300,9 +347,10 @@ function handleStackedViewTransition(
     stackedArea: d3.Area<any>
     tooltip: d3.Selection<any, any, any, any>
     dataType: 'industries' | 'tags'
+    isUnselecting?: boolean
   }
 ) {
-  const { previousSelectedCategory, colorScale, stackedArea, tooltip, dataType } = config
+  const { previousSelectedCategory, colorScale, stackedArea, tooltip, isUnselecting } = config
   const containerSelection = d3.select(container)
 
   // Exit old paths immediately
@@ -313,22 +361,14 @@ function handleStackedViewTransition(
     .append('path')
     .attr('class', 'area')
     .attr('fill', (d: any) => colorScale(d.key))
-    .attr('d', (d: any) => {
-      // If this is the previously selected category, start from its single area shape
-      if (previousSelectedCategory && d.key === previousSelectedCategory) {
-        const previousPath = containerSelection.selectAll('path.area')
-          .filter((p: any) => p.key === previousSelectedCategory)
-        return !previousPath.empty() ? previousPath.attr('d') || '' : stackedArea(d)
-      }
-      return stackedArea(d)
-    })
-    .attr('opacity', previousSelectedCategory ? 0 : 1)
+    .attr('d', stackedArea)
+    .attr('opacity', isUnselecting ? 0 : 1)
 
   // Update paths
   const mergedSelection = enterSelection.merge(paths)
   
-  if (previousSelectedCategory) {
-    // Transition when deselecting a category
+  if (isUnselecting) {
+    // Only transition when explicitly unselecting a category
     mergedSelection
       .transition()
       .duration(600)
@@ -336,7 +376,7 @@ function handleStackedViewTransition(
       .attr('opacity', 1)
       .attr('fill', (d: any) => colorScale(d.key))
   } else {
-    // Immediate update for date range changes
+    // Immediate update for all other cases
     mergedSelection
       .attr('d', stackedArea)
       .attr('opacity', 1)
@@ -345,7 +385,6 @@ function handleStackedViewTransition(
 
   setupTooltipHandlers(mergedSelection, tooltip)
 }
-
 function handleImmediateStackedUpdate(
   paths: d3.Selection<SVGPathElement, any, any, any>,
   container: Element,
@@ -376,3 +415,4 @@ function handleImmediateStackedUpdate(
 
   setupTooltipHandlers(enterSelection.merge(paths), tooltip)
 }
+

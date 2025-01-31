@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import { processData } from '@/lib/processData'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
@@ -27,6 +27,11 @@ export default function Home() {
       setIsLoading(false)
     }
   }, [yearRange])
+
+  // Handle data type changes
+  const handleDataTypeChange = useCallback((newDataType: 'industries' | 'tags') => {
+    setDataType(newDataType)
+  }, [])
 
   useEffect(() => {
     const handleScroll = debounce(() => {
@@ -68,7 +73,7 @@ export default function Home() {
             data={processedData.byBatch}
             title="Distribution Over Time"
             dataType={dataType}
-            onDataTypeChange={setDataType}
+            onDataTypeChange={handleDataTypeChange}
           />
           <CompanyChart
             data={processedData.byBatch}

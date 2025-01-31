@@ -43,8 +43,8 @@
   padding-left: 1rem;
 }
 
-.chart-title {
-    font-size: 24px;
+chart-title {
+    font-size: 28px;
     font-weight: 600;
     font-family: 'Avenir', system-ui, -apple-system, sans-serif;
     color: black;

@@ -81,7 +81,7 @@ export default function ChartHeader({ data, title, onDataTypeChange }: ChartHead
                     Tags
                 </button>
             </div>
-            <h2 className="chart-title">{title}</h2>
+            <h2 className="first-chart-title">{title}</h2>
         </div>
     )
 } 

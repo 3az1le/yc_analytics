@@ -162,15 +162,14 @@ export function addAxes(
   container: d3.Selection<SVGGElement, unknown, null, undefined>,
   dimensions: Dimensions,
   scales: { x: d3.ScaleBand<string>; y: d3.ScaleLinear<number, number> },
-  config: { selectedCategory: string | null; dataType: 'industries' | 'tags' }
+  config: { selectedCategory: string | null; dataType: 'industries' | 'tags'; isTransitioning?: boolean }
 ) {
   const { width, height, margin } = dimensions
   const { x, y } = scales
-  const { selectedCategory, dataType } = config
+  const { selectedCategory, dataType, isTransitioning } = config
 
-  // Clear existing axes and grid lines, but preserve labels
-  container.selectAll('.axis').remove()
-  container.selectAll('.grid-lines').remove()
+  // Clear existing axes and grid lines
+  container.selectAll('.axis, .grid-lines, .axis-label').remove()
 
   // Add grid lines
   const gridGroup = container.append('g')
@@ -185,19 +184,31 @@ export function addAxes(
     .attr('x2', width - margin.right)
     .attr('y1', d => y(d))
     .attr('y2', d => y(d))
-    .attr('stroke', '#e5e7eb')
-    .attr('stroke-width', 1)
-    .attr('stroke-dasharray', '2,2')
 
-  // Add x-axis
+  // Add x-axis with conditional tick filtering
+  const allTicks = x.domain()
+  const tickValues = allTicks.length > 30 
+    ? allTicks.filter((_, i) => i % 2 === 0)  // Show every other tick
+    : allTicks
+
   const xAxis = container.append('g')
     .attr('class', 'axis x-axis')
     .attr('transform', `translate(0,${height - margin.bottom})`)
     .call(d3.axisBottom(x)
+      .tickValues(tickValues)
       .tickSize(6)
       .tickPadding(10))
-    .style('font-family', 'Avenir, system-ui, -apple-system, sans-serif')
-    .style('font-size', '10px')
+
+  // Remove the default domain line
+  xAxis.select('.domain').remove()
+  
+  // Add custom x-axis line without corners
+  xAxis.append('line')
+    .attr('class', 'x-axis-line')
+    .attr('x1', margin.left)
+    .attr('x2', width - margin.right)
+    .attr('y1', 0)
+    .attr('y2', 0)
 
   // Add y-axis
   container.append('g')
@@ -206,9 +217,8 @@ export function addAxes(
     .call(d3.axisLeft(y).tickFormat(d => `${d}%`))
 
   // Add x-axis label
-  container.append('text')
+  const xLabel = container.append('text')
     .attr('class', 'axis-label x-label')
-    .attr('text-anchor', 'middle')
     .attr('x', (width - margin.left - margin.right) / 2 + margin.left)
     .attr('y', height - 10)
     .text('Batch')
@@ -223,25 +233,26 @@ export function addAxes(
     // Create new y-axis label if it doesn't exist
     yLabel = container.append<SVGTextElement>('text')
       .attr('class', 'axis-label y-label')
-      .attr('text-anchor', 'middle')
       .attr('transform', 'rotate(-90)')
       .attr('x', -(height - margin.bottom + margin.top) / 2)
       .attr('y', margin.left - 40)
       .style('opacity', 0)
   }
 
-  // Update the label text with transition only if it's changing
+  // Update the label text with transition only if it's changing and transitions are enabled
   if (yLabel.text() !== yLabelText) {
-    yLabel.transition()
-      .duration(300)
-      .style('opacity', 0)
-      .end()
-      .then(() => {
-        yLabel
-          .text(yLabelText)
-          .transition()
-          .duration(300)
-          .style('opacity', 1)
-      })
+    if (isTransitioning) {
+      yLabel.transition()
+        .duration(600)
+        .style('opacity', 1)
+        .end()
+        .then(() => {
+          yLabel.text(yLabelText)
+        })
+    } else {
+      yLabel
+        .style('opacity', 1)
+        .text(yLabelText)
+    }
   }
 } 
