@@ -74,7 +74,7 @@ export default function Home() {
         isVisible={isSliderVisible}
       />
       <main className="main-content">
-        <div className="charts-container">
+        <div className="visualization-container">
           <ChartHeader
             data={processedData.byBatch}
             title="Distribution Over Time"

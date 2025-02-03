@@ -30,6 +30,9 @@ export default function CompanyChart({
 }: ChartProps) {
   const svgRef = useRef<SVGSVGElement>(null)
   const scrollRef = useRef<number>(0)
+  const legendWrapperRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [previousSelectedCategory, setPreviousSelectedCategory] = useState<string | null>(null)
   const [legendScrollOffset, setLegendScrollOffset] = useState(0)
@@ -152,15 +155,15 @@ export default function CompanyChart({
     setCategories(newCategories)
     colorScale.domain(newCategories)
 
-    try {
-      initializeChart(svg, chartId, dimensions, {
-        data,
-        dataType,
-        selectedCategory,
-        previousSelectedCategory,
-        colorScale,
-        categories: newCategories
-      })
+      try {
+        initializeChart(svg, chartId, dimensions, {
+          data,
+          dataType,
+          selectedCategory,
+          previousSelectedCategory,
+          colorScale,
+          categories: newCategories
+        })
       } catch (error) {
         console.error('Error initializing chart:', error)
       }
@@ -204,24 +207,54 @@ export default function CompanyChart({
     ))
   ), [categories, selectedCategory, colorScale, handleCategoryClick])
 
+  // Check scroll position
+  const checkScroll = useCallback(() => {
+    const element = legendWrapperRef.current?.querySelector('.legend-scroll') as HTMLElement
+    if (element) {
+      const canScrollLeft = element.scrollLeft > 0
+      const canScrollRight = element.scrollLeft < (element.scrollWidth - element.clientWidth - 1)
+      
+      setCanScrollLeft(canScrollLeft)
+      setCanScrollRight(canScrollRight)
+    }
+  }, [])
+
+  // Add scroll event listener
+  useEffect(() => {
+    const element = legendWrapperRef.current?.querySelector('.legend-scroll') as HTMLElement
+    if (element) {
+      element.addEventListener('scroll', checkScroll)
+      // Initial check
+      checkScroll()
+      
+      // Check on resize
+      const resizeObserver = new ResizeObserver(checkScroll)
+      resizeObserver.observe(element)
+
+      return () => {
+        element.removeEventListener('scroll', checkScroll)
+        resizeObserver.disconnect()
+      }
+    }
+  }, [checkScroll])
+
   return (
     <div className="chart-wrapper">
       <div className="chart-main-container">
-        <svg
-          ref={svgRef}
-          className="chart-svg"
-        />
+        <div className="chart-container">
+          <svg
+            ref={svgRef}
+            className="chart-svg"
+          />
+        </div>
         <div 
-          className={`legend-wrapper legend-wrapper-${title.toLowerCase().replace(/\s+/g, '-')}`}
+          ref={legendWrapperRef}
+          className={`legend-wrapper ${canScrollLeft ? 'can-scroll-left' : ''} ${canScrollRight ? 'can-scroll-right' : ''}`}
         >
-          <div 
-            className="legend-scroll"
-            style={{ 
-              transform: `translateY(-${legendScrollOffset}px)`,
-              willChange: 'transform'
-            }}
-          >
-            {legendItems}
+          <div className="legend-scroll">
+            <div>
+              {legendItems}
+            </div>
           </div>
         </div>
       </div>

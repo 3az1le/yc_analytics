@@ -126,8 +126,8 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
   }, [data, dateRange, worldData, updateMap])
 
   return (
-    <div className="map-container">
-      <div className="map-header">
+    <div className="visualization-container">
+      <div className="visualization-header">
         <h2 className="chart-title">Geographic Distribution</h2>
       </div>
       <svg

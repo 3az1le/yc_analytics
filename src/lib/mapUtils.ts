@@ -1,39 +1,24 @@
-import { BatchData } from '@/lib/processData'
+import { BatchData } from './processData'
 
-type Location = {
-  latitude: number
-  longitude: number
-  count: number
+interface Company {
+  location: string;
 }
 
-export function processLocations(data: BatchData[], dateRange: [number, number]): Location[] {
+export function processLocations(data: BatchData[], dateRange: [number, number]) {
   // Filter data by date range
   const filteredData = data.filter(batch => {
-    const year = parseInt(batch.slice(-2))
-    return batchYear >= dateRange[0] && batchYear <= dateRange[1]
+    const year = parseInt(batch.name.slice(-2))
+    return year >= dateRange[0] && year <= dateRange[1]
   })
 
-  // Aggregate location data
-  const locationMap = new Map<string, Location>()
-  
+  // Count companies by location
+  const locationCounts: { [key: string]: number } = {}
+
   filteredData.forEach(batch => {
-    batch.companies.forEach(company => {
-      if (company.latitude && company.longitude) {
-        const key = `${company.latitude},${company.longitude}`
-        const existing = locationMap.get(key)
-        
-        if (existing) {
-          existing.count++
-        } else {
-          locationMap.set(key, {
-            latitude: company.latitude,
-            longitude: company.longitude,
-            count: 1
-          })
-        }
-      }
+    Object.entries(batch.locations || {}).forEach(([location, count]) => {
+      locationCounts[location] = (locationCounts[location] || 0) + count
     })
   })
 
-  return Array.from(locationMap.values())
+  return locationCounts
 } 
