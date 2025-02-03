@@ -189,15 +189,18 @@ function setupTooltipHandlers(selection: d3.Selection<any, any, any, any>, toolt
       tooltip.classed('visible', false)
     })
     .on('click', (event: MouseEvent, d: any) => {
+      event.preventDefault()
+      event.stopPropagation()
+      
       // Prevent clicking on "Other" category
       if (d.key === 'Other') return;
       
-      // Dispatch the click event for other categories
-      const customEvent = new CustomEvent('categoryClick', {
-        detail: { category: d.key },
-        bubbles: true
-      });
-      event.target?.dispatchEvent(customEvent);
+      // Create and dispatch a custom event for category selection
+      const customEvent = new CustomEvent('categorySelect', {
+        bubbles: true,
+        detail: { category: d.key }
+      })
+      event.target?.dispatchEvent(customEvent)
     })
 }
 
@@ -214,9 +217,30 @@ export function drawStackedArea(
   const { stacked: stackedArea, single: singleArea } = createAreaGenerators(x, y, selectedCategory, dataType)
   const tooltip = createTooltip()
 
-  // Create stack generator
+  // Calculate category sizes and sort them
+  const categorySums = new Map<string, number>()
+  const nonOtherCategories = categories.filter(cat => cat !== 'Other')
+  
+  nonOtherCategories.forEach(category => {
+    const total = d3.sum(data, d => {
+      const categoryData = dataType === 'industries'
+        ? d.percentage_industries_among_total_industries
+        : d.percentage_tags_among_total_tags
+      return categoryData[category] || 0
+    })
+    categorySums.set(category, total)
+  })
+
+  // Sort categories by size (excluding "Other")
+  const sortedCategories = nonOtherCategories
+    .sort((a, b) => (categorySums.get(b) || 0) - (categorySums.get(a) || 0))
+  
+  // Add "Other" at the end (will be on top of the stack)
+  const orderedCategories = [...sortedCategories, 'Other']
+
+  // Create stack generator with ordered categories
   const stackGen = d3.stack<BatchData>()
-    .keys(categories)
+    .keys(orderedCategories)
     .value((d, key) => {
       if (selectedCategory) {
         return dataType === 'industries'

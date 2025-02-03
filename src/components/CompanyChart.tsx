@@ -238,10 +238,28 @@ export default function CompanyChart({
     }
   }, [checkScroll])
 
+  // Add event listener for area clicks
+  useEffect(() => {
+    const chartContainer = document.querySelector(`.chart-container-${chartId}`)
+    if (!chartContainer) return
+
+    const handleCategorySelect = (event: Event) => {
+      const customEvent = event as CustomEvent
+      const category = customEvent.detail.category
+      setPreviousSelectedCategory(selectedCategory)
+      setSelectedCategory(prev => prev === category ? null : category)
+    }
+
+    chartContainer.addEventListener('categorySelect', handleCategorySelect)
+    return () => {
+      chartContainer.removeEventListener('categorySelect', handleCategorySelect)
+    }
+  }, [chartId, selectedCategory])
+
   return (
     <div className="chart-wrapper">
       <div className="chart-main-container">
-        <div className="chart-container">
+        <div className={`chart-container chart-container-${chartId}`}>
           <svg
             ref={svgRef}
             className="chart-svg"
