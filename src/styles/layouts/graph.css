@@ -135,17 +135,14 @@
   gap: 2rem;
   padding-bottom: 40px;
   padding-top: 40px;
-  /* Space for the slider */
   position: relative;
   z-index: 1;
-  /* Ensure charts stay below the slider */
 }
-
-
 
 .chart-header {
   display: flex;
   align-items: baseline;
+  margin-bottom: 2rem;
 }
 
 :root {
@@ -195,16 +192,28 @@
 
 .map-container {
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   background: white;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 0 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .map-container svg {
   width: 100%;
   height: auto;
+}
+
+.map-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  width: 100%;
+  padding-top: 1rem;
 }
 
 /* Axis Styles */

@@ -17,9 +17,12 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const [isSliderVisible, setIsSliderVisible] = useState(false)
 
+  // Process data immediately on component mount
   const processedData = useMemo(() => {
+    setIsLoading(true)
     try {
-      return processData(yearRange[0].toString(), yearRange[1].toString())
+      const data = processData(yearRange[0].toString(), yearRange[1].toString())
+      return data
     } catch (error) {
       console.error('Error processing data:', error)
       return null
@@ -33,6 +36,7 @@ export default function Home() {
     setDataType(newDataType)
   }, [])
 
+  // Initialize scroll handler
   useEffect(() => {
     const handleScroll = debounce(() => {
       const firstChart = document.querySelector('.chart-wrapper')
@@ -51,9 +55,11 @@ export default function Home() {
   }, [])
 
   if (isLoading || !processedData) {
-    return <div className="loading-container">
-      <div className="loading-text">Loading data...</div>
-    </div>
+    return (
+      <div className="loading-container">
+        <div className="loading-text">Loading data...</div>
+      </div>
+    )
   }
 
   return (

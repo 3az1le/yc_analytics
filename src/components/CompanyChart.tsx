@@ -149,18 +149,18 @@ export default function CompanyChart({
 
     // Initialize chart if it doesn't exist
     if (svg.select('g.chart-container').empty()) {
-      setCategories(newCategories)
-      colorScale.domain(newCategories)
+    setCategories(newCategories)
+    colorScale.domain(newCategories)
 
-      try {
-        initializeChart(svg, chartId, dimensions, {
-          data,
-          dataType,
-          selectedCategory,
-          previousSelectedCategory,
-          colorScale,
-          categories: newCategories
-        })
+    try {
+      initializeChart(svg, chartId, dimensions, {
+        data,
+        dataType,
+        selectedCategory,
+        previousSelectedCategory,
+        colorScale,
+        categories: newCategories
+      })
       } catch (error) {
         console.error('Error initializing chart:', error)
       }
