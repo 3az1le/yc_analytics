@@ -11,11 +11,11 @@ import {
 import '@/styles/main.css'
 
 export const orangeScale = [
+  '#FC844B',
   '#DC510F',
   '#F5CFBD',
   '#EC9065',
   '#E99C77',
-  '#FC844B',
   '#F67537',
   '#DC510E',
   '#FF5B0E',
@@ -42,10 +42,6 @@ export default function CompanyChart({
   const prevDataTypeRef = useRef(dataType)
 
   const chartId = useMemo(() => title.toLowerCase().replace(/\s+/g, '-'), [title])
-
-  const legendItemHeight = 31
-  const maxVisibleItems = Math.floor((500 - 80) / legendItemHeight)
-  const maxScroll = Math.max(0, (categories.length - maxVisibleItems) * legendItemHeight)
 
   // Memoize categories to prevent unnecessary re-renders
   const { categories: newCategories } = useMemo(() => {
@@ -83,40 +79,6 @@ export default function CompanyChart({
     }
   }
 
-  // Optimize legend scroll handler
-  const handleWheel = useCallback((e: WheelEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current)
-    }
-
-    rafRef.current = requestAnimationFrame(() => {
-      const delta = e.deltaY * 2
-      const legendHeight = 500
-      const totalContentHeight = categories.length * legendItemHeight
-      const maxScroll = Math.max(0, totalContentHeight - legendHeight)
-      
-      const newOffset = Math.max(0, Math.min(scrollRef.current + delta, maxScroll))
-      scrollRef.current = newOffset
-      setLegendScrollOffset(newOffset)
-    })
-  }, [categories.length, legendItemHeight])
-
-  useEffect(() => {
-    const element = document.querySelector(`.legend-wrapper-${title.toLowerCase().replace(/\s+/g, '-')}`) as HTMLElement
-    if (element) {
-      element.addEventListener('wheel', handleWheel as EventListener, { passive: false })
-      return () => {
-        element.removeEventListener('wheel', handleWheel as EventListener)
-        if (rafRef.current) {
-          cancelAnimationFrame(rafRef.current)
-        }
-      }
-    }
-  }, [handleWheel, title])
-
   // Handle category selection
   const handleCategoryClick = useCallback((category: string) => {
     // Prevent clicking on "Other" category
@@ -143,8 +105,8 @@ export default function CompanyChart({
       width: containerBounds?.width ?? 500,
       height: containerBounds?.height ?? 400,
       margin: { 
-        top: 20, 
-        right: 0,
+        top: 10, 
+        right: 10,
         bottom: 60, 
         left: 60 
       }

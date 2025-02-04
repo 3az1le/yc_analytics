@@ -2,7 +2,15 @@ import * as d3 from 'd3';
 import 'd3-transition'; // Ensure .transition() is recognized
 import { interpolatePath } from 'd3-interpolate-path';
 import { BatchData } from '@/lib/processData'; // Adjust to your actual import
-import { createScales, updateYScale, addAxes } from './chartUtils';
+import { 
+  createScales, 
+  updateYScale, 
+  addAxes, 
+  Dimensions, 
+  AxesConfig,
+  validateDimensions,
+  getChartBoundaries 
+} from './chartUtils';
 
 type ChartState = {
   data: BatchData[]
@@ -12,123 +20,6 @@ type ChartState = {
   colorScale: d3.ScaleOrdinal<string, string>
   categories: string[]
   isTransitioning?: boolean
-}
-
-type Dimensions = {
-  width: number
-  height: number
-  margin: { top: number; right: number; bottom: number; left: number }
-}
-
-type AxesConfig = {
-  selectedCategory: string | null
-  dataType: 'industries' | 'tags'
-  isTransitioning?: boolean
-}
-
-/**
- * Initializes the SVG chart structure with necessary containers and clipping paths.
- * This function is called once when the chart is first created.
- * 
- * @param svg - The main SVG element
- * @param chartId - Unique identifier for the chart (used for clip paths)
- * @param dimensions - Chart dimensions including width, height, and margins
- * @param state - Current chart state including data and visual properties
- * @returns Object containing references to the created containers
- */
-export function initializeChart(
-  svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
-  chartId: string,
-  dimensions: Dimensions,
-  state: ChartState
-) {
-  if (!dimensions || !dimensions.margin) {
-    throw new Error('Invalid dimensions provided to initializeChart')
-  }
-
-  svg.selectAll('*').remove()
-  svg
-    .attr('width', dimensions.width)
-    .attr('height', dimensions.height)
-    .attr('viewBox', `0 0 ${dimensions.width} ${dimensions.height}`)
-
-  const clipId = `clip-${chartId}`
-  svg.append('defs')
-    .append('clipPath')
-    .attr('id', clipId)
-    .append('rect')
-    .attr('x', dimensions.margin.left)
-    .attr('y', dimensions.margin.top)
-    .attr('width', dimensions.width - dimensions.margin.left - dimensions.margin.right)
-    .attr('height', dimensions.height - dimensions.margin.top - dimensions.margin.bottom)
-
-  const chartContainer = svg.append('g').attr('class', 'chart-container')
-  const areaContainer = chartContainer.append('g')
-    .attr('class', 'area-container')
-    .attr('clip-path', `url(#${clipId})`)
-
-  return { chartContainer, areaContainer }
-}
-
-/**
- * Updates the chart visualization based on new data or state changes.
- * This function handles transitions between different views and data updates.
- * 
- * @param svg - The main SVG element
- * @param dimensions - Chart dimensions including width, height, and margins
- * @param state - Current chart state including data and visual properties
- */
-export function updateChart(
-  svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
-  dimensions: Dimensions,
-  state: ChartState
-) {
-  if (!dimensions || !dimensions.margin) {
-    throw new Error('Invalid dimensions provided to updateChart')
-  }
-
-  const { data, dataType, selectedCategory, previousSelectedCategory, colorScale, categories } = state
-
-  // Create scales
-  const { x, y } = createScales(data, dimensions, dataType)
-  updateYScale(y, data, selectedCategory, dataType)
-
-  // Determine if we should use transitions
-  const isTransitioning = selectedCategory !== null || previousSelectedCategory !== null
-
-  // Update axes
-  const chartContainer = svg.select('g.chart-container')
-  if (isTransitioning) {
-    chartContainer.selectAll('g')
-      .filter(function() {
-        return !d3.select(this).classed('area-container')
-      })
-      .transition()
-      .duration(600)
-      .style('opacity', 0)
-      .remove()
-  } else {
-    chartContainer.selectAll('g')
-      .filter(function() {
-        return !d3.select(this).classed('area-container')
-      })
-      .remove()
-  }
-  
-  // Add new axes with updated scales
-  addAxes(
-    chartContainer as unknown as d3.Selection<SVGGElement, unknown, null, undefined>,
-    dimensions,
-    { x, y },
-    { selectedCategory: selectedCategory || '', dataType, isTransitioning }
-  )
-
-  // Update areas
-  const areaContainer = svg.select('g.area-container')
-  drawStackedArea(areaContainer, data, categories, x, y, colorScale, {
-    ...state,
-    isTransitioning
-  })
 }
 
 type AreaGenerators = {
@@ -143,13 +34,13 @@ function createAreaGenerators(
   dataType: 'industries' | 'tags'
 ): AreaGenerators {
   const stacked = d3.area<d3.SeriesPoint<BatchData>>()
-    .x(d => (x(d.data.name) ?? 0) + x.bandwidth() / 2)
+    .x(d => (x(d.data.name) ?? 0))
     .y0(d => y(d[0]))
     .y1(d => y(d[1]))
     .curve(d3.curveCatmullRom.alpha(0.5))
 
   const single = d3.area<any>()
-    .x(d => (x(d.name) ?? 0) + x.bandwidth() / 2)
+    .x(d => (x(d.name) ?? 0) )
     .y0(() => y(0))
     .y1(d => {
       const value = selectedCategory ? d[dataType]?.[selectedCategory] || 0 : 0
@@ -204,6 +95,92 @@ function setupTooltipHandlers(selection: d3.Selection<any, any, any, any>, toolt
     })
 }
 
+export function initializeChart(
+  svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
+  chartId: string,
+  dimensions: Dimensions,
+  state: ChartState
+) {
+  validateDimensions(dimensions)
+
+  const { width, height, margin } = dimensions
+  const { xStart, xEnd, chartWidth } = getChartBoundaries(dimensions)
+
+  svg.selectAll('*').remove()
+  svg
+    .attr('width', width)
+    .attr('height', height)
+    .attr('viewBox', `0 0 ${width} ${height}`)
+
+  const clipId = `clip-${chartId}`
+  svg.append('defs')
+    .append('clipPath')
+    .attr('id', clipId)
+    .append('rect')
+    .attr('x', xStart)
+    .attr('y', margin.top)
+    .attr('width', chartWidth)
+    .attr('height', height - margin.top - margin.bottom)
+
+  const chartContainer = svg.append('g').attr('class', 'chart-container')
+  const areaContainer = chartContainer.append('g')
+    .attr('class', 'area-container')
+    .attr('clip-path', `url(#${clipId})`)
+
+  return { chartContainer, areaContainer }
+}
+
+export function updateChart(
+  svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
+  dimensions: Dimensions,
+  state: ChartState
+) {
+  validateDimensions(dimensions)
+
+  const { data, dataType, selectedCategory, previousSelectedCategory, colorScale, categories } = state
+
+  // Create scales and get consistent boundaries
+  const { x, y, xStart, xEnd, chartWidth } = createScales(data, dimensions, dataType)
+  updateYScale(y, data, selectedCategory, dataType)
+
+  // Determine if we should use transitions
+  const isTransitioning = selectedCategory !== null || previousSelectedCategory !== null
+
+  // Update axes
+  const chartContainer = svg.select('g.chart-container')
+  if (isTransitioning) {
+    chartContainer.selectAll('g')
+      .filter(function() {
+        return !d3.select(this).classed('area-container')
+      })
+      .transition()
+      .duration(600)
+      .style('opacity', 0)
+      .remove()
+  } else {
+    chartContainer.selectAll('g')
+      .filter(function() {
+        return !d3.select(this).classed('area-container')
+      })
+      .remove()
+  }
+  
+  // Add new axes with updated scales and consistent boundaries
+  addAxes(
+    chartContainer as unknown as d3.Selection<SVGGElement, unknown, null, undefined>,
+    dimensions,
+    { x, y, xStart, xEnd, chartWidth },
+    { selectedCategory: selectedCategory || '', dataType, isTransitioning }
+  )
+
+  // Update areas
+  const areaContainer = svg.select('g.area-container')
+  drawStackedArea(areaContainer, data, categories, x, y, colorScale, {
+    ...state,
+    isTransitioning
+  })
+}
+
 export function drawStackedArea(
   container: d3.Selection<Element | d3.BaseType, unknown, null, undefined>,
   data: BatchData[],
@@ -234,9 +211,38 @@ export function drawStackedArea(
   // Sort categories by size (excluding "Other")
   const sortedCategories = nonOtherCategories
     .sort((a, b) => (categorySums.get(b) || 0) - (categorySums.get(a) || 0))
-  
+
   // Add "Other" at the end (will be on top of the stack)
   const orderedCategories = [...sortedCategories, 'Other']
+
+  // Reassign colors to ensure adjacent categories have different colors
+  const allColors = [...colorScale.range()]
+  const firstColor = allColors[0] // Get the first color for "Other"
+  const colorAssignments = new Map<string, string>()
+  
+  // First assign the first color to "Other"
+  colorAssignments.set('Other', firstColor)
+  
+  // Then assign colors to the rest of the categories
+  sortedCategories.forEach((category, index) => {
+    if (index === 0) {
+      // First category takes the first available color
+      colorAssignments.set(category, allColors[0])
+    } else {
+      // For subsequent categories, find a color different from the previous one
+      const previousColor = colorAssignments.get(sortedCategories[index - 1])
+      const suitableColor = allColors.find(color => 
+        color !== previousColor && 
+        !Array.from(colorAssignments.values()).includes(color)
+      ) || allColors[index % allColors.length] // Fallback if no suitable color found
+      
+      colorAssignments.set(category, suitableColor)
+    }
+  })
+
+  // Update the color scale with new assignments
+  colorScale.domain(orderedCategories)
+    .range(orderedCategories.map(cat => colorAssignments.get(cat)!))
 
   // Create stack generator with ordered categories
   const stackGen = d3.stack<BatchData>()
@@ -409,34 +415,5 @@ function handleStackedViewTransition(
 
   setupTooltipHandlers(mergedSelection, tooltip)
 }
-function handleImmediateStackedUpdate(
-  paths: d3.Selection<SVGPathElement, any, any, any>,
-  container: Element,
-  config: {
-    colorScale: d3.ScaleOrdinal<string, string>
-    stackedArea: d3.Area<any>
-    tooltip: d3.Selection<any, any, any, any>
-  }
-) {
-  const { colorScale, stackedArea, tooltip } = config
 
-  // Exit old paths immediately
-  paths.exit().remove()
-
-  // Enter new paths
-  const enterSelection = paths.enter()
-    .append('path')
-    .attr('class', 'area')
-    .attr('fill', (d: any) => colorScale(d.key))
-    .attr('d', stackedArea)
-    .attr('opacity', 1)
-
-  // Update existing paths immediately
-  paths
-    .attr('d', stackedArea)
-    .attr('opacity', 1)
-    .attr('fill', (d: any) => colorScale(d.key))
-
-  setupTooltipHandlers(enterSelection.merge(paths), tooltip)
-}
 
