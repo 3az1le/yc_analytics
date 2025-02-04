@@ -8,15 +8,95 @@
   --color-background: #ffffff;
   --color-foreground: #171717;
   --color-text: #000000;
-  
+
   /* Chart Colors */
   --chart-colors: #F5CFBD, #EC9065, #E99C77, #FC844B, #F67537, #FBAF8B, #FFE2D4, #FF5B0E, #DC510F;
+
+  /* Typography */
+  --font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  --font-size-base: 10px;
+  --font-size-title: 2rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+
+  /* Colors */
+  --color-text-secondary: #9CA3AF;
+  --color-border: #e5e7eb;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+
+  /* Layout */
+  --max-width-container: 1200px;
+  --border-radius: 8px;
+  --visualization-height: 70vh;
+  --legend-width: 200px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: #0a0a0a;
+    --color-background: #ffffff;
     --color-foreground: #ededed;
     --color-text: #ffffff;
   }
+}
+
+/* Common Mixins */
+.container-centered {
+  width: 100%;
+  max-width: var(--max-width-container);
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Common Title Style */
+.chart-title {
+  font-family: var(--font-family);
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+
+/* Common Container Style */
+.visualization-container {
+  width: 100%;
+  max-width: var(--max-width-container);
+  margin: 0 auto;
+  background: var(--color-background);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80vh;
+  gap: var(--spacing-lg);
+  padding-bottom: var(--spacing-xl);
+  padding-top: var(--spacing-xl);
+  position: relative;
+  z-index: 1;
+}
+
+/* Common Header Style */
+.visualization-header {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: var(--spacing-lg);
+  width: 100%;
+  justify-content: center;
 } 

@@ -1,0 +1,420 @@
+/* Chart Layout */
+.chart-wrapper {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 1.5rem;
+  width: 100%;
+  color: black;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  font-size: 10px;
+  /* Fixed height for each chart */
+  position: relative;
+  z-index: 1;
+}
+
+.chart-main-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  align-items: center;
+  width: 100%;
+}
+
+.chart-container {
+  width: 100%;
+  height: 500px; /* Fixed height for the chart itself */
+  position: relative;
+}
+
+.chart-svg {
+  height: 100%;
+  width: 100%;
+  background: white;
+}
+
+/* Chart Header */
+.chart-type-selector {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  margin-right: var(--spacing-xs);
+  font-family: var(--font-family);
+}
+
+.chart-type-option {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.chart-type-option.active {
+  color: var(--color-primary);
+}
+
+.chart-type-separator {
+  margin: 0 var(--spacing-xs);
+  color: var(--color-text-secondary);
+}
+
+/* Legend Styles */
+.legend-wrapper {
+  position: relative;
+  width: 100%;
+  height: 124px; /* Fixed height for legend */
+  background: white;
+}
+
+/* Gradient overlays */
+.legend-wrapper::before,
+.legend-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+
+.legend-wrapper::before {
+  left: 0;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.legend-wrapper::after {
+  right: 0;
+  background: linear-gradient(-90deg, 
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.legend-wrapper.can-scroll-left::before {
+  opacity: 1;
+}
+
+.legend-wrapper.can-scroll-right::after {
+  opacity: 1;
+}
+
+/* Scrollable container */
+.legend-scroll {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  background: white;
+}
+
+.legend-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Grid container for items */
+.legend-scroll > div {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(3, 28px); /* Explicit row height */
+  gap: 8px 16px;
+  padding: 12px;
+  width: fit-content;
+  min-width: min-content;
+  height: 100%;
+  background: white;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: opacity 150ms ease, background-color 150ms ease;
+  user-select: none;
+  border-radius: var(--border-radius);
+  white-space: nowrap;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  height: 28px;
+  color: black;
+  background: white;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.legend-item:hover {
+  background-color: var(--color-border);
+}
+
+/* Tooltip */
+.area-tooltip {
+  position: absolute;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--color-background);
+  border-radius: var(--border-radius);
+  pointer-events: none;
+  font-family: var(--font-family);
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  z-index: 10;
+  color: var(--color-text);
+}
+
+.area-tooltip.visible {
+  opacity: 1;
+}
+
+/* Axis Styles */
+.axis {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+}
+
+.grid-line {
+  stroke: var(--color-border);
+  stroke-width: 1;
+  stroke-dasharray: 2,2;
+}
+
+.x-axis-line {
+  stroke: var(--color-text);
+  stroke-width: 1;
+}
+
+.axis-label {
+  font-family: var(--font-family);
+  font-size: 18px;
+  font-weight: var(--font-weight-normal);
+}
+
+.x-label, .y-label {
+  text-anchor: middle;
+}
+
+.x-label {
+  text-anchor: middle;
+  font-weight: 500;
+  font-size: 16px;
+  fill: #1F2937;
+}
+
+.y-label {
+  text-anchor: middle;
+  font-weight: 500;
+}
+
+/* Rest of the styles... */ 
+
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 500px;
+  width: 100%;
+}
+
+.chart-svg {
+  display: block;
+  height: 100%;
+  min-height: 400px;
+  width: 100%;
+  background: white;
+}
+
+.legend-item {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  height: 30px;
+  transition: opacity 150ms ease, background-color 150ms ease;
+  user-select: none;
+  color: black;
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  font-size: 10px;
+}
+
+.legend-item:hover {
+  background-color: rgb(243 244 246);
+}
+
+.legend-color {
+  border-radius: 2px;
+  flex-shrink: 0;
+  height: 12px;
+  width: 12px;
+}
+
+.area-tooltip {
+  position: absolute;
+  padding: 8px 12px;
+  background: white;
+  /* border: 1px solid #ddd; */
+  border-radius: 4px;
+  pointer-events: none;
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
+  opacity: 0;
+  transition: opacity 150ms ease;
+  z-index: 10;
+  color: black;
+}
+
+.area-tooltip.visible {
+  opacity: 1;
+}
+
+:root {
+  --chart-title-size: 2rem;
+}
+
+.first-chart-title {
+  font-size: var(--chart-title-size);
+  font-weight: 600;
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  color: black;
+}
+
+.chart-type-option {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: var(--chart-title-size);
+  font-weight: 600;
+  font-family: inherit;
+  color: #9CA3AF;
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.chart-type-option.active {
+  color: #F67537;
+}
+
+.chart-type-separator {
+  margin: 0 0.5rem;
+  color: #9CA3AF;
+}
+
+.chart-svg {
+  flex: 1;
+}
+
+.map-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  padding: 0 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-container svg {
+  width: 100%;
+  height: auto;
+}
+
+.map-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  width: 100%;
+  padding-top: 1rem;
+}
+
+/* Axis Styles */
+.axis {
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  font-size: 10px;
+}
+
+.grid-line {
+  stroke: #e5e7eb;
+  stroke-width: 1;
+  stroke-dasharray: 2,2;
+}
+
+.x-axis-line {
+  stroke: #000;
+  stroke-width: 1;
+}
+
+.axis-label {
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.x-label {
+  text-anchor: middle;
+}
+
+.y-label {
+  text-anchor: middle;
+}
+
+/* Legend Item Styles */
+.legend-item-rect {
+  pointer-events: all;
+}
+
+.legend-item-color {
+  width: 12px;
+  height: 12px;
+}
+
+.legend-item-text {
+  font-size: 12px;
+}
+
+.legend-item-text.dimmed {
+  fill: #999;
+}
+
+.legend-item-color.dimmed {
+  opacity: 0.2;
+}

@@ -1,21 +1,7 @@
-import statsData from '@/data/stats.json'
+import importedData from '@/data/stats.json'
 
-export type BatchData = {
-  name: string;
-  industries: { [key: string]: number };
-  tags: { [key: string]: number };
-  total: number;
-  hiring: number;
-}
-
-export type Stats = {
-  byBatch: BatchData[];
-  totalCompanies: number;
-  hiringCount: number;
-}
-
-// Define the type for the imported data
-type StatsData = {
+// Define the data imported from stats.json
+type ImportedData = {
   batches: string[];
   stats: {
     byBatch: {
@@ -24,13 +10,35 @@ type StatsData = {
         hiring: number;
         industries: { [key: string]: number };
         tags: { [key: string]: number };
+        locations: { [key: string]: number };
+        tag_count: number;
+        industry_count: number;
       }
     };
   };
 }
 
+// Define the data exported after processing
+
+export type BatchData = {
+  name: string;
+  total: number;
+  hiring: number;
+  percentage_companies_per_industries: { [key: string]: number };
+  percentage_companies_per_tags: { [key: string]: number };
+  locations: { [key: string]: number };
+  percentage_tags_among_total_tags: { [key: string]: number };
+  percentage_industries_among_total_industries: { [key: string]: number };
+}
+
+export type ProcessedData = {
+  byBatch: BatchData[];
+}
+
+
+
 // Use the renamed import
-const data = statsData as StatsData;
+const data = importedData as ImportedData;
 
 function batchSortKey(batch: string): [number, string] {
   if (!batch) return [0, 'Z']
@@ -61,7 +69,7 @@ function getBatchOrder(batches: string[]): string[] {
   })
 }
 
-export function processData(startDate: string, endDate: string, minCompanies: number = 5): Stats {
+export function processData(startDate: string, endDate: string, minCompanies: number = 5): ProcessedData {
   const startBatch = convertDateToBatch(startDate)
   const endBatch = convertDateToBatch(endDate)
   
@@ -92,7 +100,7 @@ export function processData(startDate: string, endDate: string, minCompanies: nu
   console.log('Filtered batches:', filteredBatches)
 
   // Process batch data
-  const batchStats = filteredBatches.map(batch => {
+  const processedBatchData = filteredBatches.map(batch => {
     const batchData = data.stats.byBatch[batch]
     if (!batchData) {
       return {
@@ -100,7 +108,12 @@ export function processData(startDate: string, endDate: string, minCompanies: nu
         industries: {},
         tags: {},
         total: 0,
-        hiring: 0
+        hiring: 0,
+        locations :  {},
+        percentage_companies_per_industries: {},
+        percentage_companies_per_tags: {},
+        percentage_tags_among_total_tags: {},
+        percentage_industries_among_total_industries: {}
       }
     }
     
@@ -116,23 +129,34 @@ export function processData(startDate: string, endDate: string, minCompanies: nu
       return acc
     }, {} as Record<string, number>)
 
+    //Calculate percentge of tags among total tags per batch
+    const tagPercentage = Object.entries(batchData.tags || {}).reduce((acc, [tag, count]) => {
+      acc[tag] = (count / batchData.tag_count) * 100
+      return acc
+    }, {} as Record<string, number>)
+
+    //Calculate percentge of industries among total industries per batch
+    const industryPercentage = Object.entries(batchData.industries || {}).reduce((acc, [industry, count]) => {
+      acc[industry] = (count / batchData.industry_count) * 100
+      return acc
+    }, {} as Record<string, number>)
+
     return {
       name: batch,
       industries,
       tags,
       total: batchData.total,
-      hiring: batchData.hiring
+      hiring: batchData.hiring,
+      locations: batchData.locations,
+      percentage_companies_per_industries: industries,
+      percentage_companies_per_tags: tags,
+      percentage_tags_among_total_tags: tagPercentage,
+      percentage_industries_among_total_industries: industryPercentage
     }
   })
 
-  // Calculate totals from batch data
-  const totalCompanies = batchStats.reduce((sum, batch) => sum + batch.total, 0)
-  const hiringCount = batchStats.reduce((sum, batch) => sum + batch.hiring, 0)
-
   return {
-    byBatch: batchStats,
-    totalCompanies,
-    hiringCount
+    byBatch: processedBatchData
   }
 }
 

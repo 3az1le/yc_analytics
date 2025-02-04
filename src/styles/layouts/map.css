@@ -1,0 +1,35 @@
+.visualization-container svg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+}
+
+.map-tooltip {
+  position: absolute;
+  visibility: hidden;
+  background: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 1000;
+  transition: visibility 0.2s ease;
+  color: black;
+}
+
+.map-title {
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  text-anchor: middle;
+  fill: black;
+}
+
+.chart-title {
+  font-size: var(--chart-title-size);
+  font-weight: 600;
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  color: black;
+  text-align: center;
+}

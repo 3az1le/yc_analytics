@@ -8,4 +8,5 @@
 @import './components/hero.css';
 @import './components/slider.css';
 @import './components/components.css';
-@import './layouts/graph.css';
+@import './components/chart.css';
+@import './layouts/map.css';

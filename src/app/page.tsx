@@ -1,22 +1,29 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import { processData } from '@/lib/processData'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import CompanyChart from '@/components/CompanyChart'
 import YearRangeSlider from '@/components/YearRangeSlider'
+import DensityMap from '@/components/DensityMap'
+import ChartHeader from '@/components/ChartHeader'
+import Footer from '@/components/Footer'
 import '@/styles/main.css'
 import { debounce } from 'lodash'
 
 export default function Home() {
   const [yearRange, setYearRange] = useState<[number, number]>([2005, 2025])
+  const [dataType, setDataType] = useState<'industries' | 'tags'>('industries')
   const [isLoading, setIsLoading] = useState(true)
   const [isSliderVisible, setIsSliderVisible] = useState(false)
 
-  const stats = useMemo(() => {
+  // Process data immediately on component mount
+  const processedData = useMemo(() => {
+    setIsLoading(true)
     try {
-      return processData(yearRange[0].toString(), yearRange[1].toString())
+      const data = processData(yearRange[0].toString(), yearRange[1].toString())
+      return data
     } catch (error) {
       console.error('Error processing data:', error)
       return null
@@ -25,6 +32,12 @@ export default function Home() {
     }
   }, [yearRange])
 
+  // Handle data type changes
+  const handleDataTypeChange = useCallback((newDataType: 'industries' | 'tags') => {
+    setDataType(newDataType)
+  }, [])
+
+  // Initialize scroll handler
   useEffect(() => {
     const handleScroll = debounce(() => {
       const firstChart = document.querySelector('.chart-wrapper')
@@ -42,17 +55,18 @@ export default function Home() {
     }
   }, [])
 
-  if (isLoading || !stats) {
-    return <div className="loading-container">
-      <div className="loading-text">Loading data...</div>
-    </div>
+  if (isLoading || !processedData) {
+    return (
+      <div className="loading-container">
+        <div className="loading-text">Loading data...</div>
+      </div>
+    )
   }
 
   return (
     <div className="page-container">
       <Header />
       <Hero />
-
       <YearRangeSlider
         value={yearRange}
         onChange={setYearRange}
@@ -60,23 +74,29 @@ export default function Home() {
         max={2025}
         isVisible={isSliderVisible}
       />
-
       <main className="main-content">
-        <div className="charts-container">
-          <CompanyChart
-            data={stats.byBatch}
-            title="Industry Distribution Over Time"
-            type="stacked-area"
-            dataType="industries"
+        <div className="visualization-container">
+          <ChartHeader
+            data={processedData.byBatch}
+            title="Distribution Over Time"
+            dataType={dataType}
+            onDataTypeChange={handleDataTypeChange}
           />
           <CompanyChart
-            data={stats.byBatch}
-            title="Tags Distribution Over Time"
+            data={processedData.byBatch}
+            title="Distribution Over Time"
             type="stacked-area"
-            dataType="tags"
+            dataType={dataType}
+          />
+        </div>
+        <div className='map-container'>
+          <DensityMap 
+            data={processedData.byBatch}
+            dateRange={yearRange}
           />
         </div>
       </main>
+      <Footer />
     </div>
   )
 } 

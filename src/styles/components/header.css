@@ -24,6 +24,7 @@
 .header-title {
   font-size: 1.25rem;
   font-weight: 700;
+  color: aliceblue;
 }
 
 .header-links {
@@ -39,8 +40,45 @@
   color: rgb(37 99 235);
 } 
 
-.header-title {
-  font-size: 1.25rem;
-  font-weight: 700;
+.github-link {
   color: aliceblue;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.github-link:hover {
+  opacity: 0.8;
+}
+
+.github-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (min-width: 640px) {
+  .github-link svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .github-link svg {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 639px) {
+  .header-nav {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .header-title {
+    font-size: 1rem;
+  }
 }
