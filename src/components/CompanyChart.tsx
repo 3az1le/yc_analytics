@@ -22,6 +22,9 @@ export const orangeScale = [
   '#FBAF8B'
 ]
 
+// Create a static color scale that will be reused
+export const staticColorScale = d3.scaleOrdinal(orangeScale)
+
 export default function CompanyChart({ 
   data, 
   title, 
@@ -37,7 +40,6 @@ export default function CompanyChart({
   const [previousSelectedCategory, setPreviousSelectedCategory] = useState<string | null>(null)
   const [legendScrollOffset, setLegendScrollOffset] = useState(0)
   const [categories, setCategories] = useState<string[]>([])
-  const colorScale = useMemo(() => d3.scaleOrdinal(orangeScale), [])
   const rafRef = useRef<number>()
   const prevDataTypeRef = useRef(dataType)
 
@@ -58,6 +60,7 @@ export default function CompanyChart({
     ).sort();
 
     // Always include "Other" category
+    staticColorScale.domain([...cats, 'Other'])
     return {
       categories: [...cats, 'Other']
     }
@@ -66,8 +69,7 @@ export default function CompanyChart({
   // Update categories only when necessary
   useEffect(() => {
     setCategories(newCategories)
-    colorScale.domain(newCategories)
-  }, [newCategories, colorScale])
+  }, [newCategories])
 
   // Handle data type changes immediately
   if (prevDataTypeRef.current !== dataType) {
@@ -114,16 +116,13 @@ export default function CompanyChart({
 
     // Initialize chart if it doesn't exist
     if (svg.select('g.chart-container').empty()) {
-    setCategories(newCategories)
-    colorScale.domain(newCategories)
-
       try {
         initializeChart(svg, chartId, dimensions, {
           data,
           dataType,
           selectedCategory,
           previousSelectedCategory,
-          colorScale,
+          colorScale: staticColorScale,
           categories: newCategories
         })
       } catch (error) {
@@ -138,13 +137,13 @@ export default function CompanyChart({
         dataType,
         selectedCategory,
         previousSelectedCategory,
-        colorScale,
+        colorScale: staticColorScale,
         categories: newCategories
       })
     } catch (error) {
       console.error('Error updating chart:', error)
     }
-  }, [data, selectedCategory, previousSelectedCategory, dataType, chartId, newCategories, colorScale])
+  }, [data, selectedCategory, previousSelectedCategory, dataType, chartId, newCategories, staticColorScale])
 
   // Memorize legend items to prevent re-renders
   const legendItems = useMemo(() => (
@@ -161,13 +160,13 @@ export default function CompanyChart({
         <div
           className="legend-color"
           style={{
-            backgroundColor: colorScale(category)
+            backgroundColor: staticColorScale(category)
           }}
         />
         <span>{category}</span>
       </div>
     ))
-  ), [categories, selectedCategory, colorScale, handleCategoryClick])
+  ), [categories, selectedCategory, staticColorScale, handleCategoryClick])
 
   // Check scroll position
   const checkScroll = useCallback(() => {

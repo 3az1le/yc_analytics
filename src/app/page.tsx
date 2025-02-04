@@ -8,6 +8,7 @@ import CompanyChart from '@/components/CompanyChart'
 import YearRangeSlider from '@/components/YearRangeSlider'
 import DensityMap from '@/components/DensityMap'
 import ChartHeader from '@/components/ChartHeader'
+import Footer from '@/components/Footer'
 import '@/styles/main.css'
 import { debounce } from 'lodash'
 
@@ -95,6 +96,7 @@ export default function Home() {
           />
         </div>
       </main>
+      <Footer />
     </div>
   )
 } 

@@ -172,14 +172,14 @@ function createAxisLabels(
   scales: ChartScales,
   config: AxesConfig
 ) {
-  const { height, margin } = dimensions
+  const { height, width, margin } = dimensions
   const { xStart, xEnd } = scales
   const { selectedCategory, dataType, isTransitioning } = config
 
-  // X-axis label
+  // X-axis label (Batch)
   container.append('text')
     .attr('class', 'axis-label x-label')
-    .attr('x', (xStart + xEnd) / 2)
+    .attr('x', width / 2)  // Center horizontally using the full width
     .attr('y', height - margin.bottom / 3)
     .style('text-anchor', 'middle')
     .style('dominant-baseline', 'middle')

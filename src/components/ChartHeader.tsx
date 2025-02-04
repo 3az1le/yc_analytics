@@ -8,6 +8,7 @@ import {
   } from '@/lib/chartDrawing'
   import '@/styles/main.css'
 import { BatchData } from '@/lib/processData'
+import { orangeScale, staticColorScale } from '@/components/CompanyChart'
 
 type ChartHeaderProps = {
   title: string
@@ -15,15 +16,12 @@ type ChartHeaderProps = {
   dataType: 'industries' | 'tags'
   onDataTypeChange: (type: 'industries' | 'tags') => void
 }
-import { orangeScale } from '@/components/CompanyChart'
-
 
 export default function ChartHeader({ data, title, onDataTypeChange }: ChartHeaderProps) {
     const [dataType, setDataType] = useState<'industries' | 'tags'>('industries')
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
     const [previousSelectedCategory, setPreviousSelectedCategory] = useState<string | null>(null)
     const [categories, setCategories] = useState<string[]>([])
-    const colorScale = useMemo(() => d3.scaleOrdinal(orangeScale), [])
     const chartId = useMemo(() => title.toLowerCase().replace(/\s+/g, '-'), [title])
     const svgRef = useRef<SVGSVGElement>(null)
 
@@ -52,36 +50,35 @@ export default function ChartHeader({ data, title, onDataTypeChange }: ChartHead
         const { categories: newCategories } = createScales(data, dimensions, newDataType)
         console.log('createscale called from chartheader')
         setCategories(newCategories)
-        colorScale.domain(newCategories)
         
         initializeChart(svgSelection as d3.Selection<SVGSVGElement, unknown, null, undefined>, chartId, dimensions, {
             data,
             dataType: newDataType,
             selectedCategory: null,
             previousSelectedCategory: null,
-            colorScale,
+            colorScale: staticColorScale,
             categories: newCategories
         })
-    }, [dataType, data, chartId, colorScale, onDataTypeChange])
+    }, [dataType, data, chartId, onDataTypeChange])
 
     return (
         <div className="visualization-header">
-            <div className="chart-type-selector">
-                <button
-                    onClick={() => handleDataTypeChange('industries')}
-                    className={`chart-type-option ${dataType === 'industries' ? 'active' : ''}`}
-                >
-                    Industries
-                </button>
-                <span className="chart-type-separator">/</span>
-                <button
-                    onClick={() => handleDataTypeChange('tags')}
-                    className={`chart-type-option ${dataType === 'tags' ? 'active' : ''}`}
-                >
-                    Tags
-                </button>
-            </div>
-            <h2 className="chart-title">{title}</h2>
+                <div className="chart-type-selector">
+                    <button
+                        onClick={() => handleDataTypeChange('industries')}
+                        className={`chart-type-option ${dataType === 'industries' ? 'active' : ''}`}
+                    >
+                        Industries
+                    </button>
+                    <span className="chart-type-separator">/</span>
+                    <button
+                        onClick={() => handleDataTypeChange('tags')}
+                        className={`chart-type-option ${dataType === 'tags' ? 'active' : ''}`}
+                    >
+                        Tags
+                    </button>
+                </div>
+                <h2 className="chart-title">{title}</h2>
         </div>
     )
 } 
