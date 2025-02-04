@@ -7,9 +7,11 @@ export default function Hero() {
         <h1 className="hero-title">
           Bringing YC's startup universe to life, one visual at a time!
         </h1>
+        <p className="hero-subtitle">
+          Explore the evolution of YC companies through interactive visualizations
+        </p>
       </div>
       <img src="/svg/map.svg" alt="Hero Image" className="hero-image" />
-
     </section>
   )
 } 

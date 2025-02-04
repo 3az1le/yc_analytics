@@ -13,7 +13,7 @@ export default function Header() {
         <div className="header-container">
           <div className="header-title">YC Analytics</div>
           <a 
-            href="https://github.com/3az1le/yc_analytics" 
+            href="https://github.com/nilparent/yc-viz" 
             target="_blank" 
             rel="noopener noreferrer"
             className="github-link"

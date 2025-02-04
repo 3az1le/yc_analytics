@@ -68,17 +68,49 @@
     z-index: 9999;
   }
 
-  .hero {
+  .hero-section {
     background-color: #FB651E;
     color: white;
-    padding: 4rem 0;
+    min-height: 100vh;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .hero h1 {
-    font-size: 2.5rem;
+  .hero-title {
+    font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    opacity: 0.9;
+  }
+
+  .hero-image {
+    position: absolute;
+    top: 35%;
+    transform: translateY( -50%);
+    height: auto;
+    width: 80%;
+    max-width: 1200px;
+    opacity: 0.1;
+    z-index: 1;
+    object-fit: contain;
   }
 
   .footer {
@@ -122,6 +154,7 @@
     justify-content: center;
     gap: 2rem;
     flex-wrap: wrap;
+    align-items: center;
   }
 
   .footer-link {
@@ -140,6 +173,52 @@
   .footer-link:hover {
     opacity: 0.8;
     background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .bmc-btn-container {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .bmc-button {
+    min-width: 150px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: #FFDD00;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    padding: 0.5rem 0.9rem;
+    letter-spacing: normal;
+    box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5);
+    margin: 0 auto;
+    font-family: inherit;
+    transition: 0.3s all linear;
+    position: relative;
+  }
+
+  .bmc-button:hover,
+  .bmc-button:active,
+  .bmc-button:focus {
+    text-decoration: none;
+    opacity: 0.85;
+    color: #000000;
+  }
+
+  .bmc-button img {
+    height: 20px;
+    width: 20px;
+    margin-bottom: 1px;
+    box-shadow: none;
+    border: none;
+    vertical-align: middle;
+  }
+
+  .bmc-button span {
+    margin-left: 8px;
+    font-size: 0.875rem;
+    color: #000000;
   }
 
   .coffee-link {
@@ -163,6 +242,23 @@
     .footer-links {
       flex-direction: column;
       gap: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+      padding: 0 1rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1rem;
+      padding: 0 1.5rem;
+    }
+    
+    .hero-image {
+      right: -20%;
+      height: 100%;
     }
   }
 }
