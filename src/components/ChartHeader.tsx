@@ -1,14 +1,6 @@
-import { useRef, useState, useCallback, useMemo } from 'react'
-import * as d3 from 'd3'
-import { 
-    createScales
-  } from '@/lib/chartUtils'
-  import {
-    initializeChart
-  } from '@/lib/chartDrawing'
-  import '@/styles/main.css'
+import { useCallback } from 'react'
+import '@/styles/main.css'
 import { BatchData } from '@/lib/processData'
-import { orangeScale, staticColorScale } from '@/components/CompanyChart'
 
 type ChartHeaderProps = {
   title: string
@@ -17,49 +9,12 @@ type ChartHeaderProps = {
   onDataTypeChange: (type: 'industries' | 'tags') => void
 }
 
-export default function ChartHeader({ data, title, onDataTypeChange }: ChartHeaderProps) {
-    const [dataType, setDataType] = useState<'industries' | 'tags'>('industries')
-    const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-    const [previousSelectedCategory, setPreviousSelectedCategory] = useState<string | null>(null)
-    const [categories, setCategories] = useState<string[]>([])
-    const chartId = useMemo(() => title.toLowerCase().replace(/\s+/g, '-'), [title])
-    const svgRef = useRef<SVGSVGElement>(null)
-
+export default function ChartHeader({ data, title, onDataTypeChange, dataType }: ChartHeaderProps) {
     const handleDataTypeChange = useCallback((newDataType: 'industries' | 'tags') => {
         // If already on selected type, don't reinitialize
         if (dataType === newDataType) return;
-        
-        setDataType(newDataType)
         onDataTypeChange(newDataType)
-        // Reset category selection when changing data type
-        setSelectedCategory(null)
-        setPreviousSelectedCategory(null)
-
-        const svgSelection = d3.select(svgRef.current)
-        if (!svgRef.current || !svgSelection.node()) return;
-
-        svgSelection.selectAll('*').remove()
-        
-        const containerBounds = svgRef.current?.parentElement?.getBoundingClientRect()
-        const dimensions = {
-            width: containerBounds?.width ?? 600,
-            height: containerBounds?.height ?? 400,
-            margin: { top: 20, right: 200, bottom: 60, left: 60 }
-        }
-        
-        const { categories: newCategories } = createScales(data, dimensions, newDataType)
-        console.log('createscale called from chartheader')
-        setCategories(newCategories)
-        
-        initializeChart(svgSelection as d3.Selection<SVGSVGElement, unknown, null, undefined>, chartId, dimensions, {
-            data,
-            dataType: newDataType,
-            selectedCategory: null,
-            previousSelectedCategory: null,
-            colorScale: staticColorScale,
-            categories: newCategories
-        })
-    }, [dataType, data, chartId, onDataTypeChange])
+    }, [dataType, onDataTypeChange])
 
     return (
         <div className="visualization-header">
