@@ -1,0 +1,8878 @@
+{
+  "David Lieb": {
+    "bybatch": {
+      "F24": [
+        {
+          "company_name": "Lune AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Symphony",
+          "team_size": 2
+        },
+        {
+          "company_name": "PearAI",
+          "team_size": 2
+        },
+        {
+          "company_name": "OpenFunnel",
+          "team_size": 2
+        },
+        {
+          "company_name": "Rulebase",
+          "team_size": 2
+        },
+        {
+          "company_name": "supercontrast",
+          "team_size": 2
+        },
+        {
+          "company_name": "Foundry",
+          "team_size": 2
+        },
+        {
+          "company_name": "Astrix Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "Reticular",
+          "team_size": 2
+        },
+        {
+          "company_name": "Karmen",
+          "team_size": 2
+        },
+        {
+          "company_name": "Fresco",
+          "team_size": 2
+        },
+        {
+          "company_name": "Origami Agents",
+          "team_size": 2
+        },
+        {
+          "company_name": "Scrapybara",
+          "team_size": 2
+        },
+        {
+          "company_name": "Alex",
+          "team_size": 1
+        },
+        {
+          "company_name": "OpenClinic",
+          "team_size": 4
+        }
+      ],
+      "S24": [
+        {
+          "company_name": "Felafax",
+          "team_size": 2
+        },
+        {
+          "company_name": "Standard Data",
+          "team_size": 2
+        },
+        {
+          "company_name": "Vendra",
+          "team_size": 2
+        },
+        {
+          "company_name": "ZeroPath",
+          "team_size": 4
+        },
+        {
+          "company_name": "Pumpkin",
+          "team_size": 1
+        },
+        {
+          "company_name": "Helium",
+          "team_size": 3
+        },
+        {
+          "company_name": "Haystack Software",
+          "team_size": 2
+        },
+        {
+          "company_name": "RiskAngle",
+          "team_size": 2
+        },
+        {
+          "company_name": "Mineflow",
+          "team_size": 1
+        },
+        {
+          "company_name": "dmodel",
+          "team_size": 3
+        },
+        {
+          "company_name": "Plume",
+          "team_size": 3
+        },
+        {
+          "company_name": "AnswerGrid",
+          "team_size": 2
+        },
+        {
+          "company_name": "Passage",
+          "team_size": 2
+        },
+        {
+          "company_name": "CodeViz",
+          "team_size": 2
+        },
+        {
+          "company_name": "RunLocal",
+          "team_size": 3
+        },
+        {
+          "company_name": "Storia AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Proxis",
+          "team_size": 1
+        }
+      ]
+    }
+  },
+  "Diana Hu": {
+    "bybatch": {
+      "F24": [
+        {
+          "company_name": "Fix AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Melder",
+          "team_size": 2
+        },
+        {
+          "company_name": "Ryvn",
+          "team_size": 2
+        },
+        {
+          "company_name": "Friday",
+          "team_size": 2
+        },
+        {
+          "company_name": "fixa",
+          "team_size": 2
+        },
+        {
+          "company_name": "Andoria",
+          "team_size": 2
+        },
+        {
+          "company_name": "Riveter AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Galini",
+          "team_size": 2
+        },
+        {
+          "company_name": "Raycaster",
+          "team_size": 2
+        },
+        {
+          "company_name": "Circlemind",
+          "team_size": 3
+        },
+        {
+          "company_name": "Dexter",
+          "team_size": 3
+        },
+        {
+          "company_name": "Abundant",
+          "team_size": 3
+        },
+        {
+          "company_name": "AutoComputer",
+          "team_size": 2
+        },
+        {
+          "company_name": "Cekura",
+          "team_size": 2
+        },
+        {
+          "company_name": "Protegee",
+          "team_size": 2
+        }
+      ],
+      "S18": [
+        {
+          "company_name": "Activeloop",
+          "team_size": 15
+        }
+      ],
+      "S21": [
+        {
+          "company_name": "Infiuss Health",
+          "team_size": 4
+        },
+        {
+          "company_name": "Vinco",
+          "team_size": 35
+        },
+        {
+          "company_name": "lapzo",
+          "team_size": 135
+        },
+        {
+          "company_name": "Coast",
+          "team_size": 14
+        },
+        {
+          "company_name": "Kiwi Biosciences",
+          "team_size": 10
+        },
+        {
+          "company_name": "Filadd",
+          "team_size": 60
+        },
+        {
+          "company_name": "Tuli Health",
+          "team_size": 4
+        },
+        {
+          "company_name": "Infer",
+          "team_size": 3
+        },
+        {
+          "company_name": "AlgoUniversity",
+          "team_size": 10
+        },
+        {
+          "company_name": "Hive Health",
+          "team_size": 0
+        },
+        {
+          "company_name": "Elto",
+          "team_size": 2
+        },
+        {
+          "company_name": "HEO Robotics",
+          "team_size": 3
+        },
+        {
+          "company_name": "Contalink",
+          "team_size": 28
+        },
+        {
+          "company_name": "Verihubs",
+          "team_size": 63
+        },
+        {
+          "company_name": "Kodex",
+          "team_size": 30
+        },
+        {
+          "company_name": "Hyperbrowser",
+          "team_size": 4
+        },
+        {
+          "company_name": "Pideaky",
+          "team_size": 3
+        }
+      ],
+      "S22": [
+        {
+          "company_name": "Flair Labs",
+          "team_size": 4
+        }
+      ],
+      "S23": [
+        {
+          "company_name": "Glade",
+          "team_size": 8
+        },
+        {
+          "company_name": "Epsilla",
+          "team_size": 3
+        },
+        {
+          "company_name": "Corgea",
+          "team_size": 4
+        },
+        {
+          "company_name": "Empower",
+          "team_size": 2
+        },
+        {
+          "company_name": "Humanlike",
+          "team_size": 0
+        },
+        {
+          "company_name": "Letter AI",
+          "team_size": 4
+        },
+        {
+          "company_name": "Magic Loops",
+          "team_size": 2
+        },
+        {
+          "company_name": "Metoro",
+          "team_size": 2
+        },
+        {
+          "company_name": "Tremor",
+          "team_size": 2
+        },
+        {
+          "company_name": "HockeyStack",
+          "team_size": 11
+        },
+        {
+          "company_name": "PeerDB",
+          "team_size": 2
+        },
+        {
+          "company_name": "Vango AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Sourcepulse",
+          "team_size": 1
+        },
+        {
+          "company_name": "Trainy",
+          "team_size": 2
+        },
+        {
+          "company_name": "Sola",
+          "team_size": 5
+        },
+        {
+          "company_name": "Read Bean",
+          "team_size": 3
+        },
+        {
+          "company_name": "HappyRobot",
+          "team_size": 15
+        },
+        {
+          "company_name": "Synch",
+          "team_size": 4
+        },
+        {
+          "company_name": "Sweep",
+          "team_size": 3
+        },
+        {
+          "company_name": "Shadeform",
+          "team_size": 5
+        },
+        {
+          "company_name": "Srcbook",
+          "team_size": 2
+        },
+        {
+          "company_name": "Structured",
+          "team_size": 3
+        },
+        {
+          "company_name": "Tempo Labs",
+          "team_size": 8
+        },
+        {
+          "company_name": "Taylor AI",
+          "team_size": 2
+        }
+      ],
+      "S24": [
+        {
+          "company_name": "Midship",
+          "team_size": 3
+        },
+        {
+          "company_name": "Freestyle",
+          "team_size": 5
+        },
+        {
+          "company_name": "et al.",
+          "team_size": 2
+        },
+        {
+          "company_name": "Keet",
+          "team_size": 2
+        },
+        {
+          "company_name": "Saldor",
+          "team_size": 2
+        },
+        {
+          "company_name": "Bucket Robotics",
+          "team_size": 2
+        },
+        {
+          "company_name": "David AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Cerulion",
+          "team_size": 2
+        },
+        {
+          "company_name": "Pinnacle",
+          "team_size": 2
+        },
+        {
+          "company_name": "Ember Robotics",
+          "team_size": 2
+        },
+        {
+          "company_name": "Asterisk",
+          "team_size": 3
+        },
+        {
+          "company_name": "deepsilicon",
+          "team_size": 2
+        },
+        {
+          "company_name": "Kastle",
+          "team_size": 2
+        },
+        {
+          "company_name": "Zenbase AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "LedgerUp",
+          "team_size": 3
+        },
+        {
+          "company_name": "Gauge",
+          "team_size": 2
+        },
+        {
+          "company_name": "Offstream",
+          "team_size": 3
+        },
+        {
+          "company_name": "Sorcerer",
+          "team_size": 3
+        },
+        {
+          "company_name": "Cracked",
+          "team_size": 2
+        }
+      ],
+      "W22": [
+        {
+          "company_name": "Palitronica Inc",
+          "team_size": 6
+        },
+        {
+          "company_name": "Stock Unlock",
+          "team_size": 6
+        },
+        {
+          "company_name": "Munily",
+          "team_size": 30
+        },
+        {
+          "company_name": "Industrial Next",
+          "team_size": 9
+        },
+        {
+          "company_name": "Hubble Network",
+          "team_size": 20
+        },
+        {
+          "company_name": "Flightcontrol",
+          "team_size": 6
+        },
+        {
+          "company_name": "Uberduck",
+          "team_size": 2
+        },
+        {
+          "company_name": "Cofactr",
+          "team_size": 15
+        },
+        {
+          "company_name": "Jamsocket",
+          "team_size": 5
+        },
+        {
+          "company_name": "PropelAuth",
+          "team_size": 6
+        },
+        {
+          "company_name": "UNISON",
+          "team_size": 15
+        },
+        {
+          "company_name": "IoTFlows Inc",
+          "team_size": 60
+        },
+        {
+          "company_name": "Vimmerse",
+          "team_size": 10
+        },
+        {
+          "company_name": "Lifecast",
+          "team_size": 2
+        },
+        {
+          "company_name": "Airwork",
+          "team_size": 4
+        },
+        {
+          "company_name": "Posh",
+          "team_size": 4
+        },
+        {
+          "company_name": "Wibond",
+          "team_size": 30
+        }
+      ],
+      "W23": [
+        {
+          "company_name": "Demospace",
+          "team_size": 2
+        },
+        {
+          "company_name": "Parabolic",
+          "team_size": 2
+        },
+        {
+          "company_name": "Infisical",
+          "team_size": 15
+        },
+        {
+          "company_name": "Matano",
+          "team_size": 2
+        },
+        {
+          "company_name": "Salient",
+          "team_size": 9
+        },
+        {
+          "company_name": "Cakework",
+          "team_size": 2
+        },
+        {
+          "company_name": "Homeflow",
+          "team_size": 4
+        },
+        {
+          "company_name": "Shortbread",
+          "team_size": 5
+        },
+        {
+          "company_name": "Odigos",
+          "team_size": 9
+        },
+        {
+          "company_name": "Arroyo",
+          "team_size": 2
+        },
+        {
+          "company_name": "Rivet",
+          "team_size": 5
+        },
+        {
+          "company_name": "Unstatiq",
+          "team_size": 2
+        },
+        {
+          "company_name": "Adri AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "SpecCheck",
+          "team_size": 5
+        },
+        {
+          "company_name": "Automat",
+          "team_size": 0
+        },
+        {
+          "company_name": "Decohere",
+          "team_size": 4
+        },
+        {
+          "company_name": "Resend",
+          "team_size": 3
+        }
+      ],
+      "W24": [
+        {
+          "company_name": "HeartByte",
+          "team_size": 2
+        },
+        {
+          "company_name": "Yondu",
+          "team_size": 3
+        },
+        {
+          "company_name": "dawn",
+          "team_size": 5
+        },
+        {
+          "company_name": "Clarum",
+          "team_size": 2
+        },
+        {
+          "company_name": "Shiboleth",
+          "team_size": 2
+        },
+        {
+          "company_name": "Aftercare",
+          "team_size": 3
+        },
+        {
+          "company_name": "Centralize",
+          "team_size": 3
+        },
+        {
+          "company_name": "PandasAI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Speck",
+          "team_size": 2
+        },
+        {
+          "company_name": "Dragoneye",
+          "team_size": 2
+        },
+        {
+          "company_name": "Reducto",
+          "team_size": 6
+        },
+        {
+          "company_name": "Andon Labs",
+          "team_size": 2
+        },
+        {
+          "company_name": "ego",
+          "team_size": 5
+        },
+        {
+          "company_name": "Preloop",
+          "team_size": 2
+        }
+      ]
+    }
+  },
+  "Garry Tan": {
+    "bybatch": {
+      "F24": [
+        {
+          "company_name": "Relvy AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Ember Copilot",
+          "team_size": 2
+        },
+        {
+          "company_name": "Variant",
+          "team_size": 2
+        },
+        {
+          "company_name": "Praxis AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Vespper",
+          "team_size": 2
+        },
+        {
+          "company_name": "Crustdata",
+          "team_size": 8
+        },
+        {
+          "company_name": "Luthor",
+          "team_size": 2
+        },
+        {
+          "company_name": "Keye",
+          "team_size": 3
+        },
+        {
+          "company_name": "Gander",
+          "team_size": 3
+        },
+        {
+          "company_name": "Diffusion Studio",
+          "team_size": 2
+        }
+      ],
+      "S15": [
+        {
+          "company_name": "Drip Capital",
+          "team_size": 280
+        }
+      ],
+      "S17": [
+        {
+          "company_name": "Flock Safety",
+          "team_size": 1000
+        }
+      ],
+      "S19": [
+        {
+          "company_name": "Apero Health",
+          "team_size": 24
+        },
+        {
+          "company_name": "Curri",
+          "team_size": 104
+        },
+        {
+          "company_name": "Flo Recruit",
+          "team_size": 35
+        }
+      ],
+      "S20": [
+        {
+          "company_name": "Stacker",
+          "team_size": 7
+        }
+      ],
+      "S22": [
+        {
+          "company_name": "TigerEye",
+          "team_size": 16
+        }
+      ],
+      "S23": [
+        {
+          "company_name": "Respaid",
+          "team_size": 38
+        },
+        {
+          "company_name": "Maven Bio",
+          "team_size": 6
+        },
+        {
+          "company_name": "Surface Labs",
+          "team_size": 5
+        },
+        {
+          "company_name": "Outset",
+          "team_size": 6
+        },
+        {
+          "company_name": "Obento Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "Bronco AI",
+          "team_size": 5
+        },
+        {
+          "company_name": "Every",
+          "team_size": 12
+        },
+        {
+          "company_name": "Cedana",
+          "team_size": 5
+        },
+        {
+          "company_name": "Pointhound",
+          "team_size": 5
+        },
+        {
+          "company_name": "Studdy",
+          "team_size": 4
+        },
+        {
+          "company_name": "Envelope",
+          "team_size": 2
+        },
+        {
+          "company_name": "DisputeNinja",
+          "team_size": 2
+        },
+        {
+          "company_name": "Cedalio",
+          "team_size": 6
+        },
+        {
+          "company_name": "OpsBerry AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "dili",
+          "team_size": 4
+        }
+      ],
+      "S24": [
+        {
+          "company_name": "Overlap",
+          "team_size": 3
+        },
+        {
+          "company_name": "Capitol AI",
+          "team_size": 11
+        },
+        {
+          "company_name": "Guardian AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Fazeshift",
+          "team_size": 2
+        },
+        {
+          "company_name": "TaxGPT",
+          "team_size": 2
+        },
+        {
+          "company_name": "Substrate",
+          "team_size": 2
+        },
+        {
+          "company_name": "Modus",
+          "team_size": 3
+        },
+        {
+          "company_name": "Weave Robotics",
+          "team_size": 2
+        },
+        {
+          "company_name": "VideoGen",
+          "team_size": 5
+        },
+        {
+          "company_name": "DigitalCarbon",
+          "team_size": 0
+        },
+        {
+          "company_name": "Random Labs",
+          "team_size": 0
+        },
+        {
+          "company_name": "Rides",
+          "team_size": 3
+        },
+        {
+          "company_name": "ProhostAI",
+          "team_size": 5
+        },
+        {
+          "company_name": "Doublezero",
+          "team_size": 2
+        },
+        {
+          "company_name": "Abel Police",
+          "team_size": 5
+        }
+      ],
+      "W15": [
+        {
+          "company_name": "Akido Labs",
+          "team_size": 1000
+        }
+      ],
+      "W17": [
+        {
+          "company_name": "Rippling",
+          "team_size": 2500
+        }
+      ],
+      "W21": [
+        {
+          "company_name": "LightTwist",
+          "team_size": 4
+        }
+      ],
+      "W22": [
+        {
+          "company_name": "AstroForge",
+          "team_size": 10
+        }
+      ],
+      "W24": [
+        {
+          "company_name": "edgetrace",
+          "team_size": 2
+        },
+        {
+          "company_name": "Zep AI",
+          "team_size": 5
+        },
+        {
+          "company_name": "PromptArmor",
+          "team_size": 2
+        },
+        {
+          "company_name": "Datacurve",
+          "team_size": 4
+        },
+        {
+          "company_name": "Powder",
+          "team_size": 6
+        },
+        {
+          "company_name": "Precip",
+          "team_size": 3
+        },
+        {
+          "company_name": "Maia",
+          "team_size": 2
+        },
+        {
+          "company_name": "Tracecat",
+          "team_size": 2
+        },
+        {
+          "company_name": "Happenstance",
+          "team_size": 3
+        },
+        {
+          "company_name": "Ubicloud",
+          "team_size": 10
+        },
+        {
+          "company_name": "jo",
+          "team_size": 2
+        },
+        {
+          "company_name": "Abel",
+          "team_size": 2
+        },
+        {
+          "company_name": "Stitch Technologies",
+          "team_size": 0
+        }
+      ]
+    }
+  },
+  "Pete Koomen": {
+    "bybatch": {
+      "F24": [
+        {
+          "company_name": "Canvas",
+          "team_size": 3
+        },
+        {
+          "company_name": "Roundabout Technologies",
+          "team_size": 2
+        },
+        {
+          "company_name": "Fabricate",
+          "team_size": 2
+        },
+        {
+          "company_name": "Bifrost Orbital",
+          "team_size": 2
+        },
+        {
+          "company_name": "ShowAndTell",
+          "team_size": 2
+        },
+        {
+          "company_name": "Gait",
+          "team_size": 2
+        },
+        {
+          "company_name": "Summed AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Encore",
+          "team_size": 2
+        },
+        {
+          "company_name": "Curo",
+          "team_size": 6
+        },
+        {
+          "company_name": "Moonshine",
+          "team_size": 2
+        },
+        {
+          "company_name": "Replexica",
+          "team_size": 2
+        },
+        {
+          "company_name": "Autumn",
+          "team_size": 2
+        },
+        {
+          "company_name": "Gecko Security",
+          "team_size": 2
+        },
+        {
+          "company_name": "PermitPortal",
+          "team_size": 2
+        }
+      ],
+      "W24": [
+        {
+          "company_name": "Voicepanel",
+          "team_size": 2
+        },
+        {
+          "company_name": "HostAI",
+          "team_size": 7
+        },
+        {
+          "company_name": "Trieve",
+          "team_size": 7
+        },
+        {
+          "company_name": "BiteSight",
+          "team_size": 2
+        },
+        {
+          "company_name": "Deepnight",
+          "team_size": 8
+        },
+        {
+          "company_name": "xPay",
+          "team_size": 3
+        },
+        {
+          "company_name": "Glimmer",
+          "team_size": 2
+        },
+        {
+          "company_name": "CloudCruise",
+          "team_size": 3
+        },
+        {
+          "company_name": "Lucite",
+          "team_size": 3
+        },
+        {
+          "company_name": "Marblism",
+          "team_size": 2
+        },
+        {
+          "company_name": "GoldenBasis",
+          "team_size": 2
+        },
+        {
+          "company_name": "Artisan",
+          "team_size": 30
+        },
+        {
+          "company_name": "Arini",
+          "team_size": 2
+        },
+        {
+          "company_name": "InspectMind AI",
+          "team_size": 10
+        },
+        {
+          "company_name": "Fileforge",
+          "team_size": 3
+        },
+        {
+          "company_name": "Indemni",
+          "team_size": 2
+        }
+      ]
+    }
+  },
+  "Nicolas Dessaigne": {
+    "bybatch": {
+      "F24": [
+        {
+          "company_name": "Helpcare AI",
+          "team_size": 0
+        },
+        {
+          "company_name": "Asha Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "Leeroo",
+          "team_size": 3
+        },
+        {
+          "company_name": "telli",
+          "team_size": 5
+        },
+        {
+          "company_name": "Durate",
+          "team_size": 3
+        },
+        {
+          "company_name": "Sandra AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Regatta Storage",
+          "team_size": 2
+        },
+        {
+          "company_name": "Vocera",
+          "team_size": 3
+        },
+        {
+          "company_name": "StudyDojo",
+          "team_size": 5
+        },
+        {
+          "company_name": "Pearson Labs",
+          "team_size": 2
+        },
+        {
+          "company_name": "Sphinx",
+          "team_size": 2
+        },
+        {
+          "company_name": "RiskCube",
+          "team_size": 2
+        },
+        {
+          "company_name": "CollectWise",
+          "team_size": 2
+        },
+        {
+          "company_name": "Innate",
+          "team_size": 2
+        },
+        {
+          "company_name": "Metreecs",
+          "team_size": 3
+        },
+        {
+          "company_name": "Revi",
+          "team_size": 10
+        },
+        {
+          "company_name": "ArchiLabs",
+          "team_size": 2
+        }
+      ],
+      "S20": [
+        {
+          "company_name": "Aquarium Learning",
+          "team_size": 12
+        }
+      ],
+      "S21": [
+        {
+          "company_name": "Evidently AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "HitPay",
+          "team_size": 33
+        },
+        {
+          "company_name": "Waterplan",
+          "team_size": 30
+        },
+        {
+          "company_name": "Pylon",
+          "team_size": 17
+        },
+        {
+          "company_name": "Baubap",
+          "team_size": 150
+        },
+        {
+          "company_name": "Lago",
+          "team_size": 23
+        },
+        {
+          "company_name": "Hypercore",
+          "team_size": 7
+        },
+        {
+          "company_name": "Exa",
+          "team_size": 7
+        },
+        {
+          "company_name": "Secoda",
+          "team_size": 27
+        }
+      ],
+      "S22": [
+        {
+          "company_name": "Banabo",
+          "team_size": 2
+        },
+        {
+          "company_name": "HyperDX",
+          "team_size": 4
+        },
+        {
+          "company_name": "Chordio",
+          "team_size": 4
+        },
+        {
+          "company_name": "Paces",
+          "team_size": 30
+        },
+        {
+          "company_name": "Airtrain AI",
+          "team_size": 5
+        },
+        {
+          "company_name": "Tailor",
+          "team_size": 25
+        },
+        {
+          "company_name": "Blitz",
+          "team_size": 4
+        },
+        {
+          "company_name": "Cerrion",
+          "team_size": 9
+        },
+        {
+          "company_name": "Ballerine",
+          "team_size": 3
+        },
+        {
+          "company_name": "NuMind",
+          "team_size": 6
+        },
+        {
+          "company_name": "Cashboard",
+          "team_size": 6
+        },
+        {
+          "company_name": "Activepieces",
+          "team_size": 10
+        },
+        {
+          "company_name": "Windmill",
+          "team_size": 6
+        },
+        {
+          "company_name": "Typewise",
+          "team_size": 12
+        },
+        {
+          "company_name": "Sytex",
+          "team_size": 22
+        },
+        {
+          "company_name": "Thera",
+          "team_size": 12
+        },
+        {
+          "company_name": "Coris",
+          "team_size": 2
+        },
+        {
+          "company_name": "Diversion",
+          "team_size": 9
+        },
+        {
+          "company_name": "Pluralith",
+          "team_size": 2
+        },
+        {
+          "company_name": "FlyCode",
+          "team_size": 7
+        },
+        {
+          "company_name": "MovingLake",
+          "team_size": 3
+        },
+        {
+          "company_name": "Oneleet",
+          "team_size": 50
+        },
+        {
+          "company_name": "Caddie AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Firecrawl",
+          "team_size": 8
+        },
+        {
+          "company_name": "Solum Health",
+          "team_size": 3
+        },
+        {
+          "company_name": "Metriport",
+          "team_size": 7
+        }
+      ],
+      "S23": [
+        {
+          "company_name": "CandorIQ",
+          "team_size": 4
+        },
+        {
+          "company_name": "Dioxus Labs",
+          "team_size": 4
+        },
+        {
+          "company_name": "Skyvern",
+          "team_size": 3
+        },
+        {
+          "company_name": "venta",
+          "team_size": 5
+        },
+        {
+          "company_name": "Deasy Labs",
+          "team_size": 3
+        },
+        {
+          "company_name": "Continue",
+          "team_size": 5
+        },
+        {
+          "company_name": "HyLight",
+          "team_size": 9
+        },
+        {
+          "company_name": "Osium AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Converge",
+          "team_size": 4
+        },
+        {
+          "company_name": "Roundtable",
+          "team_size": 2
+        },
+        {
+          "company_name": "Smoothspeak",
+          "team_size": 2
+        },
+        {
+          "company_name": "Inventive AI",
+          "team_size": 5
+        },
+        {
+          "company_name": "Cargo",
+          "team_size": 5
+        },
+        {
+          "company_name": "Affinity",
+          "team_size": 2
+        }
+      ],
+      "S24": [
+        {
+          "company_name": "Soma Lab",
+          "team_size": 2
+        },
+        {
+          "company_name": "Merlin AI",
+          "team_size": 6
+        },
+        {
+          "company_name": "Patched",
+          "team_size": 2
+        },
+        {
+          "company_name": "omnidock",
+          "team_size": 3
+        },
+        {
+          "company_name": "Mindely",
+          "team_size": 4
+        },
+        {
+          "company_name": "Polymet",
+          "team_size": 2
+        },
+        {
+          "company_name": "autarc",
+          "team_size": 15
+        },
+        {
+          "company_name": "Distro",
+          "team_size": 7
+        },
+        {
+          "company_name": "Modern Realty",
+          "team_size": 2
+        },
+        {
+          "company_name": "Presti AI",
+          "team_size": 7
+        },
+        {
+          "company_name": "Soff",
+          "team_size": 2
+        },
+        {
+          "company_name": "Zeit AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Clearly AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "expand.ai",
+          "team_size": 2
+        },
+        {
+          "company_name": "Benchify",
+          "team_size": 2
+        },
+        {
+          "company_name": "Rewbi",
+          "team_size": 2
+        },
+        {
+          "company_name": "Willow",
+          "team_size": 4
+        },
+        {
+          "company_name": "Wordware",
+          "team_size": 9
+        },
+        {
+          "company_name": "Maitai",
+          "team_size": 3
+        },
+        {
+          "company_name": "Phonely",
+          "team_size": 4
+        },
+        {
+          "company_name": "Unsloth AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Mem0",
+          "team_size": 4
+        }
+      ],
+      "W21": [
+        {
+          "company_name": "Mindee",
+          "team_size": 60
+        },
+        {
+          "company_name": "Encord",
+          "team_size": 70
+        },
+        {
+          "company_name": "Curvenote",
+          "team_size": 3
+        },
+        {
+          "company_name": "Hermes Robotics",
+          "team_size": 5
+        },
+        {
+          "company_name": "Djamo",
+          "team_size": 160
+        },
+        {
+          "company_name": "Striga",
+          "team_size": 10
+        }
+      ],
+      "W22": [
+        {
+          "company_name": "LanceDB",
+          "team_size": 10
+        },
+        {
+          "company_name": "MosaicVoice",
+          "team_size": 4
+        },
+        {
+          "company_name": "Happl",
+          "team_size": 11
+        },
+        {
+          "company_name": "PromptLoop",
+          "team_size": 2
+        },
+        {
+          "company_name": "Wingback",
+          "team_size": 12
+        },
+        {
+          "company_name": "GrowthBook",
+          "team_size": 21
+        },
+        {
+          "company_name": "Optery",
+          "team_size": 20
+        },
+        {
+          "company_name": "WhiteLab Genomics",
+          "team_size": 25
+        },
+        {
+          "company_name": "Humand",
+          "team_size": 205
+        },
+        {
+          "company_name": "Brainboard",
+          "team_size": 12
+        },
+        {
+          "company_name": "BotCity",
+          "team_size": 18
+        },
+        {
+          "company_name": "voize",
+          "team_size": 4
+        },
+        {
+          "company_name": "LunaJoy",
+          "team_size": 6
+        },
+        {
+          "company_name": "Cogram",
+          "team_size": 5
+        },
+        {
+          "company_name": "Markaz Technologies",
+          "team_size": 55
+        }
+      ],
+      "W23": [
+        {
+          "company_name": "Defer",
+          "team_size": 2
+        },
+        {
+          "company_name": "Middleware",
+          "team_size": 40
+        },
+        {
+          "company_name": "Stack AI",
+          "team_size": 16
+        },
+        {
+          "company_name": "Designbase",
+          "team_size": 3
+        },
+        {
+          "company_name": "Doctor Droid",
+          "team_size": 6
+        },
+        {
+          "company_name": "Depot",
+          "team_size": 5
+        },
+        {
+          "company_name": "Nango",
+          "team_size": 6
+        },
+        {
+          "company_name": "Gluetrail",
+          "team_size": 2
+        },
+        {
+          "company_name": "Flower",
+          "team_size": 15
+        },
+        {
+          "company_name": "GradientJ",
+          "team_size": 2
+        },
+        {
+          "company_name": "Wild Moose",
+          "team_size": 3
+        },
+        {
+          "company_name": "Helicone",
+          "team_size": 5
+        },
+        {
+          "company_name": "Fintool",
+          "team_size": 6
+        },
+        {
+          "company_name": "Sherloq",
+          "team_size": 6
+        },
+        {
+          "company_name": "DAGWorks Inc.",
+          "team_size": 2
+        },
+        {
+          "company_name": "Fabius",
+          "team_size": 2
+        },
+        {
+          "company_name": "Koala Ops",
+          "team_size": 3
+        },
+        {
+          "company_name": "Escape",
+          "team_size": 14
+        },
+        {
+          "company_name": "moonrepo",
+          "team_size": 2
+        },
+        {
+          "company_name": "Pierre",
+          "team_size": 2
+        }
+      ],
+      "W24": [
+        {
+          "company_name": "OffDeal",
+          "team_size": 2
+        },
+        {
+          "company_name": "Superagent",
+          "team_size": 2
+        },
+        {
+          "company_name": "Bilanc",
+          "team_size": 2
+        },
+        {
+          "company_name": "Open",
+          "team_size": 4
+        },
+        {
+          "company_name": "phospho",
+          "team_size": 4
+        },
+        {
+          "company_name": "Kiosk",
+          "team_size": 5
+        },
+        {
+          "company_name": "Ragas",
+          "team_size": 2
+        },
+        {
+          "company_name": "Hatchet",
+          "team_size": 2
+        },
+        {
+          "company_name": "Downlink",
+          "team_size": 1
+        },
+        {
+          "company_name": "OneGrep",
+          "team_size": 2
+        },
+        {
+          "company_name": "Topo",
+          "team_size": 5
+        },
+        {
+          "company_name": "Ecliptor",
+          "team_size": 2
+        },
+        {
+          "company_name": "BetterBasket",
+          "team_size": 4
+        },
+        {
+          "company_name": "Greenboard",
+          "team_size": 5
+        },
+        {
+          "company_name": "CoCrafter",
+          "team_size": 3
+        },
+        {
+          "company_name": "Apriora",
+          "team_size": 5
+        },
+        {
+          "company_name": "Quivr",
+          "team_size": 6
+        },
+        {
+          "company_name": "Mathos",
+          "team_size": 5
+        },
+        {
+          "company_name": "Guide Labs",
+          "team_size": 5
+        }
+      ]
+    }
+  },
+  "Dalton Caldwell": {
+    "bybatch": {
+      "F24": [
+        {
+          "company_name": "Synth",
+          "team_size": 2
+        },
+        {
+          "company_name": "HumanLayer",
+          "team_size": 1
+        },
+        {
+          "company_name": "Upshift",
+          "team_size": 2
+        },
+        {
+          "company_name": "Getcho",
+          "team_size": 3
+        },
+        {
+          "company_name": "Coblocks",
+          "team_size": 2
+        },
+        {
+          "company_name": "HealthSpark",
+          "team_size": 2
+        },
+        {
+          "company_name": "Lightscreen AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Revyl",
+          "team_size": 3
+        },
+        {
+          "company_name": "ISSEN",
+          "team_size": 2
+        },
+        {
+          "company_name": "CTGT",
+          "team_size": 2
+        },
+        {
+          "company_name": "Tiny",
+          "team_size": 3
+        },
+        {
+          "company_name": "Platus",
+          "team_size": 0
+        },
+        {
+          "company_name": "Aditto",
+          "team_size": 2
+        },
+        {
+          "company_name": "BeerMe",
+          "team_size": 2
+        },
+        {
+          "company_name": "HYBRD",
+          "team_size": 4
+        },
+        {
+          "company_name": "Codebuff",
+          "team_size": 2
+        },
+        {
+          "company_name": "Consus",
+          "team_size": 1
+        },
+        {
+          "company_name": "Chorrie",
+          "team_size": 2
+        },
+        {
+          "company_name": "Sunset",
+          "team_size": 2
+        },
+        {
+          "company_name": "Surge",
+          "team_size": 2
+        },
+        {
+          "company_name": "Bramble",
+          "team_size": 3
+        },
+        {
+          "company_name": "Forerunner AI",
+          "team_size": 2
+        }
+      ],
+      "S14": [
+        {
+          "company_name": "ShipBob",
+          "team_size": 1
+        },
+        {
+          "company_name": "Helion Energy",
+          "team_size": 150
+        },
+        {
+          "company_name": "Permutive",
+          "team_size": 205
+        },
+        {
+          "company_name": "PicnicHealth",
+          "team_size": 100
+        }
+      ],
+      "S15": [
+        {
+          "company_name": "Verge Genomics",
+          "team_size": 50
+        },
+        {
+          "company_name": "Teleport",
+          "team_size": 200
+        },
+        {
+          "company_name": "Circle Medical",
+          "team_size": 153
+        }
+      ],
+      "S16": [
+        {
+          "company_name": "Raptor Maps",
+          "team_size": 75
+        }
+      ],
+      "S17": [
+        {
+          "company_name": "Just Appraised",
+          "team_size": 40
+        },
+        {
+          "company_name": "Routable",
+          "team_size": 160
+        },
+        {
+          "company_name": "Flowspace",
+          "team_size": 48
+        },
+        {
+          "company_name": "Pyka",
+          "team_size": 75
+        },
+        {
+          "company_name": "UpCodes",
+          "team_size": 23
+        }
+      ],
+      "S18": [
+        {
+          "company_name": "Meru Health",
+          "team_size": 55
+        },
+        {
+          "company_name": "Klarity",
+          "team_size": 128
+        },
+        {
+          "company_name": "Calii",
+          "team_size": 750
+        }
+      ],
+      "S19": [
+        {
+          "company_name": "Zippi",
+          "team_size": 60
+        },
+        {
+          "company_name": "LineLeap",
+          "team_size": 50
+        }
+      ],
+      "S20": [
+        {
+          "company_name": "CoreCare",
+          "team_size": 11
+        },
+        {
+          "company_name": "Balance",
+          "team_size": 70
+        },
+        {
+          "company_name": "Conta Simples",
+          "team_size": 130
+        },
+        {
+          "company_name": "Awtomic",
+          "team_size": 11
+        },
+        {
+          "company_name": "Formal",
+          "team_size": 10
+        },
+        {
+          "company_name": "Orange Health Labs",
+          "team_size": 900
+        },
+        {
+          "company_name": "Mito",
+          "team_size": 3
+        },
+        {
+          "company_name": "SafeBase",
+          "team_size": 60
+        },
+        {
+          "company_name": "Finch",
+          "team_size": 63
+        },
+        {
+          "company_name": "Heron Data",
+          "team_size": 17
+        },
+        {
+          "company_name": "Porter",
+          "team_size": 10
+        },
+        {
+          "company_name": "Recurrency",
+          "team_size": 50
+        },
+        {
+          "company_name": "Zip",
+          "team_size": 250
+        },
+        {
+          "company_name": "Jeeves",
+          "team_size": 0
+        },
+        {
+          "company_name": "Response",
+          "team_size": 8
+        },
+        {
+          "company_name": "Roboflow",
+          "team_size": 50
+        },
+        {
+          "company_name": "Momence",
+          "team_size": 75
+        },
+        {
+          "company_name": "Shuttle",
+          "team_size": 12
+        }
+      ],
+      "S21": [
+        {
+          "company_name": "LootRush",
+          "team_size": 0
+        },
+        {
+          "company_name": "Sequin",
+          "team_size": 3
+        },
+        {
+          "company_name": "CoLoop",
+          "team_size": 7
+        },
+        {
+          "company_name": "OneSchema",
+          "team_size": 16
+        },
+        {
+          "company_name": "Encuadrado",
+          "team_size": 3
+        },
+        {
+          "company_name": "Aleph",
+          "team_size": 30
+        },
+        {
+          "company_name": "Fizz",
+          "team_size": 15
+        },
+        {
+          "company_name": "Brite",
+          "team_size": 15
+        },
+        {
+          "company_name": "RenderNet",
+          "team_size": 14
+        },
+        {
+          "company_name": "Levro",
+          "team_size": 12
+        },
+        {
+          "company_name": "Replo",
+          "team_size": 20
+        },
+        {
+          "company_name": "Pipekit",
+          "team_size": 9
+        },
+        {
+          "company_name": "Palla",
+          "team_size": 3
+        },
+        {
+          "company_name": "Repool",
+          "team_size": 11
+        },
+        {
+          "company_name": "Bree",
+          "team_size": 2
+        }
+      ],
+      "S22": [
+        {
+          "company_name": "AiPrise",
+          "team_size": 14
+        },
+        {
+          "company_name": "Weltio",
+          "team_size": 15
+        },
+        {
+          "company_name": "Alma",
+          "team_size": 0
+        },
+        {
+          "company_name": "Integration Labs",
+          "team_size": 8
+        },
+        {
+          "company_name": "Zoltar Labs",
+          "team_size": 9
+        },
+        {
+          "company_name": "Lotus",
+          "team_size": 2
+        },
+        {
+          "company_name": "Medplum",
+          "team_size": 3
+        },
+        {
+          "company_name": "Denormalized",
+          "team_size": 2
+        },
+        {
+          "company_name": "Dittofeed",
+          "team_size": 2
+        },
+        {
+          "company_name": "Bunting Labs",
+          "team_size": 2
+        },
+        {
+          "company_name": "erad",
+          "team_size": 5
+        },
+        {
+          "company_name": "Alterya",
+          "team_size": 30
+        },
+        {
+          "company_name": "Moneco",
+          "team_size": 8
+        },
+        {
+          "company_name": "Craze",
+          "team_size": 8
+        },
+        {
+          "company_name": "Lyra",
+          "team_size": 3
+        },
+        {
+          "company_name": "Novig",
+          "team_size": 12
+        },
+        {
+          "company_name": "Sunlight",
+          "team_size": 6
+        },
+        {
+          "company_name": "Payload",
+          "team_size": 3
+        },
+        {
+          "company_name": "100x",
+          "team_size": 3
+        },
+        {
+          "company_name": "Coverage Cat",
+          "team_size": 4
+        },
+        {
+          "company_name": "AccessOwl",
+          "team_size": 4
+        },
+        {
+          "company_name": "Kashin",
+          "team_size": 45
+        },
+        {
+          "company_name": "REVER",
+          "team_size": 35
+        },
+        {
+          "company_name": "Hero",
+          "team_size": 5
+        },
+        {
+          "company_name": "Artemis Search",
+          "team_size": 3
+        },
+        {
+          "company_name": "Grai",
+          "team_size": 3
+        },
+        {
+          "company_name": "Cobbery",
+          "team_size": 4
+        },
+        {
+          "company_name": "Maya Labs",
+          "team_size": 5
+        },
+        {
+          "company_name": "Rio",
+          "team_size": 10
+        },
+        {
+          "company_name": "Popsy",
+          "team_size": 6
+        }
+      ],
+      "S23": [
+        {
+          "company_name": "Revideo",
+          "team_size": 2
+        },
+        {
+          "company_name": "Lysto AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Telophase",
+          "team_size": 2
+        },
+        {
+          "company_name": "Vigilant",
+          "team_size": 2
+        },
+        {
+          "company_name": "Agentive",
+          "team_size": 6
+        },
+        {
+          "company_name": "Parea",
+          "team_size": 2
+        },
+        {
+          "company_name": "SID",
+          "team_size": 3
+        },
+        {
+          "company_name": "Capi Money",
+          "team_size": 5
+        },
+        {
+          "company_name": "SuperCraft",
+          "team_size": 1
+        },
+        {
+          "company_name": "Tegon",
+          "team_size": 3
+        },
+        {
+          "company_name": "Clearest Health",
+          "team_size": 3
+        },
+        {
+          "company_name": "Xeol",
+          "team_size": 3
+        },
+        {
+          "company_name": "Twenty",
+          "team_size": 3
+        },
+        {
+          "company_name": "Reworkd",
+          "team_size": 8
+        },
+        {
+          "company_name": "Onward",
+          "team_size": 4
+        },
+        {
+          "company_name": "Bolto",
+          "team_size": 6
+        },
+        {
+          "company_name": "Khoj",
+          "team_size": 2
+        },
+        {
+          "company_name": "Rankai",
+          "team_size": 3
+        },
+        {
+          "company_name": "sudocode",
+          "team_size": 2
+        },
+        {
+          "company_name": "Sendblue",
+          "team_size": 10
+        },
+        {
+          "company_name": "RecipeUI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Smobi",
+          "team_size": 3
+        },
+        {
+          "company_name": "Inconvo",
+          "team_size": 2
+        },
+        {
+          "company_name": "truemetrics",
+          "team_size": 5
+        },
+        {
+          "company_name": "Flex",
+          "team_size": 8
+        }
+      ],
+      "S24": [
+        {
+          "company_name": "Village Labs",
+          "team_size": 2
+        },
+        {
+          "company_name": "XTraffic",
+          "team_size": 5
+        },
+        {
+          "company_name": "RowBoat Labs",
+          "team_size": 3
+        },
+        {
+          "company_name": "Pipeshift",
+          "team_size": 10
+        },
+        {
+          "company_name": "TradeFlow",
+          "team_size": 2
+        },
+        {
+          "company_name": "Voker",
+          "team_size": 2
+        },
+        {
+          "company_name": "Zimi",
+          "team_size": 2
+        },
+        {
+          "company_name": "Thyme",
+          "team_size": 2
+        },
+        {
+          "company_name": "Promi",
+          "team_size": 2
+        },
+        {
+          "company_name": "Ontra Mobility",
+          "team_size": 2
+        },
+        {
+          "company_name": "Fortress",
+          "team_size": 3
+        },
+        {
+          "company_name": "Manaflow",
+          "team_size": 3
+        },
+        {
+          "company_name": "NetworkOcean",
+          "team_size": 2
+        },
+        {
+          "company_name": "Silurian",
+          "team_size": 4
+        },
+        {
+          "company_name": "Unbound Security",
+          "team_size": 4
+        },
+        {
+          "company_name": "Azalea Robotics Corporation",
+          "team_size": 2
+        },
+        {
+          "company_name": "Clara",
+          "team_size": 4
+        },
+        {
+          "company_name": "Stack Auth",
+          "team_size": 3
+        },
+        {
+          "company_name": "Tabular",
+          "team_size": 5
+        },
+        {
+          "company_name": "Callback",
+          "team_size": 2
+        },
+        {
+          "company_name": "Glasskube",
+          "team_size": 5
+        },
+        {
+          "company_name": "Invaria",
+          "team_size": 3
+        }
+      ],
+      "W15": [
+        {
+          "company_name": "Platzi",
+          "team_size": 300
+        },
+        {
+          "company_name": "Resolve",
+          "team_size": 9
+        },
+        {
+          "company_name": "Magic",
+          "team_size": 350
+        },
+        {
+          "company_name": "Mashgin",
+          "team_size": 75
+        },
+        {
+          "company_name": "Razorpay",
+          "team_size": 2700
+        }
+      ],
+      "W16": [
+        {
+          "company_name": "Podium",
+          "team_size": 1000
+        },
+        {
+          "company_name": "Rappi",
+          "team_size": 4800
+        },
+        {
+          "company_name": "Function of Beauty",
+          "team_size": 300
+        },
+        {
+          "company_name": "Lattice",
+          "team_size": 540
+        }
+      ],
+      "W17": [
+        {
+          "company_name": "Speak",
+          "team_size": 40
+        },
+        {
+          "company_name": "Bulk MRO Industrial Supply",
+          "team_size": 170
+        },
+        {
+          "company_name": "UpKeep",
+          "team_size": 150
+        },
+        {
+          "company_name": "Retool",
+          "team_size": 300
+        },
+        {
+          "company_name": "Brex",
+          "team_size": 1000
+        }
+      ],
+      "W18": [
+        {
+          "company_name": "Memora Health",
+          "team_size": 115
+        },
+        {
+          "company_name": "BioRender",
+          "team_size": 205
+        },
+        {
+          "company_name": "ZBiotics",
+          "team_size": 22
+        },
+        {
+          "company_name": "Treasury Prime",
+          "team_size": 100
+        }
+      ],
+      "W19": [
+        {
+          "company_name": "Wanderlog",
+          "team_size": 5
+        },
+        {
+          "company_name": "Parker",
+          "team_size": 10
+        },
+        {
+          "company_name": "Keeper",
+          "team_size": 23
+        },
+        {
+          "company_name": "Community Phone Company",
+          "team_size": 70
+        },
+        {
+          "company_name": "Bunkerhill Health",
+          "team_size": 30
+        },
+        {
+          "company_name": "Dagger",
+          "team_size": 22
+        },
+        {
+          "company_name": "Kovi",
+          "team_size": 890
+        },
+        {
+          "company_name": "Nowports",
+          "team_size": 550
+        }
+      ],
+      "W20": [
+        {
+          "company_name": "BuildBuddy",
+          "team_size": 15
+        },
+        {
+          "company_name": "Ditto",
+          "team_size": 13
+        },
+        {
+          "company_name": "Pulley",
+          "team_size": 68
+        },
+        {
+          "company_name": "Accord",
+          "team_size": 20
+        },
+        {
+          "company_name": "Paragon",
+          "team_size": 22
+        },
+        {
+          "company_name": "Aden",
+          "team_size": 15
+        },
+        {
+          "company_name": "Upflow",
+          "team_size": 70
+        },
+        {
+          "company_name": "Nexu",
+          "team_size": 63
+        },
+        {
+          "company_name": "Daedalus",
+          "team_size": 7
+        },
+        {
+          "company_name": "STARK BANK",
+          "team_size": 70
+        },
+        {
+          "company_name": "Stable",
+          "team_size": 25
+        },
+        {
+          "company_name": "99minutos",
+          "team_size": 5000
+        },
+        {
+          "company_name": "Airbyte",
+          "team_size": 90
+        },
+        {
+          "company_name": "Yassir",
+          "team_size": 200
+        },
+        {
+          "company_name": "Whatnot",
+          "team_size": 400
+        },
+        {
+          "company_name": "PostHog",
+          "team_size": 85
+        },
+        {
+          "company_name": "Riot",
+          "team_size": 50
+        },
+        {
+          "company_name": "Modernbanc",
+          "team_size": 6
+        }
+      ],
+      "W21": [
+        {
+          "company_name": "Resquared",
+          "team_size": 40
+        },
+        {
+          "company_name": "Topline Pro",
+          "team_size": 28
+        },
+        {
+          "company_name": "Trela",
+          "team_size": 120
+        },
+        {
+          "company_name": "Great Question",
+          "team_size": 22
+        },
+        {
+          "company_name": "LiveFlow",
+          "team_size": 34
+        },
+        {
+          "company_name": "Fintoc",
+          "team_size": 60
+        },
+        {
+          "company_name": "Lendflow",
+          "team_size": 55
+        },
+        {
+          "company_name": "Juniper",
+          "team_size": 40
+        },
+        {
+          "company_name": "Gradia Health",
+          "team_size": 7
+        },
+        {
+          "company_name": "Fractional",
+          "team_size": 10
+        },
+        {
+          "company_name": "Tupelo",
+          "team_size": 2
+        },
+        {
+          "company_name": "Finley",
+          "team_size": 32
+        },
+        {
+          "company_name": "authzed",
+          "team_size": 24
+        },
+        {
+          "company_name": "cloud humans",
+          "team_size": 30
+        },
+        {
+          "company_name": "Voosh",
+          "team_size": 15
+        },
+        {
+          "company_name": "Gigs",
+          "team_size": 90
+        },
+        {
+          "company_name": "Treinta",
+          "team_size": 120
+        },
+        {
+          "company_name": "Ziina",
+          "team_size": 25
+        },
+        {
+          "company_name": "Morada Uno",
+          "team_size": 50
+        },
+        {
+          "company_name": "Ontop",
+          "team_size": 192
+        },
+        {
+          "company_name": "ZOKO",
+          "team_size": 18
+        },
+        {
+          "company_name": "SoloSuit",
+          "team_size": 6
+        }
+      ],
+      "W22": [
+        {
+          "company_name": "Dart",
+          "team_size": 7
+        },
+        {
+          "company_name": "RedBrick AI",
+          "team_size": 13
+        },
+        {
+          "company_name": "Reforged Labs",
+          "team_size": 10
+        },
+        {
+          "company_name": "Beam",
+          "team_size": 5
+        },
+        {
+          "company_name": "Creizer",
+          "team_size": 12
+        },
+        {
+          "company_name": "Elementary",
+          "team_size": 12
+        },
+        {
+          "company_name": "CozmoX AI",
+          "team_size": 7
+        },
+        {
+          "company_name": "Momento",
+          "team_size": 18
+        },
+        {
+          "company_name": "PolicyFly",
+          "team_size": 15
+        },
+        {
+          "company_name": "Sieve",
+          "team_size": 8
+        },
+        {
+          "company_name": "Railbird",
+          "team_size": 8
+        },
+        {
+          "company_name": "Circular",
+          "team_size": 25
+        },
+        {
+          "company_name": "Pigeon",
+          "team_size": 5
+        },
+        {
+          "company_name": "Plover Parametrics",
+          "team_size": 6
+        },
+        {
+          "company_name": "Arpari",
+          "team_size": 6
+        },
+        {
+          "company_name": "Sendo",
+          "team_size": 1
+        },
+        {
+          "company_name": "Ploomber",
+          "team_size": 7
+        },
+        {
+          "company_name": "Cypher",
+          "team_size": 10
+        },
+        {
+          "company_name": "Toko",
+          "team_size": 6
+        },
+        {
+          "company_name": "SkyLink",
+          "team_size": 12
+        }
+      ],
+      "W23": [
+        {
+          "company_name": "ShortLoop",
+          "team_size": 5
+        },
+        {
+          "company_name": "Struct",
+          "team_size": 3
+        },
+        {
+          "company_name": "Echo",
+          "team_size": 3
+        },
+        {
+          "company_name": "Dashdive",
+          "team_size": 2
+        },
+        {
+          "company_name": "Booth AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Avoca",
+          "team_size": 2
+        },
+        {
+          "company_name": "Layup",
+          "team_size": 3
+        },
+        {
+          "company_name": "Magic Patterns",
+          "team_size": 2
+        },
+        {
+          "company_name": "FlexDesk",
+          "team_size": 8
+        },
+        {
+          "company_name": "Mercoa",
+          "team_size": 2
+        },
+        {
+          "company_name": "FlexWash",
+          "team_size": 2
+        },
+        {
+          "company_name": "PoplarML",
+          "team_size": 2
+        },
+        {
+          "company_name": "GovEagle",
+          "team_size": 2
+        },
+        {
+          "company_name": "LinkGrep",
+          "team_size": 2
+        },
+        {
+          "company_name": "Pirros",
+          "team_size": 11
+        },
+        {
+          "company_name": "Chart",
+          "team_size": 3
+        },
+        {
+          "company_name": "Polo",
+          "team_size": 5
+        },
+        {
+          "company_name": "Dream3D",
+          "team_size": 3
+        },
+        {
+          "company_name": "TruthSuite",
+          "team_size": 4
+        },
+        {
+          "company_name": "Outerbase",
+          "team_size": 4
+        },
+        {
+          "company_name": "Extend",
+          "team_size": 6
+        },
+        {
+          "company_name": "Mogara",
+          "team_size": 2
+        },
+        {
+          "company_name": "Forfeit",
+          "team_size": 2
+        },
+        {
+          "company_name": "ClickPe",
+          "team_size": 2
+        },
+        {
+          "company_name": "Boundary",
+          "team_size": 3
+        },
+        {
+          "company_name": "co.dev",
+          "team_size": 2
+        },
+        {
+          "company_name": "Finic",
+          "team_size": 2
+        },
+        {
+          "company_name": "UpTrain AI",
+          "team_size": 6
+        },
+        {
+          "company_name": "Sirdab",
+          "team_size": 0
+        },
+        {
+          "company_name": "MagnaPlay",
+          "team_size": 5
+        },
+        {
+          "company_name": "Swishjam",
+          "team_size": 2
+        },
+        {
+          "company_name": "Hindsight",
+          "team_size": 3
+        },
+        {
+          "company_name": "Dill",
+          "team_size": 0
+        },
+        {
+          "company_name": "Constant",
+          "team_size": 2
+        },
+        {
+          "company_name": "Lightski",
+          "team_size": 2
+        }
+      ],
+      "W24": [
+        {
+          "company_name": "Risotto",
+          "team_size": 3
+        },
+        {
+          "company_name": "Manifold Freight",
+          "team_size": 3
+        },
+        {
+          "company_name": "Ellipsis",
+          "team_size": 2
+        },
+        {
+          "company_name": "Lytix",
+          "team_size": 2
+        },
+        {
+          "company_name": "Stacksync",
+          "team_size": 4
+        },
+        {
+          "company_name": "Decipher AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "OpenFoundry",
+          "team_size": 2
+        },
+        {
+          "company_name": "PointOne",
+          "team_size": 3
+        },
+        {
+          "company_name": "MathDash",
+          "team_size": 2
+        },
+        {
+          "company_name": "nCompass Technologies",
+          "team_size": 2
+        },
+        {
+          "company_name": "Pretzel AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "ion design",
+          "team_size": 2
+        },
+        {
+          "company_name": "SSOReady",
+          "team_size": 2
+        },
+        {
+          "company_name": "Relari",
+          "team_size": 2
+        },
+        {
+          "company_name": "Upsolve AI",
+          "team_size": 4
+        },
+        {
+          "company_name": "SciPhi",
+          "team_size": 3
+        },
+        {
+          "company_name": "Dropback",
+          "team_size": 2
+        },
+        {
+          "company_name": "Forge Rewards",
+          "team_size": 2
+        },
+        {
+          "company_name": "Celest",
+          "team_size": 1
+        },
+        {
+          "company_name": "Sample",
+          "team_size": 2
+        }
+      ]
+    }
+  },
+  "Michael Seibel": {
+    "bybatch": {
+      "S13": [
+        {
+          "company_name": "True Link",
+          "team_size": 100
+        },
+        {
+          "company_name": "Panorama Education",
+          "team_size": 350
+        }
+      ],
+      "S14": [
+        {
+          "company_name": "UserGems",
+          "team_size": 60
+        }
+      ],
+      "S15": [
+        {
+          "company_name": "Bitmovin",
+          "team_size": 145
+        },
+        {
+          "company_name": "Instawork",
+          "team_size": 500
+        },
+        {
+          "company_name": "Eight Sleep",
+          "team_size": 100
+        },
+        {
+          "company_name": "GiveCampus",
+          "team_size": 105
+        },
+        {
+          "company_name": "Scentbird",
+          "team_size": 165
+        },
+        {
+          "company_name": "Reach Labs",
+          "team_size": 16
+        }
+      ],
+      "S16": [
+        {
+          "company_name": "Yoshi Mobility",
+          "team_size": 125
+        },
+        {
+          "company_name": "Squire Technologies",
+          "team_size": 150
+        },
+        {
+          "company_name": "Livement",
+          "team_size": 45
+        },
+        {
+          "company_name": "Expo",
+          "team_size": 23
+        }
+      ],
+      "S17": [
+        {
+          "company_name": "Prelim",
+          "team_size": 34
+        },
+        {
+          "company_name": "Cashfree Payments",
+          "team_size": 200
+        },
+        {
+          "company_name": "Helium Health",
+          "team_size": 110
+        },
+        {
+          "company_name": "Long Term Stock Exchange",
+          "team_size": 68
+        },
+        {
+          "company_name": "Thematic",
+          "team_size": 25
+        }
+      ],
+      "S18": [
+        {
+          "company_name": "Four Growers",
+          "team_size": 14
+        },
+        {
+          "company_name": "Pine Park Health",
+          "team_size": 75
+        },
+        {
+          "company_name": "Easol",
+          "team_size": 70
+        },
+        {
+          "company_name": "Pocket Worlds",
+          "team_size": 100
+        },
+        {
+          "company_name": "Kinside",
+          "team_size": 18
+        },
+        {
+          "company_name": "OpenPhone",
+          "team_size": 125
+        },
+        {
+          "company_name": "JITX",
+          "team_size": 18
+        },
+        {
+          "company_name": "Honeylove",
+          "team_size": 100
+        },
+        {
+          "company_name": "Mutiny",
+          "team_size": 81
+        },
+        {
+          "company_name": "SkydropX",
+          "team_size": 320
+        }
+      ],
+      "S19": [
+        {
+          "company_name": "Kraftful",
+          "team_size": 6
+        },
+        {
+          "company_name": "Playground",
+          "team_size": 18
+        },
+        {
+          "company_name": "Dover",
+          "team_size": 25
+        },
+        {
+          "company_name": "Superorder",
+          "team_size": 30
+        },
+        {
+          "company_name": "Breadfast",
+          "team_size": 1200
+        },
+        {
+          "company_name": "Trella",
+          "team_size": 50
+        },
+        {
+          "company_name": "Vahan",
+          "team_size": 70
+        },
+        {
+          "company_name": "Lokal",
+          "team_size": 24
+        },
+        {
+          "company_name": "DirectShifts",
+          "team_size": 72
+        },
+        {
+          "company_name": "Rutter",
+          "team_size": 24
+        },
+        {
+          "company_name": "Rosebud AI",
+          "team_size": 10
+        },
+        {
+          "company_name": "Zeal",
+          "team_size": 25
+        }
+      ],
+      "S20": [
+        {
+          "company_name": "PowerUs",
+          "team_size": 80
+        },
+        {
+          "company_name": "Mesh",
+          "team_size": 50
+        },
+        {
+          "company_name": "Justo",
+          "team_size": 190
+        },
+        {
+          "company_name": "Kingdom Supercultures",
+          "team_size": 8
+        },
+        {
+          "company_name": "Hotplate",
+          "team_size": 6
+        },
+        {
+          "company_name": "Arketa",
+          "team_size": 45
+        },
+        {
+          "company_name": "Ready",
+          "team_size": 70
+        },
+        {
+          "company_name": "DraftWise",
+          "team_size": 28
+        },
+        {
+          "company_name": "Spenmo",
+          "team_size": 200
+        },
+        {
+          "company_name": "Afriex",
+          "team_size": 55
+        },
+        {
+          "company_name": "Zuddl",
+          "team_size": 120
+        },
+        {
+          "company_name": "Fieldguide",
+          "team_size": 80
+        },
+        {
+          "company_name": "Queue",
+          "team_size": 5
+        },
+        {
+          "company_name": "inFeedo AI",
+          "team_size": 150
+        },
+        {
+          "company_name": "Dripos",
+          "team_size": 35
+        },
+        {
+          "company_name": "AtoB",
+          "team_size": 71
+        },
+        {
+          "company_name": "QuestDB",
+          "team_size": 30
+        }
+      ],
+      "S21": [
+        {
+          "company_name": "testRigor",
+          "team_size": 25
+        },
+        {
+          "company_name": "LemFi",
+          "team_size": 60
+        },
+        {
+          "company_name": "Cumbuca",
+          "team_size": 18
+        },
+        {
+          "company_name": "Endla",
+          "team_size": 8
+        },
+        {
+          "company_name": "GamerPay",
+          "team_size": 6
+        },
+        {
+          "company_name": "Aviator",
+          "team_size": 6
+        },
+        {
+          "company_name": "Stepful",
+          "team_size": 45
+        },
+        {
+          "company_name": "Tavus",
+          "team_size": 30
+        },
+        {
+          "company_name": "Union54",
+          "team_size": 17
+        },
+        {
+          "company_name": "InstaKin",
+          "team_size": 15
+        },
+        {
+          "company_name": "SnapCalorie",
+          "team_size": 5
+        },
+        {
+          "company_name": "Anakin",
+          "team_size": 55
+        },
+        {
+          "company_name": "BoldVoice",
+          "team_size": 7
+        },
+        {
+          "company_name": "Confido",
+          "team_size": 11
+        },
+        {
+          "company_name": "Deed",
+          "team_size": 40
+        },
+        {
+          "company_name": "Mailmodo",
+          "team_size": 70
+        },
+        {
+          "company_name": "Baraka",
+          "team_size": 34
+        },
+        {
+          "company_name": "Odys Aviation",
+          "team_size": 11
+        },
+        {
+          "company_name": "Legion Health",
+          "team_size": 9
+        },
+        {
+          "company_name": "MarqVision",
+          "team_size": 200
+        },
+        {
+          "company_name": "Mecho Autotech",
+          "team_size": 35
+        },
+        {
+          "company_name": "Nash",
+          "team_size": 31
+        },
+        {
+          "company_name": "trii",
+          "team_size": 41
+        },
+        {
+          "company_name": "Fitia",
+          "team_size": 19
+        }
+      ],
+      "S22": [
+        {
+          "company_name": "Mercator",
+          "team_size": 2
+        },
+        {
+          "company_name": "Penguin AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "ilumadata",
+          "team_size": 2
+        },
+        {
+          "company_name": "BricksAI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Sonnet",
+          "team_size": 3
+        },
+        {
+          "company_name": "Emerge Career",
+          "team_size": 3
+        },
+        {
+          "company_name": "Wolfia",
+          "team_size": 2
+        },
+        {
+          "company_name": "Two Dots",
+          "team_size": 18
+        },
+        {
+          "company_name": "Stackup",
+          "team_size": 4
+        },
+        {
+          "company_name": "CustomerOS",
+          "team_size": 10
+        },
+        {
+          "company_name": "UpLink",
+          "team_size": 4
+        },
+        {
+          "company_name": "Coupl",
+          "team_size": 8
+        },
+        {
+          "company_name": "Champ",
+          "team_size": 10
+        },
+        {
+          "company_name": "trebu",
+          "team_size": 3
+        },
+        {
+          "company_name": "Paragon AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "IvyCheck",
+          "team_size": 2
+        },
+        {
+          "company_name": "Bridgecard",
+          "team_size": 5
+        },
+        {
+          "company_name": "Overwatch",
+          "team_size": 5
+        },
+        {
+          "company_name": "Apply Design",
+          "team_size": 9
+        },
+        {
+          "company_name": "Phind",
+          "team_size": 4
+        },
+        {
+          "company_name": "NewsCatcher",
+          "team_size": 18
+        },
+        {
+          "company_name": "Pulppo",
+          "team_size": 29
+        },
+        {
+          "company_name": "Peoplebox",
+          "team_size": 35
+        },
+        {
+          "company_name": "Bitstack",
+          "team_size": 20
+        },
+        {
+          "company_name": "Garage",
+          "team_size": 54
+        },
+        {
+          "company_name": "Aurelian",
+          "team_size": 6
+        },
+        {
+          "company_name": "Ping",
+          "team_size": 20
+        },
+        {
+          "company_name": "Intuned",
+          "team_size": 7
+        },
+        {
+          "company_name": "Cone",
+          "team_size": 8
+        },
+        {
+          "company_name": "KemNet",
+          "team_size": 2
+        },
+        {
+          "company_name": "Patika",
+          "team_size": 5
+        },
+        {
+          "company_name": "Fini",
+          "team_size": 5
+        }
+      ],
+      "S23": [
+        {
+          "company_name": "Metalware",
+          "team_size": 2
+        },
+        {
+          "company_name": "refine",
+          "team_size": 10
+        },
+        {
+          "company_name": "Big Smart AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Transformity",
+          "team_size": 3
+        },
+        {
+          "company_name": "Chow Central Inc",
+          "team_size": 0
+        },
+        {
+          "company_name": "FleetWorks",
+          "team_size": 8
+        },
+        {
+          "company_name": "Menza",
+          "team_size": 2
+        },
+        {
+          "company_name": "Talc",
+          "team_size": 3
+        },
+        {
+          "company_name": "Bland AI",
+          "team_size": 13
+        },
+        {
+          "company_name": "Saatvy",
+          "team_size": 1
+        },
+        {
+          "company_name": "Kips Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "Vizly",
+          "team_size": 2
+        },
+        {
+          "company_name": "sizeless",
+          "team_size": 2
+        },
+        {
+          "company_name": "Apoxy",
+          "team_size": 2
+        },
+        {
+          "company_name": "VaultPay",
+          "team_size": 2
+        },
+        {
+          "company_name": "Slicker",
+          "team_size": 2
+        },
+        {
+          "company_name": "CambioML",
+          "team_size": 3
+        },
+        {
+          "company_name": "Inlet",
+          "team_size": 2
+        },
+        {
+          "company_name": "Strada",
+          "team_size": 4
+        },
+        {
+          "company_name": "CodeStory",
+          "team_size": 4
+        }
+      ],
+      "S24": [
+        {
+          "company_name": "Moreta",
+          "team_size": 3
+        },
+        {
+          "company_name": "Focus Buddy",
+          "team_size": 2
+        },
+        {
+          "company_name": "Simplifine",
+          "team_size": 3
+        },
+        {
+          "company_name": "Sepal AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Paasa",
+          "team_size": 2
+        },
+        {
+          "company_name": "Blast",
+          "team_size": 2
+        },
+        {
+          "company_name": "Palmier",
+          "team_size": 2
+        },
+        {
+          "company_name": "Simple AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Opslane",
+          "team_size": 2
+        },
+        {
+          "company_name": "MagiCode",
+          "team_size": 2
+        },
+        {
+          "company_name": "FINNY AI",
+          "team_size": 4
+        },
+        {
+          "company_name": "Panora",
+          "team_size": 2
+        },
+        {
+          "company_name": "Elevate",
+          "team_size": 2
+        }
+      ],
+      "W14": [
+        {
+          "company_name": "Cambly",
+          "team_size": 200
+        },
+        {
+          "company_name": "Bellabeat",
+          "team_size": 134
+        }
+      ],
+      "W15": [
+        {
+          "company_name": "Qventus",
+          "team_size": 163
+        },
+        {
+          "company_name": "ReadMe",
+          "team_size": 52
+        },
+        {
+          "company_name": "EquipmentShare",
+          "team_size": 5400
+        }
+      ],
+      "W16": [
+        {
+          "company_name": "SOUNDBOKS",
+          "team_size": 50
+        },
+        {
+          "company_name": "Daily",
+          "team_size": 62
+        },
+        {
+          "company_name": "Sendbird",
+          "team_size": 300
+        },
+        {
+          "company_name": "FightCamp",
+          "team_size": 64
+        },
+        {
+          "company_name": "Bonsai",
+          "team_size": 25
+        },
+        {
+          "company_name": "Zenysis",
+          "team_size": 11
+        },
+        {
+          "company_name": "Mux",
+          "team_size": 95
+        },
+        {
+          "company_name": "Tovala",
+          "team_size": 375
+        },
+        {
+          "company_name": "Gigwell",
+          "team_size": 12
+        },
+        {
+          "company_name": "Deako",
+          "team_size": 11
+        },
+        {
+          "company_name": "Mason",
+          "team_size": 65
+        },
+        {
+          "company_name": "Opentrons",
+          "team_size": 300
+        }
+      ],
+      "W17": [
+        {
+          "company_name": "Token Transit",
+          "team_size": 12
+        },
+        {
+          "company_name": "Plane",
+          "team_size": 30
+        },
+        {
+          "company_name": "Collectly",
+          "team_size": 89
+        }
+      ],
+      "W18": [
+        {
+          "company_name": "CaptivateIQ",
+          "team_size": 280
+        },
+        {
+          "company_name": "Snackpass",
+          "team_size": 38
+        },
+        {
+          "company_name": "Shogun",
+          "team_size": 90
+        },
+        {
+          "company_name": "Fondo",
+          "team_size": 53
+        },
+        {
+          "company_name": "Podcast App",
+          "team_size": 18
+        },
+        {
+          "company_name": "Biobot Analytics",
+          "team_size": 17
+        },
+        {
+          "company_name": "Promise",
+          "team_size": 40
+        }
+      ],
+      "W19": [
+        {
+          "company_name": "Flockjay",
+          "team_size": 12
+        },
+        {
+          "company_name": "Kalshi",
+          "team_size": 50
+        },
+        {
+          "company_name": "Convictional",
+          "team_size": 14
+        },
+        {
+          "company_name": "Postscript",
+          "team_size": 180
+        },
+        {
+          "company_name": "Middesk",
+          "team_size": 85
+        },
+        {
+          "company_name": "Nabis",
+          "team_size": 300
+        },
+        {
+          "company_name": "Ashby",
+          "team_size": 110
+        },
+        {
+          "company_name": "Gordian Software",
+          "team_size": 20
+        },
+        {
+          "company_name": "Hatch",
+          "team_size": 73
+        },
+        {
+          "company_name": "Superb AI",
+          "team_size": 90
+        },
+        {
+          "company_name": "Lezzoo",
+          "team_size": 190
+        },
+        {
+          "company_name": "Probably Genetic",
+          "team_size": 9
+        },
+        {
+          "company_name": "Truora",
+          "team_size": 80
+        },
+        {
+          "company_name": "Shef",
+          "team_size": 100
+        }
+      ],
+      "W20": [
+        {
+          "company_name": "Ello",
+          "team_size": 26
+        },
+        {
+          "company_name": "Ophelia",
+          "team_size": 130
+        },
+        {
+          "company_name": "Loop Health",
+          "team_size": 27
+        },
+        {
+          "company_name": "Facio",
+          "team_size": 36
+        },
+        {
+          "company_name": "Motion",
+          "team_size": 30
+        },
+        {
+          "company_name": "Bamboo",
+          "team_size": 14
+        },
+        {
+          "company_name": "Atmo",
+          "team_size": 10
+        },
+        {
+          "company_name": "Vori",
+          "team_size": 29
+        }
+      ],
+      "W21": [
+        {
+          "company_name": "Flextock",
+          "team_size": 10
+        },
+        {
+          "company_name": "Measured",
+          "team_size": 5
+        },
+        {
+          "company_name": "Rinsed",
+          "team_size": 50
+        },
+        {
+          "company_name": "Fathom",
+          "team_size": 25
+        },
+        {
+          "company_name": "Popl",
+          "team_size": 45
+        },
+        {
+          "company_name": "Alinea",
+          "team_size": 8
+        },
+        {
+          "company_name": "Aviron Interactive",
+          "team_size": 90
+        },
+        {
+          "company_name": "Expent Inc",
+          "team_size": 2
+        },
+        {
+          "company_name": "Cyble",
+          "team_size": 260
+        },
+        {
+          "company_name": "Axle Health",
+          "team_size": 8
+        },
+        {
+          "company_name": "Sivo",
+          "team_size": 15
+        },
+        {
+          "company_name": "Prequel",
+          "team_size": 9
+        },
+        {
+          "company_name": "SpruceID",
+          "team_size": 25
+        },
+        {
+          "company_name": "Snazzy",
+          "team_size": 40
+        },
+        {
+          "company_name": "Abacum",
+          "team_size": 110
+        },
+        {
+          "company_name": "SigNoz",
+          "team_size": 18
+        },
+        {
+          "company_name": "Nano Technologies",
+          "team_size": 17
+        },
+        {
+          "company_name": "eqtble",
+          "team_size": 5
+        },
+        {
+          "company_name": "Estoca",
+          "team_size": 80
+        },
+        {
+          "company_name": "Recover",
+          "team_size": 10
+        },
+        {
+          "company_name": "Navattic",
+          "team_size": 25
+        },
+        {
+          "company_name": "Poliglota",
+          "team_size": 170
+        }
+      ],
+      "W22": [
+        {
+          "company_name": "Plumter",
+          "team_size": 9
+        },
+        {
+          "company_name": "Gauss",
+          "team_size": 16
+        },
+        {
+          "company_name": "HOKALI",
+          "team_size": 12
+        },
+        {
+          "company_name": "Zorba",
+          "team_size": 0
+        },
+        {
+          "company_name": "91Squarefeet",
+          "team_size": 180
+        },
+        {
+          "company_name": "Agentnoon",
+          "team_size": 16
+        },
+        {
+          "company_name": "Philippo",
+          "team_size": 8
+        },
+        {
+          "company_name": "Myria",
+          "team_size": 7
+        },
+        {
+          "company_name": "Heyfood",
+          "team_size": 5
+        },
+        {
+          "company_name": "Touch and Pay Technologies Limited",
+          "team_size": 55
+        },
+        {
+          "company_name": "Loops",
+          "team_size": 5
+        },
+        {
+          "company_name": "WeReno",
+          "team_size": 10
+        },
+        {
+          "company_name": "Rebill",
+          "team_size": 15
+        },
+        {
+          "company_name": "Strac",
+          "team_size": 8
+        },
+        {
+          "company_name": "Remedial Health",
+          "team_size": 300
+        },
+        {
+          "company_name": "Float Health",
+          "team_size": 3
+        },
+        {
+          "company_name": "Reality Defender",
+          "team_size": 35
+        },
+        {
+          "company_name": "Remi",
+          "team_size": 60
+        },
+        {
+          "company_name": "KorrAI",
+          "team_size": 14
+        },
+        {
+          "company_name": "yhangry",
+          "team_size": 12
+        },
+        {
+          "company_name": "WishRoll",
+          "team_size": 5
+        },
+        {
+          "company_name": "Topship",
+          "team_size": 20
+        },
+        {
+          "company_name": "Strong Compute",
+          "team_size": 8
+        },
+        {
+          "company_name": "Grey",
+          "team_size": 15
+        },
+        {
+          "company_name": "Duplo",
+          "team_size": 13
+        },
+        {
+          "company_name": "SaveIN",
+          "team_size": 60
+        },
+        {
+          "company_name": "Moni",
+          "team_size": 20
+        },
+        {
+          "company_name": "Benson",
+          "team_size": 3
+        },
+        {
+          "company_name": "Lovage",
+          "team_size": 7
+        },
+        {
+          "company_name": "Lenco",
+          "team_size": 13
+        }
+      ],
+      "W23": [
+        {
+          "company_name": "Paperplane",
+          "team_size": 5
+        },
+        {
+          "company_name": "OpenSight",
+          "team_size": 3
+        },
+        {
+          "company_name": "Chima",
+          "team_size": 7
+        },
+        {
+          "company_name": "Concourse",
+          "team_size": 6
+        },
+        {
+          "company_name": "Backdrop",
+          "team_size": 2
+        },
+        {
+          "company_name": "Pyq AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Indexical",
+          "team_size": 2
+        },
+        {
+          "company_name": "Lynx",
+          "team_size": 5
+        },
+        {
+          "company_name": "Rubber Ducky Labs",
+          "team_size": 1
+        },
+        {
+          "company_name": "OfOne",
+          "team_size": 5
+        },
+        {
+          "company_name": "LaunchFlow",
+          "team_size": 3
+        },
+        {
+          "company_name": "Cosine",
+          "team_size": 6
+        },
+        {
+          "company_name": "Bujeti",
+          "team_size": 10
+        },
+        {
+          "company_name": "Frigade",
+          "team_size": 4
+        },
+        {
+          "company_name": "Plutis",
+          "team_size": 2
+        },
+        {
+          "company_name": "Inkeep",
+          "team_size": 9
+        },
+        {
+          "company_name": "Teclada",
+          "team_size": 2
+        },
+        {
+          "company_name": "Fiber",
+          "team_size": 4
+        },
+        {
+          "company_name": "SPRX",
+          "team_size": 22
+        },
+        {
+          "company_name": "Honeydew",
+          "team_size": 6
+        },
+        {
+          "company_name": "Alaan",
+          "team_size": 72
+        },
+        {
+          "company_name": "Vendah",
+          "team_size": 80
+        },
+        {
+          "company_name": "Loula",
+          "team_size": 2
+        },
+        {
+          "company_name": "Shekel Mobility",
+          "team_size": 18
+        },
+        {
+          "company_name": "Turntable",
+          "team_size": 3
+        },
+        {
+          "company_name": "Invopop",
+          "team_size": 6
+        },
+        {
+          "company_name": "Waza",
+          "team_size": 4
+        },
+        {
+          "company_name": "Conduit",
+          "team_size": 4
+        },
+        {
+          "company_name": "Berry",
+          "team_size": 8
+        },
+        {
+          "company_name": "Finni Health",
+          "team_size": 8
+        }
+      ],
+      "W24": [
+        {
+          "company_name": "DianaHR",
+          "team_size": 3
+        },
+        {
+          "company_name": "Soundry AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "PocketPod",
+          "team_size": 2
+        },
+        {
+          "company_name": "Alai",
+          "team_size": 2
+        },
+        {
+          "company_name": "Thorntale",
+          "team_size": 3
+        },
+        {
+          "company_name": "Amber AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "just words",
+          "team_size": 3
+        },
+        {
+          "company_name": "Retell AI",
+          "team_size": 5
+        },
+        {
+          "company_name": "Ocular AI",
+          "team_size": 5
+        },
+        {
+          "company_name": "ForEffect",
+          "team_size": 1
+        },
+        {
+          "company_name": "Aqua Voice",
+          "team_size": 3
+        },
+        {
+          "company_name": "Meticulate",
+          "team_size": 2
+        },
+        {
+          "company_name": "Trellis",
+          "team_size": 34
+        },
+        {
+          "company_name": "Lumona",
+          "team_size": 2
+        },
+        {
+          "company_name": "Ryse",
+          "team_size": 13
+        },
+        {
+          "company_name": "Magic Hour",
+          "team_size": 2
+        },
+        {
+          "company_name": "SuretyNow",
+          "team_size": 4
+        },
+        {
+          "company_name": "Roe AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Leaping",
+          "team_size": 2
+        },
+        {
+          "company_name": "Basalt",
+          "team_size": 4
+        },
+        {
+          "company_name": "Fractal Labs",
+          "team_size": 3
+        },
+        {
+          "company_name": "Pivot Robotics",
+          "team_size": 5
+        },
+        {
+          "company_name": "Patchwork",
+          "team_size": 2
+        },
+        {
+          "company_name": "Focal",
+          "team_size": 2
+        }
+      ]
+    }
+  },
+  "Harj Taggar": {
+    "bybatch": {
+      "S15": [
+        {
+          "company_name": "Triplebyte",
+          "team_size": 70
+        }
+      ],
+      "S20": [
+        {
+          "company_name": "BIK",
+          "team_size": 100
+        },
+        {
+          "company_name": "Taktile",
+          "team_size": 60
+        }
+      ],
+      "S21": [
+        {
+          "company_name": "TrackChain",
+          "team_size": 20
+        },
+        {
+          "company_name": "Palenca",
+          "team_size": 25
+        },
+        {
+          "company_name": "fluke",
+          "team_size": 18
+        },
+        {
+          "company_name": "Cloudthread",
+          "team_size": 8
+        },
+        {
+          "company_name": "Coinrule",
+          "team_size": 17
+        },
+        {
+          "company_name": "Inflow",
+          "team_size": 20
+        },
+        {
+          "company_name": "Malga",
+          "team_size": 46
+        },
+        {
+          "company_name": "Luable",
+          "team_size": 40
+        },
+        {
+          "company_name": "Flow Club",
+          "team_size": 6
+        },
+        {
+          "company_name": "Goodkind",
+          "team_size": 30
+        },
+        {
+          "company_name": "Toku",
+          "team_size": 150
+        },
+        {
+          "company_name": "Pide Directo",
+          "team_size": 150
+        },
+        {
+          "company_name": "Warpfy",
+          "team_size": 3
+        }
+      ],
+      "S22": [
+        {
+          "company_name": "Notebook Labs",
+          "team_size": 3
+        },
+        {
+          "company_name": "Drip",
+          "team_size": 15
+        },
+        {
+          "company_name": "Monterey AI",
+          "team_size": 6
+        },
+        {
+          "company_name": "SolStar",
+          "team_size": 2
+        },
+        {
+          "company_name": "Truva",
+          "team_size": 9
+        },
+        {
+          "company_name": "Superpowered AI",
+          "team_size": 4
+        },
+        {
+          "company_name": "Makeasite",
+          "team_size": 2
+        },
+        {
+          "company_name": "Boundo",
+          "team_size": 2
+        },
+        {
+          "company_name": "ECSA",
+          "team_size": 0
+        },
+        {
+          "company_name": "BlueHill Payments",
+          "team_size": 2
+        },
+        {
+          "company_name": "Voltic",
+          "team_size": 5
+        },
+        {
+          "company_name": "CapixAI",
+          "team_size": 5
+        },
+        {
+          "company_name": "Juicebox",
+          "team_size": 7
+        },
+        {
+          "company_name": "Mintplex Labs",
+          "team_size": 3
+        },
+        {
+          "company_name": "Terrace",
+          "team_size": 10
+        },
+        {
+          "company_name": "Landeed",
+          "team_size": 35
+        },
+        {
+          "company_name": "Blockscope",
+          "team_size": 4
+        },
+        {
+          "company_name": "Wondercraft",
+          "team_size": 8
+        },
+        {
+          "company_name": "Entvin",
+          "team_size": 3
+        },
+        {
+          "company_name": "PrimeVault",
+          "team_size": 3
+        },
+        {
+          "company_name": "Quindar",
+          "team_size": 21
+        }
+      ],
+      "S23": [
+        {
+          "company_name": "Aglide",
+          "team_size": 2
+        },
+        {
+          "company_name": "Egress Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "Hegel AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Spine AI",
+          "team_size": 5
+        },
+        {
+          "company_name": "DataShare",
+          "team_size": 1
+        },
+        {
+          "company_name": "Mandel AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Atla",
+          "team_size": 8
+        },
+        {
+          "company_name": "Sweetspot",
+          "team_size": 4
+        },
+        {
+          "company_name": "Chatter",
+          "team_size": 2
+        },
+        {
+          "company_name": "Watto AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Revamp",
+          "team_size": 2
+        },
+        {
+          "company_name": "Automorphic",
+          "team_size": 3
+        },
+        {
+          "company_name": "Baserun",
+          "team_size": 2
+        },
+        {
+          "company_name": "VectorShift",
+          "team_size": 16
+        },
+        {
+          "company_name": "Inari",
+          "team_size": 2
+        },
+        {
+          "company_name": "Fiber AI",
+          "team_size": 8
+        },
+        {
+          "company_name": "AgentsForce",
+          "team_size": 2
+        },
+        {
+          "company_name": "ParadeDB",
+          "team_size": 4
+        },
+        {
+          "company_name": "CheqUPI",
+          "team_size": 15
+        },
+        {
+          "company_name": "FlowiseAI",
+          "team_size": 5
+        },
+        {
+          "company_name": "Giga ML",
+          "team_size": 5
+        },
+        {
+          "company_name": "Twine",
+          "team_size": 4
+        },
+        {
+          "company_name": "Autotab",
+          "team_size": 2
+        },
+        {
+          "company_name": "OpenPipe",
+          "team_size": 2
+        }
+      ],
+      "S24": [
+        {
+          "company_name": "Propaya",
+          "team_size": 2
+        },
+        {
+          "company_name": "Dataleap",
+          "team_size": 2
+        },
+        {
+          "company_name": "Stempad",
+          "team_size": 1
+        },
+        {
+          "company_name": "Autumn Labs",
+          "team_size": 3
+        },
+        {
+          "company_name": "Olive Legal",
+          "team_size": 2
+        },
+        {
+          "company_name": "camfer",
+          "team_size": 3
+        },
+        {
+          "company_name": "FirstWork",
+          "team_size": 9
+        },
+        {
+          "company_name": "Coval",
+          "team_size": 5
+        }
+      ],
+      "W21": [
+        {
+          "company_name": "TRACTIAN",
+          "team_size": 300
+        },
+        {
+          "company_name": "Hudu",
+          "team_size": 10
+        },
+        {
+          "company_name": "ModernLoop",
+          "team_size": 15
+        },
+        {
+          "company_name": "Humaans",
+          "team_size": 32
+        },
+        {
+          "company_name": "Galaxy",
+          "team_size": 2
+        },
+        {
+          "company_name": "Prospa",
+          "team_size": 70
+        },
+        {
+          "company_name": "Tint",
+          "team_size": 40
+        },
+        {
+          "company_name": "Simplify",
+          "team_size": 5
+        }
+      ],
+      "W22": [
+        {
+          "company_name": "Harmoney",
+          "team_size": 25
+        },
+        {
+          "company_name": "TeamOut",
+          "team_size": 10
+        },
+        {
+          "company_name": "Agave",
+          "team_size": 14
+        },
+        {
+          "company_name": "GoSats",
+          "team_size": 8
+        },
+        {
+          "company_name": "Heptabase",
+          "team_size": 10
+        },
+        {
+          "company_name": "Argument Computer Corporation",
+          "team_size": 8
+        },
+        {
+          "company_name": "Kular",
+          "team_size": 19
+        },
+        {
+          "company_name": "Finnt",
+          "team_size": 5
+        },
+        {
+          "company_name": "Mintlify",
+          "team_size": 15
+        }
+      ],
+      "W23": [
+        {
+          "company_name": "Blyss",
+          "team_size": 2
+        },
+        {
+          "company_name": "Fairway Health",
+          "team_size": 3
+        },
+        {
+          "company_name": "AlphaWatch AI",
+          "team_size": 4
+        },
+        {
+          "company_name": "Hammr",
+          "team_size": 7
+        },
+        {
+          "company_name": "Brewit",
+          "team_size": 4
+        },
+        {
+          "company_name": "Ruby Card",
+          "team_size": 3
+        },
+        {
+          "company_name": "ZeroDev",
+          "team_size": 5
+        },
+        {
+          "company_name": "Repacket",
+          "team_size": 4
+        },
+        {
+          "company_name": "OpenMeter",
+          "team_size": 7
+        },
+        {
+          "company_name": "FiddleCube",
+          "team_size": 2
+        },
+        {
+          "company_name": "Koywe",
+          "team_size": 7
+        },
+        {
+          "company_name": "Noya Software",
+          "team_size": 2
+        },
+        {
+          "company_name": "Coldreach",
+          "team_size": 3
+        },
+        {
+          "company_name": "Warp",
+          "team_size": 6
+        },
+        {
+          "company_name": "Theya",
+          "team_size": 3
+        },
+        {
+          "company_name": "SpeedyBrand",
+          "team_size": 8
+        },
+        {
+          "company_name": "Rainmaker",
+          "team_size": 2
+        },
+        {
+          "company_name": "Infinia",
+          "team_size": 3
+        }
+      ],
+      "W24": [
+        {
+          "company_name": "Browser Buddy",
+          "team_size": 3
+        },
+        {
+          "company_name": "Astro Mechanica",
+          "team_size": 8
+        },
+        {
+          "company_name": "Wuri",
+          "team_size": 7
+        },
+        {
+          "company_name": "Quantic Labs",
+          "team_size": 2
+        },
+        {
+          "company_name": "Resonance",
+          "team_size": 2
+        },
+        {
+          "company_name": "Basepilot",
+          "team_size": 2
+        },
+        {
+          "company_name": "Toolify",
+          "team_size": 2
+        },
+        {
+          "company_name": "Keywords AI",
+          "team_size": 4
+        },
+        {
+          "company_name": "Engines",
+          "team_size": 2
+        },
+        {
+          "company_name": "Tusk",
+          "team_size": 4
+        },
+        {
+          "company_name": "Eggnog",
+          "team_size": 2
+        },
+        {
+          "company_name": "Octolane AI",
+          "team_size": 8
+        },
+        {
+          "company_name": "Momentic",
+          "team_size": 4
+        },
+        {
+          "company_name": "Tower",
+          "team_size": 2
+        },
+        {
+          "company_name": "Fume",
+          "team_size": 2
+        },
+        {
+          "company_name": "GetCrux",
+          "team_size": 9
+        },
+        {
+          "company_name": "K-Scale Labs",
+          "team_size": 10
+        },
+        {
+          "company_name": "Arcane",
+          "team_size": 2
+        },
+        {
+          "company_name": "Aedilic",
+          "team_size": 2
+        },
+        {
+          "company_name": "Brainbase",
+          "team_size": 4
+        }
+      ]
+    }
+  },
+  "Jared Friedman": {
+    "bybatch": {
+      "S16": [
+        {
+          "company_name": "OneChronos",
+          "team_size": 35
+        },
+        {
+          "company_name": "Rose Rocket",
+          "team_size": 165
+        },
+        {
+          "company_name": "Bird",
+          "team_size": 500
+        },
+        {
+          "company_name": "Scale AI",
+          "team_size": 500
+        },
+        {
+          "company_name": "Nova Credit",
+          "team_size": 100
+        },
+        {
+          "company_name": "Vetcove",
+          "team_size": 83
+        }
+      ],
+      "S17": [
+        {
+          "company_name": "BillionToOne",
+          "team_size": 300
+        }
+      ],
+      "S19": [
+        {
+          "company_name": "GEn1E Lifesciences",
+          "team_size": 0
+        },
+        {
+          "company_name": "Asher Bio",
+          "team_size": 3
+        },
+        {
+          "company_name": "Freshpaint",
+          "team_size": 75
+        }
+      ],
+      "S20": [
+        {
+          "company_name": "Kernal Biologics",
+          "team_size": 20
+        },
+        {
+          "company_name": "Osmind",
+          "team_size": 55
+        },
+        {
+          "company_name": "Tappity",
+          "team_size": 4
+        },
+        {
+          "company_name": "Nabla Bio",
+          "team_size": 8
+        },
+        {
+          "company_name": "Nephrogen",
+          "team_size": 1
+        },
+        {
+          "company_name": "Supabase",
+          "team_size": 70
+        },
+        {
+          "company_name": "SiPhox Health",
+          "team_size": 30
+        },
+        {
+          "company_name": "Gilgamesh Pharmaceuticals",
+          "team_size": 15
+        },
+        {
+          "company_name": "Increase",
+          "team_size": 15
+        },
+        {
+          "company_name": "VenoStent",
+          "team_size": 17
+        }
+      ],
+      "S21": [
+        {
+          "company_name": "Momo Medical",
+          "team_size": 10
+        },
+        {
+          "company_name": "Harmonic Discovery",
+          "team_size": 8
+        },
+        {
+          "company_name": "Meticulous",
+          "team_size": 5
+        },
+        {
+          "company_name": "Writesonic",
+          "team_size": 30
+        },
+        {
+          "company_name": "Chari",
+          "team_size": 100
+        },
+        {
+          "company_name": "Genomelink",
+          "team_size": 15
+        },
+        {
+          "company_name": "bloop",
+          "team_size": 10
+        },
+        {
+          "company_name": "Sensible Biotechnologies",
+          "team_size": 22
+        },
+        {
+          "company_name": "Luminate Medical",
+          "team_size": 36
+        },
+        {
+          "company_name": "VedaBio",
+          "team_size": 30
+        },
+        {
+          "company_name": "Sleek",
+          "team_size": 5
+        },
+        {
+          "company_name": "BLUUMBIO",
+          "team_size": 4
+        },
+        {
+          "company_name": "Parallel Bio",
+          "team_size": 9
+        },
+        {
+          "company_name": "Mindstate Design Labs",
+          "team_size": 7
+        },
+        {
+          "company_name": "Talus Bio",
+          "team_size": 16
+        },
+        {
+          "company_name": "Inversion Space",
+          "team_size": 28
+        },
+        {
+          "company_name": "Openlayer",
+          "team_size": 6
+        },
+        {
+          "company_name": "SafeBeat",
+          "team_size": 9
+        },
+        {
+          "company_name": "Awesomic",
+          "team_size": 150
+        }
+      ],
+      "S22": [
+        {
+          "company_name": "Keylika",
+          "team_size": 1
+        },
+        {
+          "company_name": "SilkChart",
+          "team_size": 8
+        },
+        {
+          "company_name": "Eugit Therapeutics",
+          "team_size": 2
+        },
+        {
+          "company_name": "Poly",
+          "team_size": 2
+        },
+        {
+          "company_name": "Instant",
+          "team_size": 2
+        },
+        {
+          "company_name": "Stream",
+          "team_size": 12
+        },
+        {
+          "company_name": "Dr. Treat",
+          "team_size": 21
+        },
+        {
+          "company_name": "Array Labs",
+          "team_size": 0
+        },
+        {
+          "company_name": "Seaflight Technologies",
+          "team_size": 4
+        },
+        {
+          "company_name": "BiggerPicture",
+          "team_size": 5
+        },
+        {
+          "company_name": "Neosync",
+          "team_size": 3
+        },
+        {
+          "company_name": "Integrated Reasoning",
+          "team_size": 1
+        },
+        {
+          "company_name": "CAPSULE",
+          "team_size": 4
+        },
+        {
+          "company_name": "Velontra",
+          "team_size": 5
+        },
+        {
+          "company_name": "Taro",
+          "team_size": 3
+        },
+        {
+          "company_name": "HOMLI",
+          "team_size": 20
+        },
+        {
+          "company_name": "Roforco",
+          "team_size": 14
+        },
+        {
+          "company_name": "Wand Solar",
+          "team_size": 2
+        },
+        {
+          "company_name": "Ekho",
+          "team_size": 10
+        }
+      ],
+      "S23": [
+        {
+          "company_name": "Serra",
+          "team_size": 2
+        },
+        {
+          "company_name": "Arcimus",
+          "team_size": 2
+        },
+        {
+          "company_name": "Airgoods",
+          "team_size": 6
+        },
+        {
+          "company_name": "Contour",
+          "team_size": 2
+        },
+        {
+          "company_name": "Lifelike",
+          "team_size": 2
+        },
+        {
+          "company_name": "Casca",
+          "team_size": 6
+        },
+        {
+          "company_name": "Zelos Cloud",
+          "team_size": 3
+        },
+        {
+          "company_name": "PropRise",
+          "team_size": 3
+        },
+        {
+          "company_name": "Diligent",
+          "team_size": 2
+        },
+        {
+          "company_name": "Linc.",
+          "team_size": 3
+        },
+        {
+          "company_name": "Kino AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Artie",
+          "team_size": 7
+        },
+        {
+          "company_name": "Can of Soup",
+          "team_size": 2
+        },
+        {
+          "company_name": "Movley",
+          "team_size": 8
+        },
+        {
+          "company_name": "CraftOS",
+          "team_size": 3
+        },
+        {
+          "company_name": "Silimate",
+          "team_size": 4
+        },
+        {
+          "company_name": "SyntheticFi",
+          "team_size": 2
+        },
+        {
+          "company_name": "Pure",
+          "team_size": 7
+        },
+        {
+          "company_name": "Quill AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Trayd",
+          "team_size": 4
+        },
+        {
+          "company_name": "Nowadays",
+          "team_size": 3
+        },
+        {
+          "company_name": "Martin",
+          "team_size": 2
+        }
+      ],
+      "S24": [
+        {
+          "company_name": "Saphira AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "DreamRP",
+          "team_size": 2
+        },
+        {
+          "company_name": "OrgOrg",
+          "team_size": 2
+        },
+        {
+          "company_name": "General Analysis",
+          "team_size": 2
+        },
+        {
+          "company_name": "Void",
+          "team_size": 2
+        },
+        {
+          "company_name": "Pharos",
+          "team_size": 3
+        },
+        {
+          "company_name": "Terra",
+          "team_size": 2
+        },
+        {
+          "company_name": "AI Sell",
+          "team_size": 2
+        },
+        {
+          "company_name": "Oway",
+          "team_size": 12
+        },
+        {
+          "company_name": "Lilac Labs",
+          "team_size": 2
+        },
+        {
+          "company_name": "Sensei",
+          "team_size": 2
+        },
+        {
+          "company_name": "Laminar",
+          "team_size": 2
+        },
+        {
+          "company_name": "The Forecasting Company",
+          "team_size": 2
+        },
+        {
+          "company_name": "Parity",
+          "team_size": 3
+        },
+        {
+          "company_name": "Pulse AI",
+          "team_size": 4
+        },
+        {
+          "company_name": "AutoPallet Robotics",
+          "team_size": 3
+        },
+        {
+          "company_name": "Corgi",
+          "team_size": 13
+        },
+        {
+          "company_name": "Parahelp",
+          "team_size": 2
+        },
+        {
+          "company_name": "Ares Industries",
+          "team_size": 2
+        },
+        {
+          "company_name": "CardLift",
+          "team_size": 2
+        },
+        {
+          "company_name": "Ultra",
+          "team_size": 4
+        },
+        {
+          "company_name": "Spur",
+          "team_size": 3
+        }
+      ],
+      "W16": [
+        {
+          "company_name": "Deepgram",
+          "team_size": 115
+        },
+        {
+          "company_name": "Focal Systems",
+          "team_size": 170
+        },
+        {
+          "company_name": "Thunkable",
+          "team_size": 40
+        },
+        {
+          "company_name": "Gecko Robotics",
+          "team_size": 230
+        },
+        {
+          "company_name": "Astranis",
+          "team_size": 400
+        },
+        {
+          "company_name": "Qvin",
+          "team_size": 30
+        },
+        {
+          "company_name": "Instabug",
+          "team_size": 190
+        }
+      ],
+      "W17": [
+        {
+          "company_name": "Solugen",
+          "team_size": 200
+        },
+        {
+          "company_name": "Mednet",
+          "team_size": 20
+        }
+      ],
+      "W18": [
+        {
+          "company_name": "Substack",
+          "team_size": 90
+        },
+        {
+          "company_name": "Copilot",
+          "team_size": 15
+        },
+        {
+          "company_name": "Nuvocargo",
+          "team_size": 150
+        },
+        {
+          "company_name": "Replit",
+          "team_size": 115
+        },
+        {
+          "company_name": "Vanta",
+          "team_size": 550
+        }
+      ],
+      "W20": [
+        {
+          "company_name": "H1",
+          "team_size": 500
+        },
+        {
+          "company_name": "General Proximity",
+          "team_size": 15
+        },
+        {
+          "company_name": "Taiv",
+          "team_size": 24
+        },
+        {
+          "company_name": "MindsDB",
+          "team_size": 33
+        },
+        {
+          "company_name": "Farcast",
+          "team_size": 12
+        },
+        {
+          "company_name": "Replicate",
+          "team_size": 27
+        },
+        {
+          "company_name": "Datasaur",
+          "team_size": 55
+        },
+        {
+          "company_name": "PostEra",
+          "team_size": 34
+        },
+        {
+          "company_name": "DeepSource",
+          "team_size": 11
+        },
+        {
+          "company_name": "Moons",
+          "team_size": 115
+        },
+        {
+          "company_name": "Nomic Bio",
+          "team_size": 24
+        },
+        {
+          "company_name": "Ansa Biotechnologies",
+          "team_size": 72
+        }
+      ],
+      "W21": [
+        {
+          "company_name": "Text Blaze",
+          "team_size": 9
+        },
+        {
+          "company_name": "Coderhouse",
+          "team_size": 225
+        },
+        {
+          "company_name": "zingbus",
+          "team_size": 40
+        },
+        {
+          "company_name": "Anima",
+          "team_size": 20
+        },
+        {
+          "company_name": "Topkey",
+          "team_size": 5
+        },
+        {
+          "company_name": "Kodo",
+          "team_size": 45
+        },
+        {
+          "company_name": "Pesto",
+          "team_size": 8
+        },
+        {
+          "company_name": "Wyndly",
+          "team_size": 10
+        },
+        {
+          "company_name": "Nourish",
+          "team_size": 38
+        },
+        {
+          "company_name": "Gaiia",
+          "team_size": 40
+        },
+        {
+          "company_name": "Serna Bio",
+          "team_size": 9
+        },
+        {
+          "company_name": "Bristle",
+          "team_size": 6
+        },
+        {
+          "company_name": "Terra API",
+          "team_size": 25
+        },
+        {
+          "company_name": "Zepto",
+          "team_size": 1300
+        },
+        {
+          "company_name": "Ollama",
+          "team_size": 0
+        },
+        {
+          "company_name": "Reshape Biotech",
+          "team_size": 40
+        },
+        {
+          "company_name": "SwiftSku",
+          "team_size": 35
+        },
+        {
+          "company_name": "Triomics",
+          "team_size": 50
+        },
+        {
+          "company_name": "Arpio",
+          "team_size": 7
+        },
+        {
+          "company_name": "Nuntius Therapeutics",
+          "team_size": 2
+        },
+        {
+          "company_name": "Moonvalley",
+          "team_size": 16
+        },
+        {
+          "company_name": "Vendease",
+          "team_size": 250
+        },
+        {
+          "company_name": "Jiga",
+          "team_size": 15
+        },
+        {
+          "company_name": "Somos",
+          "team_size": 250
+        },
+        {
+          "company_name": "FlutterFlow",
+          "team_size": 50
+        },
+        {
+          "company_name": "Lamar Health",
+          "team_size": 6
+        },
+        {
+          "company_name": "Alokai",
+          "team_size": 100
+        },
+        {
+          "company_name": "Redcliffe Lifetech",
+          "team_size": 3500
+        },
+        {
+          "company_name": "InpharmD",
+          "team_size": 16
+        }
+      ],
+      "W22": [
+        {
+          "company_name": "Invert",
+          "team_size": 25
+        },
+        {
+          "company_name": "Nest Genomics",
+          "team_size": 8
+        },
+        {
+          "company_name": "Shinkei Systems",
+          "team_size": 9
+        },
+        {
+          "company_name": "Engage Bio",
+          "team_size": 5
+        },
+        {
+          "company_name": "8vdx",
+          "team_size": 11
+        },
+        {
+          "company_name": "WorldQL",
+          "team_size": 3
+        },
+        {
+          "company_name": "Serif Health",
+          "team_size": 6
+        },
+        {
+          "company_name": "Anja Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "Rally UXR",
+          "team_size": 13
+        },
+        {
+          "company_name": "Durioo",
+          "team_size": 50
+        },
+        {
+          "company_name": "Tola",
+          "team_size": 12
+        },
+        {
+          "company_name": "Velt",
+          "team_size": 15
+        },
+        {
+          "company_name": "Tuva Health",
+          "team_size": 3
+        },
+        {
+          "company_name": "Magna",
+          "team_size": 18
+        }
+      ],
+      "W23": [
+        {
+          "company_name": "CreatorML",
+          "team_size": 6
+        },
+        {
+          "company_name": "Neptyne",
+          "team_size": 4
+        },
+        {
+          "company_name": "Luca",
+          "team_size": 6
+        },
+        {
+          "company_name": "Unify",
+          "team_size": 10
+        },
+        {
+          "company_name": "Rubbrband",
+          "team_size": 3
+        },
+        {
+          "company_name": "Reflex",
+          "team_size": 8
+        },
+        {
+          "company_name": "OneText",
+          "team_size": 6
+        },
+        {
+          "company_name": "Linum",
+          "team_size": 3
+        },
+        {
+          "company_name": "Technician",
+          "team_size": 1
+        },
+        {
+          "company_name": "Pair AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Byterat",
+          "team_size": 0
+        },
+        {
+          "company_name": "Dataglade",
+          "team_size": 2
+        },
+        {
+          "company_name": "Omnistrate",
+          "team_size": 15
+        },
+        {
+          "company_name": "Trigo",
+          "team_size": 4
+        },
+        {
+          "company_name": "Bluebirds",
+          "team_size": 6
+        },
+        {
+          "company_name": "Cobblestone",
+          "team_size": 3
+        },
+        {
+          "company_name": "EzDubs",
+          "team_size": 6
+        },
+        {
+          "company_name": "BuildJet",
+          "team_size": 2
+        },
+        {
+          "company_name": "Intrinsic",
+          "team_size": 8
+        },
+        {
+          "company_name": "Hippo Scribe",
+          "team_size": 2
+        },
+        {
+          "company_name": "Radical",
+          "team_size": 2
+        },
+        {
+          "company_name": "Univerbal",
+          "team_size": 3
+        },
+        {
+          "company_name": "clearspace",
+          "team_size": 5
+        },
+        {
+          "company_name": "Clad",
+          "team_size": 4
+        },
+        {
+          "company_name": "Epsilon",
+          "team_size": 2
+        },
+        {
+          "company_name": "Sorted",
+          "team_size": 2
+        },
+        {
+          "company_name": "Vocode",
+          "team_size": 3
+        },
+        {
+          "company_name": "AiFlow",
+          "team_size": 2
+        },
+        {
+          "company_name": "Benchmark",
+          "team_size": 5
+        },
+        {
+          "company_name": "Kyber",
+          "team_size": 4
+        },
+        {
+          "company_name": "Finta",
+          "team_size": 3
+        },
+        {
+          "company_name": "Yuma AI",
+          "team_size": 12
+        },
+        {
+          "company_name": "Vaero",
+          "team_size": 1
+        }
+      ],
+      "W24": [
+        {
+          "company_name": "Petra Security",
+          "team_size": 3
+        },
+        {
+          "company_name": "Sonauto",
+          "team_size": 2
+        },
+        {
+          "company_name": "Infinity AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Double",
+          "team_size": 5
+        },
+        {
+          "company_name": "Zaymo",
+          "team_size": 3
+        },
+        {
+          "company_name": "atopile",
+          "team_size": 3
+        },
+        {
+          "company_name": "OddsView",
+          "team_size": 5
+        },
+        {
+          "company_name": "Carousel Technologies",
+          "team_size": 3
+        },
+        {
+          "company_name": "DGI Apparel",
+          "team_size": 4
+        },
+        {
+          "company_name": "Pico",
+          "team_size": 2
+        },
+        {
+          "company_name": "renderlet",
+          "team_size": 2
+        },
+        {
+          "company_name": "Buster",
+          "team_size": 3
+        },
+        {
+          "company_name": "Tile",
+          "team_size": 2
+        },
+        {
+          "company_name": "Adagy Robotics",
+          "team_size": 2
+        },
+        {
+          "company_name": "CrowdVolt",
+          "team_size": 5
+        },
+        {
+          "company_name": "Blacksmith",
+          "team_size": 3
+        },
+        {
+          "company_name": "MAIHEM",
+          "team_size": 4
+        },
+        {
+          "company_name": "PurplePages",
+          "team_size": 3
+        },
+        {
+          "company_name": "DryMerge",
+          "team_size": 2
+        },
+        {
+          "company_name": "Navier AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "NowHouse",
+          "team_size": 0
+        },
+        {
+          "company_name": "Million",
+          "team_size": 3
+        },
+        {
+          "company_name": "RetailReady",
+          "team_size": 5
+        },
+        {
+          "company_name": "Onyx",
+          "team_size": 6
+        }
+      ]
+    }
+  },
+  "Gustaf Alstromer": {
+    "bybatch": {
+      "S17": [
+        {
+          "company_name": "FAZZ",
+          "team_size": 500
+        }
+      ],
+      "S18": [
+        {
+          "company_name": "Canary Technologies",
+          "team_size": 150
+        },
+        {
+          "company_name": "BlueCargo",
+          "team_size": 35
+        },
+        {
+          "company_name": "UBITS",
+          "team_size": 300
+        },
+        {
+          "company_name": "Rebellyous Foods",
+          "team_size": 12
+        },
+        {
+          "company_name": "RevenueCat",
+          "team_size": 70
+        },
+        {
+          "company_name": "BrainHi",
+          "team_size": 18
+        },
+        {
+          "company_name": "Khatabook",
+          "team_size": 350
+        },
+        {
+          "company_name": "Leena AI",
+          "team_size": 500
+        }
+      ],
+      "S19": [
+        {
+          "company_name": "Shiru",
+          "team_size": 4
+        },
+        {
+          "company_name": "Beacons",
+          "team_size": 40
+        },
+        {
+          "company_name": "Wren",
+          "team_size": 10
+        },
+        {
+          "company_name": "Gotrade",
+          "team_size": 22
+        },
+        {
+          "company_name": "Hightouch",
+          "team_size": 100
+        }
+      ],
+      "S20": [
+        {
+          "company_name": "BukuWarung",
+          "team_size": 250
+        },
+        {
+          "company_name": "Photoroom",
+          "team_size": 60
+        },
+        {
+          "company_name": "Farmako Healthcare",
+          "team_size": 25
+        },
+        {
+          "company_name": "Speedscale",
+          "team_size": 8
+        },
+        {
+          "company_name": "Atomic",
+          "team_size": 25
+        },
+        {
+          "company_name": "Nextera Robotics",
+          "team_size": 15
+        },
+        {
+          "company_name": "Statiq.",
+          "team_size": 200
+        },
+        {
+          "company_name": "Hyper Online",
+          "team_size": 7
+        },
+        {
+          "company_name": "Tella",
+          "team_size": 3
+        },
+        {
+          "company_name": "Skio",
+          "team_size": 50
+        },
+        {
+          "company_name": "Dataland",
+          "team_size": 2
+        },
+        {
+          "company_name": "CarbonChain",
+          "team_size": 16
+        },
+        {
+          "company_name": "Seam",
+          "team_size": 25
+        },
+        {
+          "company_name": "Dumps",
+          "team_size": 9
+        },
+        {
+          "company_name": "Mobius Materials",
+          "team_size": 6
+        },
+        {
+          "company_name": "Safepay",
+          "team_size": 4
+        },
+        {
+          "company_name": "Clau",
+          "team_size": 90
+        },
+        {
+          "company_name": "Future Fields",
+          "team_size": 34
+        },
+        {
+          "company_name": "Toolbox",
+          "team_size": 7
+        },
+        {
+          "company_name": "Command AI",
+          "team_size": 35
+        },
+        {
+          "company_name": "Basedash",
+          "team_size": 5
+        },
+        {
+          "company_name": "Salesform",
+          "team_size": 6
+        },
+        {
+          "company_name": "adyn",
+          "team_size": 7
+        },
+        {
+          "company_name": "Ukama",
+          "team_size": 7
+        },
+        {
+          "company_name": "Depict",
+          "team_size": 32
+        },
+        {
+          "company_name": "Volopay",
+          "team_size": 11
+        }
+      ],
+      "S21": [
+        {
+          "company_name": "Laudable",
+          "team_size": 5
+        },
+        {
+          "company_name": "Planet A Foods",
+          "team_size": 6
+        },
+        {
+          "company_name": "SigmaOS",
+          "team_size": 5
+        },
+        {
+          "company_name": "Kurios",
+          "team_size": 10
+        },
+        {
+          "company_name": "aSim",
+          "team_size": 9
+        },
+        {
+          "company_name": "Sirka",
+          "team_size": 9
+        },
+        {
+          "company_name": "Heimdal",
+          "team_size": 10
+        },
+        {
+          "company_name": "Infina",
+          "team_size": 50
+        },
+        {
+          "company_name": "Female Invest",
+          "team_size": 35
+        },
+        {
+          "company_name": "Telivy",
+          "team_size": 6
+        },
+        {
+          "company_name": "Abatable",
+          "team_size": 35
+        },
+        {
+          "company_name": "Phykos",
+          "team_size": 2
+        },
+        {
+          "company_name": "Spoken",
+          "team_size": 7
+        },
+        {
+          "company_name": "MobileBoost",
+          "team_size": 15
+        },
+        {
+          "company_name": "AppX",
+          "team_size": 30
+        },
+        {
+          "company_name": "SolarMente",
+          "team_size": 90
+        },
+        {
+          "company_name": "Karbon Card",
+          "team_size": 144
+        },
+        {
+          "company_name": "Titipku",
+          "team_size": 19
+        },
+        {
+          "company_name": "Carbonfact",
+          "team_size": 25
+        },
+        {
+          "company_name": "hotglue",
+          "team_size": 13
+        },
+        {
+          "company_name": "Payflow",
+          "team_size": 50
+        },
+        {
+          "company_name": "Charge Robotics",
+          "team_size": 20
+        },
+        {
+          "company_name": "JABU",
+          "team_size": 40
+        }
+      ],
+      "S22": [
+        {
+          "company_name": "Ordinary Seafood",
+          "team_size": 5
+        },
+        {
+          "company_name": "Sigma AI",
+          "team_size": 10
+        },
+        {
+          "company_name": "Versa",
+          "team_size": 2
+        },
+        {
+          "company_name": "Delegasi",
+          "team_size": 8
+        },
+        {
+          "company_name": "CodeCrafters",
+          "team_size": 2
+        },
+        {
+          "company_name": "Raven",
+          "team_size": 4
+        },
+        {
+          "company_name": "Gullak Money",
+          "team_size": 15
+        },
+        {
+          "company_name": "Evoly",
+          "team_size": 4
+        },
+        {
+          "company_name": "Tank Payments",
+          "team_size": 5
+        },
+        {
+          "company_name": "Ajourney",
+          "team_size": 3
+        },
+        {
+          "company_name": "Provision",
+          "team_size": 9
+        },
+        {
+          "company_name": "Shipmates",
+          "team_size": 12
+        },
+        {
+          "company_name": "Airhart Aeronautics",
+          "team_size": 6
+        },
+        {
+          "company_name": "Latent Space",
+          "team_size": 16
+        },
+        {
+          "company_name": "Polymath Robotics",
+          "team_size": 11
+        },
+        {
+          "company_name": "Materee",
+          "team_size": 20
+        },
+        {
+          "company_name": "Axle",
+          "team_size": 10
+        },
+        {
+          "company_name": "Aldara",
+          "team_size": 10
+        },
+        {
+          "company_name": "Slingshot",
+          "team_size": 4
+        },
+        {
+          "company_name": "Lancey",
+          "team_size": 5
+        },
+        {
+          "company_name": "Jasmine Energy",
+          "team_size": 6
+        },
+        {
+          "company_name": "Levers",
+          "team_size": 8
+        },
+        {
+          "company_name": "CompUp",
+          "team_size": 35
+        }
+      ],
+      "S23": [
+        {
+          "company_name": "Cardinal Gray",
+          "team_size": 3
+        },
+        {
+          "company_name": "Terminal",
+          "team_size": 9
+        },
+        {
+          "company_name": "Docsum",
+          "team_size": 4
+        },
+        {
+          "company_name": "Craftwork",
+          "team_size": 50
+        },
+        {
+          "company_name": "Sohar Health",
+          "team_size": 8
+        },
+        {
+          "company_name": "Elyos Energy",
+          "team_size": 7
+        },
+        {
+          "company_name": "Nectar",
+          "team_size": 2
+        },
+        {
+          "company_name": "Leafpress",
+          "team_size": 2
+        },
+        {
+          "company_name": "Sidenote",
+          "team_size": 3
+        },
+        {
+          "company_name": "SafetyKit",
+          "team_size": 5
+        },
+        {
+          "company_name": "AiSDR",
+          "team_size": 5
+        },
+        {
+          "company_name": "Constructable",
+          "team_size": 3
+        },
+        {
+          "company_name": "Orbio Earth",
+          "team_size": 14
+        }
+      ],
+      "S24": [
+        {
+          "company_name": "Kairo Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "Arva AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Usul",
+          "team_size": 3
+        },
+        {
+          "company_name": "Ionworks",
+          "team_size": 5
+        },
+        {
+          "company_name": "Guardian RF",
+          "team_size": 3
+        },
+        {
+          "company_name": "Parley",
+          "team_size": 3
+        },
+        {
+          "company_name": "Drillbit",
+          "team_size": 2
+        },
+        {
+          "company_name": "Anthrogen",
+          "team_size": 3
+        },
+        {
+          "company_name": "Tivara",
+          "team_size": 2
+        },
+        {
+          "company_name": "MinusX",
+          "team_size": 3
+        },
+        {
+          "company_name": "Dodo",
+          "team_size": 3
+        },
+        {
+          "company_name": "Lucible",
+          "team_size": 2
+        },
+        {
+          "company_name": "reworks",
+          "team_size": 2
+        },
+        {
+          "company_name": "Aviary",
+          "team_size": 3
+        },
+        {
+          "company_name": "RetroFix AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Moonglow",
+          "team_size": 2
+        },
+        {
+          "company_name": "Flyflow",
+          "team_size": 2
+        },
+        {
+          "company_name": "Hamming AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Superunit",
+          "team_size": 2
+        },
+        {
+          "company_name": "Central",
+          "team_size": 13
+        }
+      ],
+      "W17": [
+        {
+          "company_name": "Snappr",
+          "team_size": 240
+        },
+        {
+          "company_name": "NanoNets",
+          "team_size": 102
+        },
+        {
+          "company_name": "Nomba",
+          "team_size": 200
+        },
+        {
+          "company_name": "Faire",
+          "team_size": 900
+        }
+      ],
+      "W18": [
+        {
+          "company_name": "Veriff",
+          "team_size": 550
+        },
+        {
+          "company_name": "Super",
+          "team_size": 1037
+        }
+      ],
+      "W19": [
+        {
+          "company_name": "Atlas",
+          "team_size": 25
+        },
+        {
+          "company_name": "Pachama",
+          "team_size": 85
+        },
+        {
+          "company_name": "Heart Aerospace",
+          "team_size": 130
+        },
+        {
+          "company_name": "Glide",
+          "team_size": 40
+        },
+        {
+          "company_name": "Eclipse Foods",
+          "team_size": 0
+        },
+        {
+          "company_name": "Shipper",
+          "team_size": 600
+        }
+      ],
+      "W20": [
+        {
+          "company_name": "Tough Commerce",
+          "team_size": 21
+        },
+        {
+          "company_name": "Explo",
+          "team_size": 16
+        },
+        {
+          "company_name": "Flowdash",
+          "team_size": 5
+        },
+        {
+          "company_name": "TrueNorth",
+          "team_size": 60
+        },
+        {
+          "company_name": "PowerX",
+          "team_size": 20
+        },
+        {
+          "company_name": "Karat Financial",
+          "team_size": 40
+        },
+        {
+          "company_name": "Benepass",
+          "team_size": 45
+        },
+        {
+          "company_name": "SINAI",
+          "team_size": 50
+        },
+        {
+          "company_name": "Angle Health",
+          "team_size": 8
+        },
+        {
+          "company_name": "Fondeadora",
+          "team_size": 160
+        },
+        {
+          "company_name": "borong",
+          "team_size": 80
+        },
+        {
+          "company_name": "Belvo",
+          "team_size": 150
+        },
+        {
+          "company_name": "Jenfi",
+          "team_size": 18
+        },
+        {
+          "company_name": "Living Carbon",
+          "team_size": 40
+        },
+        {
+          "company_name": "Candid Health",
+          "team_size": 55
+        }
+      ],
+      "W21": [
+        {
+          "company_name": "Enode",
+          "team_size": 40
+        },
+        {
+          "company_name": "Remora",
+          "team_size": 45
+        },
+        {
+          "company_name": "Orbillion Bio",
+          "team_size": 7
+        },
+        {
+          "company_name": "Nirva",
+          "team_size": 10
+        },
+        {
+          "company_name": "Vapi",
+          "team_size": 10
+        },
+        {
+          "company_name": "Emerge Tools",
+          "team_size": 9
+        },
+        {
+          "company_name": "June",
+          "team_size": 6
+        },
+        {
+          "company_name": "Spokn",
+          "team_size": 20
+        },
+        {
+          "company_name": "HomeBreeze",
+          "team_size": 40
+        },
+        {
+          "company_name": "MagicBell",
+          "team_size": 4
+        },
+        {
+          "company_name": "Chorus Sleep",
+          "team_size": 4
+        },
+        {
+          "company_name": "Routine",
+          "team_size": 8
+        },
+        {
+          "company_name": "Soraban",
+          "team_size": 30
+        },
+        {
+          "company_name": "BusinessOnBot",
+          "team_size": 25
+        },
+        {
+          "company_name": "OlaClick",
+          "team_size": 30
+        },
+        {
+          "company_name": "FlowEQ",
+          "team_size": 7
+        },
+        {
+          "company_name": "AgendaPro",
+          "team_size": 50
+        },
+        {
+          "company_name": "Infracost",
+          "team_size": 10
+        },
+        {
+          "company_name": "Chatwoot",
+          "team_size": 8
+        },
+        {
+          "company_name": "Haystack",
+          "team_size": 6
+        },
+        {
+          "company_name": "Camp",
+          "team_size": 3
+        }
+      ],
+      "W22": [
+        {
+          "company_name": "Emobi",
+          "team_size": 9
+        },
+        {
+          "company_name": "Phase Biolabs",
+          "team_size": 10
+        },
+        {
+          "company_name": "UpBanx",
+          "team_size": 13
+        },
+        {
+          "company_name": "Seabound",
+          "team_size": 9
+        },
+        {
+          "company_name": "Axross Pte Ltd",
+          "team_size": 10
+        },
+        {
+          "company_name": "Sekilo",
+          "team_size": 11
+        },
+        {
+          "company_name": "Fleetzero",
+          "team_size": 15
+        },
+        {
+          "company_name": "Yezza",
+          "team_size": 0
+        },
+        {
+          "company_name": "Lifted",
+          "team_size": 9
+        },
+        {
+          "company_name": "Transfez",
+          "team_size": 50
+        },
+        {
+          "company_name": "Peakflo",
+          "team_size": 45
+        },
+        {
+          "company_name": "Lumina",
+          "team_size": 12
+        },
+        {
+          "company_name": "StafBook",
+          "team_size": 11
+        },
+        {
+          "company_name": "Nira Energy",
+          "team_size": 20
+        },
+        {
+          "company_name": "Instalab",
+          "team_size": 0
+        },
+        {
+          "company_name": "Glow Energy",
+          "team_size": 6
+        },
+        {
+          "company_name": "Aklimate",
+          "team_size": 3
+        },
+        {
+          "company_name": "Drivingforce",
+          "team_size": 2
+        },
+        {
+          "company_name": "Whiz",
+          "team_size": 9
+        },
+        {
+          "company_name": "Pelm",
+          "team_size": 5
+        },
+        {
+          "company_name": "CrediBook",
+          "team_size": 53
+        },
+        {
+          "company_name": "Fresh Factory",
+          "team_size": 100
+        },
+        {
+          "company_name": "Phoenix Hydrogen",
+          "team_size": 2
+        },
+        {
+          "company_name": "Finnix",
+          "team_size": 13
+        },
+        {
+          "company_name": "Revoy",
+          "team_size": 4
+        },
+        {
+          "company_name": "Pina Earth",
+          "team_size": 8
+        },
+        {
+          "company_name": "Beyond Aero",
+          "team_size": 50
+        },
+        {
+          "company_name": "AirMyne",
+          "team_size": 11
+        },
+        {
+          "company_name": "Impossible Metals",
+          "team_size": 20
+        },
+        {
+          "company_name": "Finku",
+          "team_size": 50
+        },
+        {
+          "company_name": "Unravel Carbon",
+          "team_size": 42
+        },
+        {
+          "company_name": "PINA",
+          "team_size": 25
+        },
+        {
+          "company_name": "Bemlo",
+          "team_size": 12
+        },
+        {
+          "company_name": "Broccoli AI",
+          "team_size": 8
+        },
+        {
+          "company_name": "Carbon Crusher",
+          "team_size": 21
+        },
+        {
+          "company_name": "Alga Biosciences",
+          "team_size": 6
+        },
+        {
+          "company_name": "SmartHelio",
+          "team_size": 12
+        },
+        {
+          "company_name": "RecordBook",
+          "team_size": 15
+        }
+      ],
+      "W23": [
+        {
+          "company_name": "Overflux",
+          "team_size": 2
+        },
+        {
+          "company_name": "Second",
+          "team_size": 3
+        },
+        {
+          "company_name": "Upfront",
+          "team_size": 4
+        },
+        {
+          "company_name": "Sameday",
+          "team_size": 7
+        },
+        {
+          "company_name": "LazyEditor",
+          "team_size": 3
+        },
+        {
+          "company_name": "Finvest",
+          "team_size": 5
+        },
+        {
+          "company_name": "Miracle",
+          "team_size": 3
+        },
+        {
+          "company_name": "rift",
+          "team_size": 8
+        },
+        {
+          "company_name": "Syncly",
+          "team_size": 9
+        },
+        {
+          "company_name": "Numeral",
+          "team_size": 25
+        },
+        {
+          "company_name": "EdgeBit",
+          "team_size": 5
+        },
+        {
+          "company_name": "Tennr",
+          "team_size": 44
+        },
+        {
+          "company_name": "Coperniq",
+          "team_size": 6
+        },
+        {
+          "company_name": "Vooma",
+          "team_size": 3
+        },
+        {
+          "company_name": "Suger",
+          "team_size": 6
+        },
+        {
+          "company_name": "coil inc.",
+          "team_size": 1
+        },
+        {
+          "company_name": "Langfuse",
+          "team_size": 7
+        },
+        {
+          "company_name": "1stCollab",
+          "team_size": 6
+        },
+        {
+          "company_name": "Fastgen",
+          "team_size": 7
+        },
+        {
+          "company_name": "SuperKalam",
+          "team_size": 20
+        },
+        {
+          "company_name": "Proglix",
+          "team_size": 25
+        },
+        {
+          "company_name": "Holacasa",
+          "team_size": 19
+        },
+        {
+          "company_name": "PlayHT",
+          "team_size": 35
+        },
+        {
+          "company_name": "Corgi Labs",
+          "team_size": 3
+        },
+        {
+          "company_name": "Keeling Labs",
+          "team_size": 3
+        },
+        {
+          "company_name": "Vendora",
+          "team_size": 4
+        },
+        {
+          "company_name": "Fetchr",
+          "team_size": 4
+        }
+      ],
+      "W24": [
+        {
+          "company_name": "Model ML",
+          "team_size": 2
+        },
+        {
+          "company_name": "Andy AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Elodin",
+          "team_size": 5
+        },
+        {
+          "company_name": "Firebender",
+          "team_size": 2
+        },
+        {
+          "company_name": "Aether Energy",
+          "team_size": 4
+        },
+        {
+          "company_name": "Openmart",
+          "team_size": 6
+        },
+        {
+          "company_name": "Spark",
+          "team_size": 2
+        },
+        {
+          "company_name": "Circleback",
+          "team_size": 4
+        },
+        {
+          "company_name": "Intercept",
+          "team_size": 3
+        },
+        {
+          "company_name": "OmniAI",
+          "team_size": 4
+        },
+        {
+          "company_name": "PartnerHQ",
+          "team_size": 4
+        },
+        {
+          "company_name": "Penciled",
+          "team_size": 2
+        },
+        {
+          "company_name": "Starlight Charging",
+          "team_size": 3
+        },
+        {
+          "company_name": "TrueClaim",
+          "team_size": 2
+        },
+        {
+          "company_name": "Integuru",
+          "team_size": 2
+        },
+        {
+          "company_name": "Leya",
+          "team_size": 12
+        },
+        {
+          "company_name": "Gumloop",
+          "team_size": 2
+        },
+        {
+          "company_name": "Reprompt",
+          "team_size": 3
+        },
+        {
+          "company_name": "Marr Labs",
+          "team_size": 9
+        }
+      ]
+    }
+  },
+  "Brad Flora": {
+    "bybatch": {
+      "S19": [
+        {
+          "company_name": "Courier",
+          "team_size": 35
+        },
+        {
+          "company_name": "CoLab",
+          "team_size": 120
+        }
+      ],
+      "S20": [
+        {
+          "company_name": "Bits",
+          "team_size": 15
+        },
+        {
+          "company_name": "Hellometer",
+          "team_size": 2
+        },
+        {
+          "company_name": "Akiflow",
+          "team_size": 11
+        },
+        {
+          "company_name": "Lendtable",
+          "team_size": 20
+        },
+        {
+          "company_name": "Inspectify",
+          "team_size": 55
+        },
+        {
+          "company_name": "SuperTokens",
+          "team_size": 10
+        },
+        {
+          "company_name": "Blue Onion Labs",
+          "team_size": 20
+        }
+      ],
+      "S21": [
+        {
+          "company_name": "Cero",
+          "team_size": 10
+        },
+        {
+          "company_name": "Truss",
+          "team_size": 12
+        },
+        {
+          "company_name": "Bolster",
+          "team_size": 120
+        },
+        {
+          "company_name": "Adni",
+          "team_size": 5
+        },
+        {
+          "company_name": "Nomod",
+          "team_size": 25
+        },
+        {
+          "company_name": "Plai",
+          "team_size": 11
+        },
+        {
+          "company_name": "Evidence",
+          "team_size": 6
+        },
+        {
+          "company_name": "Ivy Homes",
+          "team_size": 32
+        },
+        {
+          "company_name": "RendaloMaq",
+          "team_size": 30
+        },
+        {
+          "company_name": "Cabal",
+          "team_size": 8
+        },
+        {
+          "company_name": "Rootly",
+          "team_size": 60
+        },
+        {
+          "company_name": "Varos",
+          "team_size": 3
+        },
+        {
+          "company_name": "Positional",
+          "team_size": 5
+        },
+        {
+          "company_name": "Slope",
+          "team_size": 16
+        },
+        {
+          "company_name": "Slash",
+          "team_size": 25
+        },
+        {
+          "company_name": "Lightly",
+          "team_size": 5
+        },
+        {
+          "company_name": "Onebrief",
+          "team_size": 11
+        },
+        {
+          "company_name": "Govly",
+          "team_size": 6
+        }
+      ],
+      "S22": [
+        {
+          "company_name": "Ruleset",
+          "team_size": 1
+        },
+        {
+          "company_name": "Manatee",
+          "team_size": 2
+        },
+        {
+          "company_name": "Payfura",
+          "team_size": 2
+        },
+        {
+          "company_name": "Pivo Technology Inc",
+          "team_size": 11
+        },
+        {
+          "company_name": "Vizzly",
+          "team_size": 4
+        },
+        {
+          "company_name": "Pana",
+          "team_size": 14
+        },
+        {
+          "company_name": "Layerup",
+          "team_size": 3
+        },
+        {
+          "company_name": "Elessar",
+          "team_size": 2
+        },
+        {
+          "company_name": "Julius",
+          "team_size": 5
+        },
+        {
+          "company_name": "Ciro",
+          "team_size": 6
+        },
+        {
+          "company_name": "Fetii",
+          "team_size": 6
+        },
+        {
+          "company_name": "Boostly",
+          "team_size": 35
+        },
+        {
+          "company_name": "EthosX",
+          "team_size": 2
+        },
+        {
+          "company_name": "Hype",
+          "team_size": 3
+        },
+        {
+          "company_name": "Aragorn AI",
+          "team_size": 4
+        },
+        {
+          "company_name": "Apprecio",
+          "team_size": 7
+        },
+        {
+          "company_name": "Slidely AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "AviaryAI",
+          "team_size": 8
+        },
+        {
+          "company_name": "Sunpia",
+          "team_size": 3
+        },
+        {
+          "company_name": "Cambio",
+          "team_size": 16
+        },
+        {
+          "company_name": "Shelf",
+          "team_size": 2
+        },
+        {
+          "company_name": "AlgoTest",
+          "team_size": 12
+        },
+        {
+          "company_name": "Sculpt",
+          "team_size": 2
+        },
+        {
+          "company_name": "Relay Health",
+          "team_size": 5
+        },
+        {
+          "company_name": "Uwi",
+          "team_size": 14
+        },
+        {
+          "company_name": "Jamble",
+          "team_size": 3
+        },
+        {
+          "company_name": "FoodCourt",
+          "team_size": 80
+        },
+        {
+          "company_name": "TypeLess",
+          "team_size": 2
+        },
+        {
+          "company_name": "Findly",
+          "team_size": 6
+        },
+        {
+          "company_name": "Relate",
+          "team_size": 7
+        },
+        {
+          "company_name": "Blacktop Hoops by Vinci Games",
+          "team_size": 7
+        },
+        {
+          "company_name": "Kombo",
+          "team_size": 20
+        },
+        {
+          "company_name": "Plutto",
+          "team_size": 12
+        },
+        {
+          "company_name": "Accountable",
+          "team_size": 2
+        },
+        {
+          "company_name": "Pivot",
+          "team_size": 2
+        }
+      ],
+      "S24": [
+        {
+          "company_name": "Outerport",
+          "team_size": 2
+        },
+        {
+          "company_name": "PathPilot",
+          "team_size": 3
+        },
+        {
+          "company_name": "Mica AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Formula Insight",
+          "team_size": 2
+        },
+        {
+          "company_name": "SureBright",
+          "team_size": 11
+        },
+        {
+          "company_name": "Quetzal",
+          "team_size": 2
+        },
+        {
+          "company_name": "Assembly HOA",
+          "team_size": 6
+        },
+        {
+          "company_name": "Rescript",
+          "team_size": 3
+        },
+        {
+          "company_name": "Praxos",
+          "team_size": 3
+        },
+        {
+          "company_name": "BeeBettor",
+          "team_size": 2
+        },
+        {
+          "company_name": "Pax",
+          "team_size": 2
+        },
+        {
+          "company_name": "Dimely",
+          "team_size": 2
+        },
+        {
+          "company_name": "Merse",
+          "team_size": 2
+        },
+        {
+          "company_name": "Kura",
+          "team_size": 2
+        },
+        {
+          "company_name": "Codes Health",
+          "team_size": 3
+        },
+        {
+          "company_name": "Spaceium Inc",
+          "team_size": 0
+        },
+        {
+          "company_name": "Comfy Deploy",
+          "team_size": 3
+        },
+        {
+          "company_name": "Synnax",
+          "team_size": 3
+        }
+      ],
+      "W18": [
+        {
+          "company_name": "Simetrik",
+          "team_size": 350
+        }
+      ],
+      "W19": [
+        {
+          "company_name": "Reelables",
+          "team_size": 0
+        }
+      ],
+      "W20": [
+        {
+          "company_name": "Termii",
+          "team_size": 46
+        }
+      ],
+      "W21": [
+        {
+          "company_name": "LogisticsOS",
+          "team_size": 6
+        },
+        {
+          "company_name": "arnata",
+          "team_size": 15
+        },
+        {
+          "company_name": "R2",
+          "team_size": 50
+        },
+        {
+          "company_name": "Per Diem",
+          "team_size": 15
+        },
+        {
+          "company_name": "Bimaplan",
+          "team_size": 30
+        },
+        {
+          "company_name": "Gridware",
+          "team_size": 50
+        },
+        {
+          "company_name": "Faction",
+          "team_size": 25
+        },
+        {
+          "company_name": "CashBook",
+          "team_size": 4
+        },
+        {
+          "company_name": "Smartcuts",
+          "team_size": 3
+        },
+        {
+          "company_name": "Weekday",
+          "team_size": 20
+        },
+        {
+          "company_name": "PowerRouter",
+          "team_size": 3
+        },
+        {
+          "company_name": "Albedo",
+          "team_size": 55
+        },
+        {
+          "company_name": "Alba Orbital",
+          "team_size": 16
+        },
+        {
+          "company_name": "Atomic Industries",
+          "team_size": 25
+        },
+        {
+          "company_name": "The Third Place",
+          "team_size": 2
+        },
+        {
+          "company_name": "H3X Technologies",
+          "team_size": 18
+        },
+        {
+          "company_name": "Mystic",
+          "team_size": 11
+        },
+        {
+          "company_name": "REGENT",
+          "team_size": 40
+        },
+        {
+          "company_name": "Alpas",
+          "team_size": 5
+        },
+        {
+          "company_name": "Mendel",
+          "team_size": 5
+        },
+        {
+          "company_name": "Betterhalf",
+          "team_size": 25
+        },
+        {
+          "company_name": "Roger",
+          "team_size": 4
+        },
+        {
+          "company_name": "Seer",
+          "team_size": 4
+        },
+        {
+          "company_name": "Juicy Marbles",
+          "team_size": 45
+        }
+      ],
+      "W22": [
+        {
+          "company_name": "Axis",
+          "team_size": 15
+        },
+        {
+          "company_name": "Super Send",
+          "team_size": 8
+        },
+        {
+          "company_name": "Bakool",
+          "team_size": 30
+        },
+        {
+          "company_name": "Versable",
+          "team_size": 3
+        },
+        {
+          "company_name": "Unlayer",
+          "team_size": 35
+        },
+        {
+          "company_name": "Orca",
+          "team_size": 4
+        },
+        {
+          "company_name": "CUTR",
+          "team_size": 22
+        },
+        {
+          "company_name": "Rownd",
+          "team_size": 7
+        },
+        {
+          "company_name": "HomeRoom",
+          "team_size": 25
+        },
+        {
+          "company_name": "Stably",
+          "team_size": 7
+        },
+        {
+          "company_name": "SimpleHash",
+          "team_size": 0
+        },
+        {
+          "company_name": "Eventual",
+          "team_size": 5
+        },
+        {
+          "company_name": "GovDash",
+          "team_size": 14
+        },
+        {
+          "company_name": "The Ankler",
+          "team_size": 2
+        },
+        {
+          "company_name": "Fleek",
+          "team_size": 3
+        },
+        {
+          "company_name": "Shaped",
+          "team_size": 12
+        },
+        {
+          "company_name": "Joon Health",
+          "team_size": 10
+        },
+        {
+          "company_name": "DimOrder",
+          "team_size": 70
+        },
+        {
+          "company_name": "AntWalk",
+          "team_size": 50
+        },
+        {
+          "company_name": "Curacel",
+          "team_size": 30
+        },
+        {
+          "company_name": "digiventures",
+          "team_size": 30
+        },
+        {
+          "company_name": "Complete",
+          "team_size": 5
+        },
+        {
+          "company_name": "Siftly",
+          "team_size": 2
+        }
+      ],
+      "W23": [
+        {
+          "company_name": "Interlock",
+          "team_size": 2
+        },
+        {
+          "company_name": "Viddy",
+          "team_size": 2
+        },
+        {
+          "company_name": "Versori",
+          "team_size": 16
+        },
+        {
+          "company_name": "SelectIQ",
+          "team_size": 2
+        },
+        {
+          "company_name": "Palomma",
+          "team_size": 5
+        },
+        {
+          "company_name": "Athina AI",
+          "team_size": 5
+        },
+        {
+          "company_name": "Cloudchipr",
+          "team_size": 8
+        },
+        {
+          "company_name": "Floworks",
+          "team_size": 20
+        },
+        {
+          "company_name": "Relace",
+          "team_size": 2
+        },
+        {
+          "company_name": "Iliad",
+          "team_size": 1
+        },
+        {
+          "company_name": "Propexo",
+          "team_size": 6
+        },
+        {
+          "company_name": "Truewind",
+          "team_size": 12
+        },
+        {
+          "company_name": "TableFlow",
+          "team_size": 2
+        },
+        {
+          "company_name": "IcePanel",
+          "team_size": 6
+        },
+        {
+          "company_name": "Sage AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Hadrius",
+          "team_size": 11
+        },
+        {
+          "company_name": "Clueso",
+          "team_size": 3
+        },
+        {
+          "company_name": "Retape",
+          "team_size": 3
+        },
+        {
+          "company_name": "iNRI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Mantys",
+          "team_size": 12
+        },
+        {
+          "company_name": "Milio",
+          "team_size": 16
+        },
+        {
+          "company_name": "Sanvivo",
+          "team_size": 4
+        },
+        {
+          "company_name": "inBuild",
+          "team_size": 12
+        },
+        {
+          "company_name": "Littio",
+          "team_size": 28
+        },
+        {
+          "company_name": "Fern",
+          "team_size": 12
+        },
+        {
+          "company_name": "SuperAPI",
+          "team_size": 2
+        },
+        {
+          "company_name": "CodeParrot AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Vellum",
+          "team_size": 3
+        },
+        {
+          "company_name": "Wallbit",
+          "team_size": 17
+        },
+        {
+          "company_name": "Pier",
+          "team_size": 12
+        },
+        {
+          "company_name": "Vector",
+          "team_size": 2
+        },
+        {
+          "company_name": "OpenInt",
+          "team_size": 4
+        }
+      ],
+      "W24": [
+        {
+          "company_name": "Centauri AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "ProSights",
+          "team_size": 14
+        },
+        {
+          "company_name": "InQuery",
+          "team_size": 4
+        },
+        {
+          "company_name": "Terrakotta",
+          "team_size": 3
+        },
+        {
+          "company_name": "Vista Power",
+          "team_size": 3
+        },
+        {
+          "company_name": "Copper Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "TokenOwl",
+          "team_size": 2
+        },
+        {
+          "company_name": "Veles",
+          "team_size": 3
+        },
+        {
+          "company_name": "CommodityAI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Silogy",
+          "team_size": 3
+        },
+        {
+          "company_name": "Reform",
+          "team_size": 4
+        },
+        {
+          "company_name": "Konstructly",
+          "team_size": 6
+        },
+        {
+          "company_name": "The New Money Company",
+          "team_size": 4
+        },
+        {
+          "company_name": "malibou",
+          "team_size": 2
+        },
+        {
+          "company_name": "Quary",
+          "team_size": 2
+        },
+        {
+          "company_name": "Newton",
+          "team_size": 2
+        },
+        {
+          "company_name": "Duckie",
+          "team_size": 2
+        },
+        {
+          "company_name": "Greptile",
+          "team_size": 6
+        }
+      ]
+    }
+  },
+  "Aaron Epstein": {
+    "bybatch": {
+      "S20": [
+        {
+          "company_name": "Explorex",
+          "team_size": 18
+        },
+        {
+          "company_name": "Hypotenuse AI",
+          "team_size": 10
+        },
+        {
+          "company_name": "Humanloop",
+          "team_size": 14
+        },
+        {
+          "company_name": "Blissway",
+          "team_size": 17
+        },
+        {
+          "company_name": "doola",
+          "team_size": 43
+        },
+        {
+          "company_name": "Daybreak Health",
+          "team_size": 20
+        },
+        {
+          "company_name": "Vitable Health",
+          "team_size": 28
+        },
+        {
+          "company_name": "WareIQ",
+          "team_size": 50
+        },
+        {
+          "company_name": "Decentro",
+          "team_size": 60
+        },
+        {
+          "company_name": "Notabene",
+          "team_size": 33
+        },
+        {
+          "company_name": "Flint",
+          "team_size": 20
+        },
+        {
+          "company_name": "Scrimba",
+          "team_size": 6
+        },
+        {
+          "company_name": "Laylo",
+          "team_size": 12
+        },
+        {
+          "company_name": "HENRY",
+          "team_size": 100
+        },
+        {
+          "company_name": "Quell",
+          "team_size": 40
+        },
+        {
+          "company_name": "Atmos",
+          "team_size": 30
+        },
+        {
+          "company_name": "Verifiable",
+          "team_size": 12
+        },
+        {
+          "company_name": "Arist",
+          "team_size": 23
+        },
+        {
+          "company_name": "Thndr",
+          "team_size": 25
+        },
+        {
+          "company_name": "Luminai",
+          "team_size": 31
+        },
+        {
+          "company_name": "Datafold",
+          "team_size": 24
+        }
+      ],
+      "S21": [
+        {
+          "company_name": "Cartpanda",
+          "team_size": 60
+        },
+        {
+          "company_name": "Formance",
+          "team_size": 14
+        },
+        {
+          "company_name": "Whalesync",
+          "team_size": 4
+        },
+        {
+          "company_name": "Kodda",
+          "team_size": 7
+        },
+        {
+          "company_name": "Protex AI",
+          "team_size": 5
+        },
+        {
+          "company_name": "Whaly",
+          "team_size": 3
+        },
+        {
+          "company_name": "Floatpays Inc",
+          "team_size": 15
+        },
+        {
+          "company_name": "Ancana",
+          "team_size": 7
+        },
+        {
+          "company_name": "Examedi",
+          "team_size": 3
+        },
+        {
+          "company_name": "Mach9",
+          "team_size": 15
+        },
+        {
+          "company_name": "Noloco",
+          "team_size": 5
+        },
+        {
+          "company_name": "Storylane",
+          "team_size": 40
+        },
+        {
+          "company_name": "Turion Space",
+          "team_size": 15
+        },
+        {
+          "company_name": "Advantage Club",
+          "team_size": 220
+        },
+        {
+          "company_name": "DolarApp",
+          "team_size": 26
+        },
+        {
+          "company_name": "Artillery",
+          "team_size": 5
+        },
+        {
+          "company_name": "Chipax",
+          "team_size": 37
+        },
+        {
+          "company_name": "Amenli",
+          "team_size": 65
+        },
+        {
+          "company_name": "Locale",
+          "team_size": 22
+        },
+        {
+          "company_name": "Koshex",
+          "team_size": 21
+        }
+      ],
+      "S22": [
+        {
+          "company_name": "Stellar",
+          "team_size": 3
+        },
+        {
+          "company_name": "Dev Tools AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Devyce",
+          "team_size": 14
+        },
+        {
+          "company_name": "Pasito",
+          "team_size": 15
+        },
+        {
+          "company_name": "Tranch",
+          "team_size": 11
+        },
+        {
+          "company_name": "Blee",
+          "team_size": 6
+        },
+        {
+          "company_name": "Chowdeck",
+          "team_size": 14
+        },
+        {
+          "company_name": "Kamion",
+          "team_size": 35
+        },
+        {
+          "company_name": "autone",
+          "team_size": 20
+        },
+        {
+          "company_name": "Krave Mart",
+          "team_size": 80
+        },
+        {
+          "company_name": "Unthread",
+          "team_size": 4
+        },
+        {
+          "company_name": "Anchor",
+          "team_size": 8
+        }
+      ],
+      "S23": [
+        {
+          "company_name": "Upstream",
+          "team_size": 2
+        },
+        {
+          "company_name": "VetRec",
+          "team_size": 8
+        },
+        {
+          "company_name": "Briefer",
+          "team_size": 2
+        },
+        {
+          "company_name": "Campfire",
+          "team_size": 4
+        },
+        {
+          "company_name": "Alguna",
+          "team_size": 5
+        },
+        {
+          "company_name": "Accend",
+          "team_size": 3
+        },
+        {
+          "company_name": "Cercli",
+          "team_size": 10
+        },
+        {
+          "company_name": "Branch AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Kobalt Labs",
+          "team_size": 2
+        },
+        {
+          "company_name": "gleam",
+          "team_size": 2
+        },
+        {
+          "company_name": "Fragment",
+          "team_size": 2
+        },
+        {
+          "company_name": "Langdock",
+          "team_size": 10
+        },
+        {
+          "company_name": "Roame",
+          "team_size": 3
+        },
+        {
+          "company_name": "Curatle",
+          "team_size": 1
+        }
+      ],
+      "S24": [
+        {
+          "company_name": "Melty",
+          "team_size": 2
+        },
+        {
+          "company_name": "Anglera",
+          "team_size": 2
+        },
+        {
+          "company_name": "Henry",
+          "team_size": 3
+        },
+        {
+          "company_name": "Hey Revia",
+          "team_size": 4
+        },
+        {
+          "company_name": "Ficra",
+          "team_size": 2
+        },
+        {
+          "company_name": "Elayne",
+          "team_size": 2
+        },
+        {
+          "company_name": "Argil",
+          "team_size": 8
+        },
+        {
+          "company_name": "Thunder Compute",
+          "team_size": 3
+        },
+        {
+          "company_name": "Kura AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Seals AI",
+          "team_size": 4
+        },
+        {
+          "company_name": "Planbase",
+          "team_size": 2
+        },
+        {
+          "company_name": "Snowpilot",
+          "team_size": 2
+        },
+        {
+          "company_name": "Zuni",
+          "team_size": 2
+        },
+        {
+          "company_name": "Decisional AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Bayesline",
+          "team_size": 2
+        },
+        {
+          "company_name": "Theseus",
+          "team_size": 3
+        },
+        {
+          "company_name": "Simplex",
+          "team_size": 2
+        }
+      ],
+      "W19": [
+        {
+          "company_name": "GoLinks",
+          "team_size": 70
+        }
+      ],
+      "W20": [
+        {
+          "company_name": "Metaplane",
+          "team_size": 12
+        },
+        {
+          "company_name": "Vital",
+          "team_size": 10
+        },
+        {
+          "company_name": "Raycast",
+          "team_size": 27
+        },
+        {
+          "company_name": "Jitter",
+          "team_size": 7
+        }
+      ],
+      "W21": [
+        {
+          "company_name": "clicOH",
+          "team_size": 155
+        },
+        {
+          "company_name": "ControlHub",
+          "team_size": 22
+        },
+        {
+          "company_name": "Darrow",
+          "team_size": 95
+        },
+        {
+          "company_name": "Care Weather",
+          "team_size": 2
+        },
+        {
+          "company_name": "Noya",
+          "team_size": 12
+        },
+        {
+          "company_name": "Triplit",
+          "team_size": 3
+        },
+        {
+          "company_name": "Hapi",
+          "team_size": 45
+        },
+        {
+          "company_name": "DreamWorld",
+          "team_size": 20
+        },
+        {
+          "company_name": "Runway",
+          "team_size": 18
+        },
+        {
+          "company_name": "Webiny",
+          "team_size": 6
+        },
+        {
+          "company_name": "Kiwify",
+          "team_size": 200
+        },
+        {
+          "company_name": "Shepherd",
+          "team_size": 12
+        },
+        {
+          "company_name": "Spline",
+          "team_size": 25
+        },
+        {
+          "company_name": "Svix",
+          "team_size": 12
+        },
+        {
+          "company_name": "Houm",
+          "team_size": 400
+        },
+        {
+          "company_name": "Z1",
+          "team_size": 80
+        },
+        {
+          "company_name": "Stayflexi",
+          "team_size": 43
+        },
+        {
+          "company_name": "Feroot Security",
+          "team_size": 24
+        },
+        {
+          "company_name": "Phoenix",
+          "team_size": 20
+        },
+        {
+          "company_name": "BotBuilt",
+          "team_size": 8
+        },
+        {
+          "company_name": "unSurvey",
+          "team_size": 8
+        },
+        {
+          "company_name": "Stoke Space",
+          "team_size": 85
+        },
+        {
+          "company_name": "Mayan",
+          "team_size": 40
+        }
+      ],
+      "W22": [
+        {
+          "company_name": "Sphere",
+          "team_size": 7
+        },
+        {
+          "company_name": "SnapTrade",
+          "team_size": 17
+        },
+        {
+          "company_name": "Hyperbeam",
+          "team_size": 3
+        },
+        {
+          "company_name": "Vendoo",
+          "team_size": 55
+        },
+        {
+          "company_name": "Wagetap",
+          "team_size": 10
+        },
+        {
+          "company_name": "Kapital Bank",
+          "team_size": 500
+        },
+        {
+          "company_name": "Redbird",
+          "team_size": 0
+        },
+        {
+          "company_name": "Wyvern",
+          "team_size": 26
+        },
+        {
+          "company_name": "Ole",
+          "team_size": 10
+        },
+        {
+          "company_name": "TradeX",
+          "team_size": 31
+        },
+        {
+          "company_name": "Massdriver",
+          "team_size": 11
+        },
+        {
+          "company_name": "Lizza",
+          "team_size": 7
+        },
+        {
+          "company_name": "Seis",
+          "team_size": 17
+        },
+        {
+          "company_name": "EasyCode",
+          "team_size": 2
+        },
+        {
+          "company_name": "Trusty",
+          "team_size": 6
+        },
+        {
+          "company_name": "Spade",
+          "team_size": 13
+        },
+        {
+          "company_name": "Fogbender",
+          "team_size": 6
+        },
+        {
+          "company_name": "Ponyrun",
+          "team_size": 3
+        },
+        {
+          "company_name": "Fello",
+          "team_size": 24
+        },
+        {
+          "company_name": "Cash Flow Portal",
+          "team_size": 19
+        },
+        {
+          "company_name": "FinFlx",
+          "team_size": 8
+        },
+        {
+          "company_name": "Cotera",
+          "team_size": 5
+        }
+      ],
+      "W23": [
+        {
+          "company_name": "OutSail Technologies",
+          "team_size": 3
+        },
+        {
+          "company_name": "Cardinal",
+          "team_size": 3
+        },
+        {
+          "company_name": "Laminate",
+          "team_size": 0
+        },
+        {
+          "company_name": "Traceloop",
+          "team_size": 6
+        },
+        {
+          "company_name": "Latent",
+          "team_size": 12
+        },
+        {
+          "company_name": "Trackstar",
+          "team_size": 6
+        },
+        {
+          "company_name": "Versive",
+          "team_size": 3
+        },
+        {
+          "company_name": "Narrative",
+          "team_size": 3
+        },
+        {
+          "company_name": "Bluedot",
+          "team_size": 11
+        },
+        {
+          "company_name": "Ruuf",
+          "team_size": 23
+        },
+        {
+          "company_name": "GoodCourse",
+          "team_size": 8
+        },
+        {
+          "company_name": "Storyboarder",
+          "team_size": 2
+        },
+        {
+          "company_name": "Berilium",
+          "team_size": 3
+        },
+        {
+          "company_name": "Ariglad",
+          "team_size": 4
+        },
+        {
+          "company_name": "222",
+          "team_size": 6
+        },
+        {
+          "company_name": "Pointwise",
+          "team_size": 3
+        },
+        {
+          "company_name": "Hona",
+          "team_size": 48
+        },
+        {
+          "company_name": "Peeba",
+          "team_size": 30
+        },
+        {
+          "company_name": "Muffin Data",
+          "team_size": 2
+        },
+        {
+          "company_name": "Keep",
+          "team_size": 5
+        },
+        {
+          "company_name": "Stralis Aircraft",
+          "team_size": 4
+        },
+        {
+          "company_name": "Common Paper",
+          "team_size": 9
+        },
+        {
+          "company_name": "Serial",
+          "team_size": 2
+        },
+        {
+          "company_name": "Persana AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Meru",
+          "team_size": 3
+        },
+        {
+          "company_name": "Type",
+          "team_size": 3
+        },
+        {
+          "company_name": "BerriAI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Metal",
+          "team_size": 5
+        }
+      ]
+    }
+  },
+  "Tom Blomfield": {
+    "bybatch": {
+      "S22": [
+        {
+          "company_name": "Argovox",
+          "team_size": 3
+        },
+        {
+          "company_name": "TrueBiz",
+          "team_size": 6
+        },
+        {
+          "company_name": "Invofox",
+          "team_size": 12
+        },
+        {
+          "company_name": "Avina",
+          "team_size": 5
+        },
+        {
+          "company_name": "nsave",
+          "team_size": 15
+        }
+      ],
+      "S23": [
+        {
+          "company_name": "CareOasis",
+          "team_size": 2
+        },
+        {
+          "company_name": "Greenlite",
+          "team_size": 6
+        },
+        {
+          "company_name": "Guac",
+          "team_size": 5
+        },
+        {
+          "company_name": "Kite",
+          "team_size": 2
+        },
+        {
+          "company_name": "Subsets",
+          "team_size": 5
+        },
+        {
+          "company_name": "Solve Intelligence",
+          "team_size": 9
+        },
+        {
+          "company_name": "askLio",
+          "team_size": 3
+        },
+        {
+          "company_name": "Readily",
+          "team_size": 0
+        },
+        {
+          "company_name": "Remy",
+          "team_size": 4
+        },
+        {
+          "company_name": "Hyperbound",
+          "team_size": 10
+        },
+        {
+          "company_name": "Unhaze",
+          "team_size": 6
+        },
+        {
+          "company_name": "Pincites",
+          "team_size": 3
+        },
+        {
+          "company_name": "Tiptap",
+          "team_size": 15
+        },
+        {
+          "company_name": "Eden Care",
+          "team_size": 28
+        },
+        {
+          "company_name": "innkeeper",
+          "team_size": 2
+        },
+        {
+          "company_name": "Coba",
+          "team_size": 9
+        },
+        {
+          "company_name": "CatX",
+          "team_size": 2
+        },
+        {
+          "company_name": "Healthtech 1",
+          "team_size": 13
+        }
+      ],
+      "S24": [
+        {
+          "company_name": "Rastro",
+          "team_size": 3
+        },
+        {
+          "company_name": "Kontigo",
+          "team_size": 10
+        },
+        {
+          "company_name": "Remo",
+          "team_size": 2
+        },
+        {
+          "company_name": "Lumen Orbit",
+          "team_size": 4
+        },
+        {
+          "company_name": "Odo",
+          "team_size": 2
+        },
+        {
+          "company_name": "Winford Wealth",
+          "team_size": 3
+        },
+        {
+          "company_name": "Cartage",
+          "team_size": 8
+        },
+        {
+          "company_name": "Exa Laboratories",
+          "team_size": 2
+        },
+        {
+          "company_name": "Entangl",
+          "team_size": 3
+        },
+        {
+          "company_name": "SchemeFlow",
+          "team_size": 4
+        },
+        {
+          "company_name": "Intryc",
+          "team_size": 10
+        },
+        {
+          "company_name": "Remade",
+          "team_size": 4
+        },
+        {
+          "company_name": "Conductor Quantum",
+          "team_size": 2
+        },
+        {
+          "company_name": "Unriddle",
+          "team_size": 4
+        },
+        {
+          "company_name": "Saturn",
+          "team_size": 8
+        },
+        {
+          "company_name": "Taxo",
+          "team_size": 8
+        },
+        {
+          "company_name": "Conveo",
+          "team_size": 5
+        },
+        {
+          "company_name": "Mito Health",
+          "team_size": 8
+        },
+        {
+          "company_name": "Lighthouz AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "ClaimSorted",
+          "team_size": 20
+        },
+        {
+          "company_name": "Educato AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Undermind",
+          "team_size": 2
+        },
+        {
+          "company_name": "Domu Technology Inc.",
+          "team_size": 5
+        },
+        {
+          "company_name": "Apten",
+          "team_size": 2
+        },
+        {
+          "company_name": "Spherecast",
+          "team_size": 5
+        }
+      ],
+      "W19": [
+        {
+          "company_name": "NALA",
+          "team_size": 124
+        }
+      ],
+      "W22": [
+        {
+          "company_name": "Flagright",
+          "team_size": 20
+        },
+        {
+          "company_name": "Complif",
+          "team_size": 45
+        },
+        {
+          "company_name": "Valari",
+          "team_size": 3
+        },
+        {
+          "company_name": "Kaso",
+          "team_size": 50
+        },
+        {
+          "company_name": "Vance",
+          "team_size": 14
+        },
+        {
+          "company_name": "Dynamo AI",
+          "team_size": 40
+        },
+        {
+          "company_name": "Sei",
+          "team_size": 0
+        },
+        {
+          "company_name": "AiSupervision",
+          "team_size": 13
+        },
+        {
+          "company_name": "SNAB",
+          "team_size": 6
+        },
+        {
+          "company_name": "Numida",
+          "team_size": 115
+        },
+        {
+          "company_name": "Hydra",
+          "team_size": 6
+        },
+        {
+          "company_name": "PayCaddy",
+          "team_size": 20
+        },
+        {
+          "company_name": "PermitFlow",
+          "team_size": 50
+        }
+      ],
+      "W24": [
+        {
+          "company_name": "Givefront",
+          "team_size": 2
+        },
+        {
+          "company_name": "Cleva",
+          "team_size": 13
+        },
+        {
+          "company_name": "Tensorfuse",
+          "team_size": 2
+        },
+        {
+          "company_name": "Toma",
+          "team_size": 4
+        },
+        {
+          "company_name": "Carma",
+          "team_size": 11
+        },
+        {
+          "company_name": "CodeAnt AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Draftaid",
+          "team_size": 3
+        },
+        {
+          "company_name": "Metofico",
+          "team_size": 2
+        },
+        {
+          "company_name": "Salvy",
+          "team_size": 12
+        },
+        {
+          "company_name": "Infinity",
+          "team_size": 4
+        },
+        {
+          "company_name": "Markprompt",
+          "team_size": 2
+        },
+        {
+          "company_name": "Triply",
+          "team_size": 18
+        },
+        {
+          "company_name": "camelAI",
+          "team_size": 3
+        },
+        {
+          "company_name": "Rove",
+          "team_size": 4
+        },
+        {
+          "company_name": "Fluently",
+          "team_size": 2
+        },
+        {
+          "company_name": "Miden",
+          "team_size": 19
+        },
+        {
+          "company_name": "Senso",
+          "team_size": 2
+        },
+        {
+          "company_name": "FurtherAI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Aidy",
+          "team_size": 2
+        },
+        {
+          "company_name": "Forge",
+          "team_size": 3
+        },
+        {
+          "company_name": "Driver AI",
+          "team_size": 11
+        },
+        {
+          "company_name": "Yenmo",
+          "team_size": 5
+        },
+        {
+          "company_name": "GovernGPT",
+          "team_size": 2
+        }
+      ]
+    }
+  },
+  "Surbhi Sarna": {
+    "bybatch": {
+      "S22": [
+        {
+          "company_name": "Albiware Inc.",
+          "team_size": 12
+        },
+        {
+          "company_name": "Clinikally",
+          "team_size": 76
+        },
+        {
+          "company_name": "Cisterna Biologics",
+          "team_size": 2
+        },
+        {
+          "company_name": "Birch Biosciences",
+          "team_size": 10
+        },
+        {
+          "company_name": "Serinus Biosciences",
+          "team_size": 6
+        },
+        {
+          "company_name": "Signatur Biosciences",
+          "team_size": 5
+        },
+        {
+          "company_name": "Disclo",
+          "team_size": 10
+        },
+        {
+          "company_name": "ALT TEX",
+          "team_size": 10
+        },
+        {
+          "company_name": "Illuminant Surgical",
+          "team_size": 6
+        },
+        {
+          "company_name": "Maverick BioMetals",
+          "team_size": 9
+        },
+        {
+          "company_name": "Malama Health",
+          "team_size": 3
+        },
+        {
+          "company_name": "Ten Lives",
+          "team_size": 4
+        },
+        {
+          "company_name": "Morf Health",
+          "team_size": 6
+        },
+        {
+          "company_name": "iollo",
+          "team_size": 3
+        },
+        {
+          "company_name": "Guardian Bio",
+          "team_size": 2
+        },
+        {
+          "company_name": "InVision Medical Technology",
+          "team_size": 2
+        },
+        {
+          "company_name": "Delfino AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Knowtex",
+          "team_size": 0
+        },
+        {
+          "company_name": "Relevium Medical",
+          "team_size": 5
+        },
+        {
+          "company_name": "Lamin",
+          "team_size": 6
+        },
+        {
+          "company_name": "Almond",
+          "team_size": 8
+        }
+      ],
+      "S23": [
+        {
+          "company_name": "LifestyleRx",
+          "team_size": 9
+        },
+        {
+          "company_name": "Empirical Health",
+          "team_size": 5
+        },
+        {
+          "company_name": "Fortuna Health",
+          "team_size": 6
+        },
+        {
+          "company_name": "MediSearch",
+          "team_size": 4
+        },
+        {
+          "company_name": "Cleancard",
+          "team_size": 8
+        },
+        {
+          "company_name": "Decoda Health",
+          "team_size": 4
+        },
+        {
+          "company_name": "Health Harbor",
+          "team_size": 4
+        },
+        {
+          "company_name": "Shasta Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "MICSI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Ohmic Biosciences",
+          "team_size": 2
+        },
+        {
+          "company_name": "Stellar Sleep",
+          "team_size": 5
+        },
+        {
+          "company_name": "Synaptiq",
+          "team_size": 3
+        },
+        {
+          "company_name": "MantleBio",
+          "team_size": 7
+        },
+        {
+          "company_name": "Andromeda Surgical",
+          "team_size": 10
+        },
+        {
+          "company_name": "Elythea",
+          "team_size": 2
+        },
+        {
+          "company_name": "Nanograb",
+          "team_size": 3
+        },
+        {
+          "company_name": "Certainly Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "Cair Health",
+          "team_size": 6
+        },
+        {
+          "company_name": "Simbie AI",
+          "team_size": 4
+        },
+        {
+          "company_name": "Wattson Health",
+          "team_size": 3
+        },
+        {
+          "company_name": "Olio Labs",
+          "team_size": 5
+        },
+        {
+          "company_name": "Flair Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "Feanix Biotechnologies",
+          "team_size": 5
+        }
+      ],
+      "S24": [
+        {
+          "company_name": "Syntra",
+          "team_size": 2
+        },
+        {
+          "company_name": "Vera Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "Finosu",
+          "team_size": 2
+        },
+        {
+          "company_name": "Baseline AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "Brighterway",
+          "team_size": 4
+        },
+        {
+          "company_name": "Biocartesian",
+          "team_size": 2
+        },
+        {
+          "company_name": "Lumenary",
+          "team_size": 4
+        },
+        {
+          "company_name": "Redouble AI",
+          "team_size": 3
+        },
+        {
+          "company_name": "1849 bio",
+          "team_size": 3
+        },
+        {
+          "company_name": "ReactWise",
+          "team_size": 2
+        },
+        {
+          "company_name": "Kopra Bio",
+          "team_size": 2
+        },
+        {
+          "company_name": "AminoAnalytica",
+          "team_size": 3
+        },
+        {
+          "company_name": "mdhub",
+          "team_size": 6
+        },
+        {
+          "company_name": "Ply Health",
+          "team_size": 3
+        },
+        {
+          "company_name": "Evolvere BioSciences",
+          "team_size": 3
+        },
+        {
+          "company_name": "Ligo Biosciences",
+          "team_size": 4
+        },
+        {
+          "company_name": "ACX",
+          "team_size": 2
+        },
+        {
+          "company_name": "Poka Labs",
+          "team_size": 2
+        }
+      ],
+      "W19": [
+        {
+          "company_name": "YourChoice Therapeutics",
+          "team_size": 3
+        }
+      ],
+      "W21": [
+        {
+          "company_name": "Auricle",
+          "team_size": 2
+        }
+      ],
+      "W23": [
+        {
+          "company_name": "Lavo Life Sciences",
+          "team_size": 3
+        },
+        {
+          "company_name": "Glass Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "Pledge Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "Scanbase",
+          "team_size": 3
+        },
+        {
+          "company_name": "Kivo Health",
+          "team_size": 5
+        },
+        {
+          "company_name": "Orchid",
+          "team_size": 4
+        },
+        {
+          "company_name": "Vitalize Care",
+          "team_size": 13
+        },
+        {
+          "company_name": "Diffuse Bio",
+          "team_size": 10
+        },
+        {
+          "company_name": "Persist AI",
+          "team_size": 6
+        },
+        {
+          "company_name": "Untether Labs",
+          "team_size": 6
+        },
+        {
+          "company_name": "Adventris Pharmaceuticals",
+          "team_size": 7
+        },
+        {
+          "company_name": "Invitris",
+          "team_size": 6
+        },
+        {
+          "company_name": "Modulari-T",
+          "team_size": 4
+        },
+        {
+          "company_name": "Pando Bioscience",
+          "team_size": 5
+        },
+        {
+          "company_name": "Edge",
+          "team_size": 2
+        }
+      ],
+      "W24": [
+        {
+          "company_name": "Oma Care",
+          "team_size": 2
+        },
+        {
+          "company_name": "Artos",
+          "team_size": 2
+        },
+        {
+          "company_name": "Tamarind Bio",
+          "team_size": 2
+        },
+        {
+          "company_name": "Velorum Therapeutics",
+          "team_size": 3
+        },
+        {
+          "company_name": "Clarion",
+          "team_size": 2
+        },
+        {
+          "company_name": "Attunement",
+          "team_size": 2
+        },
+        {
+          "company_name": "Selera Medical",
+          "team_size": 2
+        },
+        {
+          "company_name": "Mango Health",
+          "team_size": 2
+        },
+        {
+          "company_name": "SynsoryBio",
+          "team_size": 2
+        },
+        {
+          "company_name": "Yoneda Labs",
+          "team_size": 3
+        },
+        {
+          "company_name": "Verse Therapy",
+          "team_size": 3
+        },
+        {
+          "company_name": "Eris Biotech",
+          "team_size": 2
+        },
+        {
+          "company_name": "Junction Bioscience",
+          "team_size": 1
+        },
+        {
+          "company_name": "Piramidal",
+          "team_size": 2
+        },
+        {
+          "company_name": "Paradigm",
+          "team_size": 3
+        },
+        {
+          "company_name": "Healia",
+          "team_size": 5
+        },
+        {
+          "company_name": "Haplotype Labs",
+          "team_size": 1
+        },
+        {
+          "company_name": "Granza Bio",
+          "team_size": 5
+        },
+        {
+          "company_name": "Delve",
+          "team_size": 7
+        },
+        {
+          "company_name": "Kabilah",
+          "team_size": 0
+        },
+        {
+          "company_name": "Sonia",
+          "team_size": 3
+        },
+        {
+          "company_name": "Scritch",
+          "team_size": 2
+        },
+        {
+          "company_name": "RadMate AI",
+          "team_size": 2
+        },
+        {
+          "company_name": "ParcelBio",
+          "team_size": 5
+        },
+        {
+          "company_name": "Blume Benefits",
+          "team_size": 3
+        }
+      ]
+    }
+  }
+}

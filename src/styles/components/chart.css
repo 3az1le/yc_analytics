@@ -16,6 +16,8 @@
   /* Fixed height for each chart */
   position: relative;
   z-index: 1;
+  height: 600px;
+  margin: 2rem 0;
 }
 
 .chart-main-container {
@@ -417,4 +419,40 @@
 
 .legend-item-color.dimmed {
   opacity: 0.2;
+}
+
+.partner-node circle {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.partner-node:hover circle {
+  opacity: 0.9;
+}
+
+.partner-node text {
+  font-size: 12px;
+  pointer-events: none;
+  text-shadow: 0 1px 0 #000, 1px 0 0 #000, 0 -1px 0 #000, -1px 0 0 #000;
+}
+
+.company-node {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.company-node:hover {
+  opacity: 0.8;
+}
+
+.chart-tooltip {
+  position: absolute;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 100;
+  visibility: hidden;
 }

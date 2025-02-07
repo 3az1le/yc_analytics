@@ -8,6 +8,7 @@ import CompanyChart from '@/components/CompanyChart'
 import YearRangeSlider from '@/components/YearRangeSlider'
 import DensityMap from '@/components/DensityMap'
 import ChartHeader from '@/components/ChartHeader'
+import PartnersChart from '@/components/PartnersChart'
 import Footer from '@/components/Footer'
 import '@/styles/main.css'
 import { debounce } from 'lodash'
@@ -37,23 +38,42 @@ export default function Home() {
     setDataType(newDataType)
   }, [])
 
+  // Create scroll handler
+  const handleScroll = useCallback(
+    debounce(() => {
+      const stackedChart = document.querySelector('.visualization-container')
+      const mapContainer = document.querySelector('.map-container')
+      
+      if (stackedChart && mapContainer) {
+        const stackedRect = stackedChart.getBoundingClientRect()
+        const mapRect = mapContainer.getBoundingClientRect()
+        
+        // Show slider if either stacked chart or map is in view
+        const stackedInView = stackedRect.top <= window.innerHeight && stackedRect.bottom >= 0
+        const mapInView = mapRect.top <= window.innerHeight && mapRect.bottom >= 0
+        
+        setIsSliderVisible(stackedInView || mapInView)
+      }
+    }, 100),
+    []
+  )
+
   // Initialize scroll handler
   useEffect(() => {
-    const handleScroll = debounce(() => {
-      const firstChart = document.querySelector('.chart-wrapper')
-      if (firstChart) {
-        const rect = firstChart.getBoundingClientRect()
-        setIsSliderVisible(rect.top <= window.innerHeight && rect.bottom >= 0)
-      }
-    }, 100)
-
     window.addEventListener('scroll', handleScroll)
-    handleScroll()
     return () => {
       window.removeEventListener('scroll', handleScroll)
       handleScroll.cancel()
     }
-  }, [])
+  }, [handleScroll])
+
+  // Check visibility when data is loaded
+  useEffect(() => {
+    if (!isLoading && processedData) {
+      // Wait a bit for the DOM to update
+      setTimeout(handleScroll, 100)
+    }
+  }, [isLoading, processedData, handleScroll])
 
   if (isLoading || !processedData) {
     return (
@@ -87,6 +107,11 @@ export default function Home() {
             title="Distribution Over Time"
             type="stacked-area"
             dataType={dataType}
+          />
+        </div>
+        <div className="partners-visualization-container">
+          <PartnersChart
+            data={processedData.partnersStats}
           />
         </div>
         <div className='map-container'>

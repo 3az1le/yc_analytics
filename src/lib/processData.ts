@@ -1,4 +1,5 @@
 import importedData from '@/data/stats.json'
+import partnersData from '@/data/partners_stats.json'
 
 // Define the data imported from stats.json
 type ImportedData = {
@@ -33,6 +34,7 @@ export type BatchData = {
 
 export type ProcessedData = {
   byBatch: BatchData[];
+  partnersStats: typeof partnersData;
 }
 
 
@@ -156,7 +158,8 @@ export function processData(startDate: string, endDate: string, minCompanies: nu
   })
 
   return {
-    byBatch: processedBatchData
+    byBatch: processedBatchData,
+    partnersStats: partnersData
   }
 }
 

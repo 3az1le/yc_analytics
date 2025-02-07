@@ -32,7 +32,6 @@
   font-size: 3rem;
   font-weight: 700;
   max-width: 800px;
-  margin: 0 auto;
   position: relative;
   z-index: 2;
   line-height: 1.2;
@@ -43,7 +42,6 @@
   font-size: 1.25rem;
   font-weight: 400;
   max-width: 600px;
-  margin: 0 auto;
   position: relative;
   z-index: 2;
   opacity: 0.9;
