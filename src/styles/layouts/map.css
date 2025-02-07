@@ -6,7 +6,6 @@
   padding: var(--spacing-md);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
   background: white;
 }
 

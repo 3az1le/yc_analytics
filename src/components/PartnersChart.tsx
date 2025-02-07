@@ -39,9 +39,10 @@ interface PartnersData {
 
 interface PartnersChartProps {
   data: PartnersData;
+  dateRange: [number, number];
 }
 
-const PartnersChart = ({ data }: PartnersChartProps) => {
+const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const simulationRef = useRef<d3.Simulation<any, undefined> | null>(null);
@@ -68,11 +69,16 @@ const PartnersChart = ({ data }: PartnersChartProps) => {
     const mainGroup = svg.append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    // Process data
+    // Process and filter data based on date range
     const partners = Object.entries(data).map(([name, partnerData]) => {
-      const companies = Object.values(partnerData.bybatch).flat();
+      const companies = Object.entries(partnerData.bybatch)
+        .filter(([batchName]) => {
+          const year = 2000 + parseInt(batchName.slice(-2));
+          return year >= dateRange[0] && year <= dateRange[1];
+        })
+        .flatMap(([_, companies]) => companies);
       return { name, companies };
-    });
+    }).filter(partner => partner.companies.length > 0); // Remove partners with no companies in range
 
     // Create color scale
     const colorScale = d3.scaleOrdinal()
@@ -283,18 +289,29 @@ const PartnersChart = ({ data }: PartnersChartProps) => {
       observer.disconnect();
       tooltip.remove();
     };
-  }, [data]);
+  }, [data, dateRange]);
 
   // Create legend component
   const Legend = () => {
-    const partners = Object.keys(data);
+    // Filter partners to only show those with companies in the selected date range
+    const activePartners = Object.entries(data)
+      .filter(([_, partnerData]) => {
+        const hasCompaniesInRange = Object.entries(partnerData.bybatch)
+          .some(([batchName]) => {
+            const year = 2000 + parseInt(batchName.slice(-2));
+            return year >= dateRange[0] && year <= dateRange[1];
+          });
+        return hasCompaniesInRange;
+      })
+      .map(([name]) => name);
+
     const colorScale = d3.scaleOrdinal()
-      .domain(partners.map((_, i) => i.toString()))
+      .domain(activePartners.map((_, i) => i.toString()))
       .range(orangeScale);
 
     return (
       <div className="partners-legend">
-        {partners.map((partner, i) => (
+        {activePartners.map((partner, i) => (
           <div key={partner} className="legend-item">
             <div 
               className="legend-color" 

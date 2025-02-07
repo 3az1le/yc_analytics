@@ -41,18 +41,23 @@ export default function Home() {
   // Create scroll handler
   const handleScroll = useCallback(
     debounce(() => {
-      const stackedChart = document.querySelector('.visualization-container')
-      const mapContainer = document.querySelector('.map-container')
+      const hero = document.querySelector('.hero-section')
+      const footer = document.querySelector('footer')
       
-      if (stackedChart && mapContainer) {
-        const stackedRect = stackedChart.getBoundingClientRect()
-        const mapRect = mapContainer.getBoundingClientRect()
+      if (hero && footer) {
+        const heroRect = hero.getBoundingClientRect()
+        const footerRect = footer.getBoundingClientRect()
+        const windowHeight = window.innerHeight
         
-        // Show slider if either stacked chart or map is in view
-        const stackedInView = stackedRect.top <= window.innerHeight && stackedRect.bottom >= 0
-        const mapInView = mapRect.top <= window.innerHeight && mapRect.bottom >= 0
+        // Calculate how much of the hero is visible
+        const heroVisibleHeight = Math.min(heroRect.bottom, windowHeight) - Math.max(heroRect.top, 0)
+        const heroVisiblePercentage = heroVisibleHeight / heroRect.height
         
-        setIsSliderVisible(stackedInView || mapInView)
+        // Check if footer is completely visible
+        const isFooterFullyVisible = footerRect.top <= windowHeight && footerRect.bottom <= windowHeight
+
+        // Hide slider if hero is more than 50% visible or footer is fully visible
+        setIsSliderVisible(!(heroVisiblePercentage > 0.5 || isFooterFullyVisible))
       }
     }, 100),
     []
@@ -61,6 +66,7 @@ export default function Home() {
   // Initialize scroll handler
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
+    handleScroll()
     return () => {
       window.removeEventListener('scroll', handleScroll)
       handleScroll.cancel()
@@ -70,8 +76,7 @@ export default function Home() {
   // Check visibility when data is loaded
   useEffect(() => {
     if (!isLoading && processedData) {
-      // Wait a bit for the DOM to update
-      setTimeout(handleScroll, 100)
+      setTimeout(handleScroll, 50)
     }
   }, [isLoading, processedData, handleScroll])
 
@@ -112,6 +117,7 @@ export default function Home() {
         <div className="partners-visualization-container">
           <PartnersChart
             data={processedData.partnersStats}
+            dateRange={yearRange}
           />
         </div>
         <div className='map-container'>
