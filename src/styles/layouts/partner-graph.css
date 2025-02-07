@@ -3,19 +3,31 @@
   width: 100%;
   max-width: var(--max-width-container);
   margin: 0 auto;
-  padding: var(--spacing-md);
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   background: white;
 }
 
+@media (min-width: 768px) {
+  .partners-chart-container {
+    padding: var(--spacing-md);
+  }
+}
+
 .partners-chart-wrapper {
   width: 100%;
-  height: var(--visualization-height);
+  height: 300px;
   position: relative;
   background: white;
   border-radius: var(--border-radius);
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .partners-chart-wrapper {
+    height: var(--visualization-height);
+  }
 }
 
 .partners-chart-wrapper svg {
@@ -37,22 +49,39 @@
 /* Partner Legend */
 .partners-legend {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  padding: var(--spacing-sm);
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  padding: 0.5rem;
   background: white;
   border-radius: var(--border-radius);
-  max-height: 200px;
+  max-height: 150px;
   overflow-y: auto;
+  gap: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .partners-legend {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    padding: var(--spacing-sm);
+    max-height: 200px;
+    gap: 0.5rem;
+  }
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  padding: 4px 8px;
-  font-size: 12px;
+  padding: 2px 4px;
+  font-size: 10px;
   color: black;
   transition: background-color 0.2s ease;
   border-radius: 4px;
+}
+
+@media (min-width: 768px) {
+  .legend-item {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
 }
 
 .legend-item:hover {

@@ -150,7 +150,7 @@ export default function CompanyChart({
     categories.map((category) => (
       <div
         key={category}
-        className="legend-item"
+        className="stack-area-legend-item"
         style={{
           opacity: selectedCategory && selectedCategory !== category ? 0.5 : 1,
           cursor: category === 'Other' ? 'default' : 'pointer'

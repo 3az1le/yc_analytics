@@ -1,35 +1,4 @@
 /* Stack Area Chart Styles */
-.chart-wrapper {
-  background: white;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 1.5rem;
-  width: 100%;
-  color: black;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
-  font-size: 10px;
-  position: relative;
-  z-index: 1;
-  height: 600px;
-  margin: 2rem 0;
-}
-
-.chart-container {
-  width: 100%;
-  height: 500px;
-  position: relative;
-}
-
-.chart-svg {
-  height: 100%;
-  width: 100%;
-  background: white;
-}
 
 /* Axis Styles */
 .axis {
@@ -58,15 +27,15 @@
   text-anchor: middle;
 }
 
-/* Legend Styles */
-.legend-wrapper {
+/* Stack Area Legend Styles */
+.stack-area-chart .legend-wrapper {
   position: relative;
   width: 100%;
-  height: 124px;
+  height: 84px;
   background: white;
 }
 
-.legend-scroll {
+.stack-area-chart .legend-scroll {
   position: absolute;
   top: 0;
   left: 0;
@@ -79,14 +48,14 @@
   background: white;
 }
 
-.legend-scroll::-webkit-scrollbar {
+.stack-area-chart .legend-scroll::-webkit-scrollbar {
   display: none;
 }
 
-.legend-scroll > div {
+.stack-area-chart .legend-scroll > div {
   display: grid;
   grid-auto-flow: column;
-  grid-template-rows: repeat(3, 28px);
+  grid-template-rows: repeat(2, 32px);
   gap: 8px 16px;
   padding: 12px;
   width: fit-content;
@@ -95,7 +64,7 @@
   background: white;
 }
 
-.legend-item {
+.stack-area-legend-item {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -104,15 +73,25 @@
   transition: opacity 150ms ease, background-color 150ms ease;
   user-select: none;
   border-radius: var(--border-radius);
-  white-space: nowrap;
   font-family: var(--font-family);
   font-size: var(--font-size-base);
   height: 28px;
   color: black;
   background: white;
+  width: 150px;
 }
 
-.legend-item:hover {
+.stack-area-legend-item span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.2;
+  max-height: 2.4em;
+}
+
+.stack-area-legend-item:hover {
   background-color: var(--color-border);
 }
 

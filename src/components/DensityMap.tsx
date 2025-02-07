@@ -14,6 +14,7 @@ type DensityMapProps = {
 export default function DensityMap({ data, dateRange }: DensityMapProps) {
   const mapRef = useRef<SVGSVGElement>(null)
   const [worldData, setWorldData] = useState<any>(null)
+  const [toolkitVisible, setToolkitVisible] = useState(false);
 
   // Load GeoJSON data only once when component mounts
   useEffect(() => {
@@ -126,10 +127,19 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
   }, [data, dateRange, worldData, updateMap])
 
   return (
-    <div className="visualization-container">
+    <div className="visualization-container"
+         onMouseEnter={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(true); }}
+         onMouseLeave={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(false); }}
+         onClick={() => { if(!window.matchMedia('(hover: hover)').matches) setToolkitVisible(prev => !prev); }}
+         style={{ position: 'relative' }}>
       <div className="visualization-header">
         <h2 className="chart-title">Geographic Distribution</h2>
       </div>
+      {toolkitVisible && (
+        <div className="toolkit" style={{ position: 'absolute', top: '10px', right: '10px', background: '#fff', padding: '8px', border: '1px solid #ccc', borderRadius: '4px', zIndex: 1000 }}>
+          <button>Map Action 2</button>
+        </div>
+      )}
       <svg
         ref={mapRef}
         width="1200"

@@ -5,7 +5,6 @@
   flex-direction: column;
   margin: 0 auto;
   max-width: 1200px;
-  padding: 1.5rem;
   width: 100%;
   color: black;
   transform: translateZ(0);
@@ -13,11 +12,19 @@
   perspective: 1000px;
   font-family: 'Avenir', system-ui, -apple-system, sans-serif;
   font-size: 10px;
-  /* Fixed height for each chart */
   position: relative;
   z-index: 1;
-  height: 600px;
-  margin: 2rem 0;
+  height: auto;
+  min-height: 500px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+@media (min-width: 768px) {
+  .chart-wrapper {
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
 }
 
 .chart-main-container {
@@ -25,12 +32,19 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 100%;
 }
 
 .chart-container {
   width: 100%;
-  height: 500px; /* Fixed height for the chart itself */
+  height: 400px;
   position: relative;
+}
+
+@media (min-width: 768px) {
+  .chart-container {
+    height: 500px;
+  }
 }
 
 .chart-svg {
@@ -43,10 +57,16 @@
 .chart-type-selector {
   display: inline-flex;
   align-items: baseline;
-  font-size: var(--font-size-title);
+  font-size: calc(var(--font-size-title) * 0.7);
   font-weight: var(--font-weight-bold);
   margin-right: var(--spacing-xs);
   font-family: var(--font-family);
+}
+
+@media (min-width: 768px) {
+  .chart-type-selector {
+    font-size: var(--font-size-title);
+  }
 }
 
 .chart-type-option {
@@ -74,8 +94,14 @@
 .legend-wrapper {
   position: relative;
   width: 100%;
-  height: 124px; /* Fixed height for legend */
+  height: 80px;
   background: white;
+}
+
+@media (min-width: 768px) {
+  .legend-wrapper {
+    height: 124px;
+  }
 }
 
 /* Gradient overlays */
@@ -140,30 +166,33 @@
 .legend-scroll > div {
   display: grid;
   grid-auto-flow: column;
-  grid-template-rows: repeat(3, 28px); /* Explicit row height */
-  gap: 8px 16px;
-  padding: 12px;
+  grid-template-rows: repeat(2, 28px);
+  gap: 8px 12px;
+  padding: 8px;
   width: fit-content;
   min-width: min-content;
   height: 100%;
   background: white;
 }
 
+@media (min-width: 768px) {
+  .legend-scroll > div {
+    grid-template-rows: repeat(3, 28px);
+    gap: 8px 16px;
+    padding: 12px;
+  }
+}
+
 .legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 8px;
-  cursor: pointer;
-  transition: opacity 150ms ease, background-color 150ms ease;
-  user-select: none;
-  border-radius: var(--border-radius);
-  white-space: nowrap;
-  font-family: var(--font-family);
-  font-size: var(--font-size-base);
-  height: 28px;
-  color: black;
-  background: white;
+  font-size: 9px;
+  padding: 2px 4px;
+}
+
+@media (min-width: 768px) {
+  .legend-item {
+    font-size: var(--font-size-base);
+    padding: 4px 8px;
+  }
 }
 
 .legend-color {

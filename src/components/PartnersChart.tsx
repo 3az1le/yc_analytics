@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import '@/styles/components/chart.css';
 
@@ -42,10 +42,27 @@ interface PartnersChartProps {
   dateRange: [number, number];
 }
 
+interface CompanyNode extends Company {
+  cluster: number;
+  partnerId: string;
+  radius: number;
+  x: number;
+  y: number;
+  cellX: number;
+  cellY: number;
+  cellWidth: number;
+  cellHeight: number;
+  vx?: number;
+  vy?: number;
+  fx?: number | null;
+  fy?: number | null;
+}
+
 const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const simulationRef = useRef<d3.Simulation<any, undefined> | null>(null);
+  const [toolkitVisible, setToolkitVisible] = useState(false);
 
   useEffect(() => {
     if (!svgRef.current || !data || !containerRef.current) return;
@@ -94,7 +111,7 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
     const spacing = minDimension * 0.4;
 
     // Create company nodes with better initial positions
-    const companyNodes = partners.flatMap((partner, i) => {
+    const companyNodes: CompanyNode[] = partners.flatMap((partner, i) => {
       const col = i % cols;
       const row = Math.floor(i / cols);
       const centerPosX = col * cellWidth + cellWidth / 2 - margin.left;
@@ -115,18 +132,20 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
           cellX: col * cellWidth - margin.left,
           cellY: row * cellHeight + margin.top,
           cellWidth,
-          cellHeight
+          cellHeight,
+          vx: 0,
+          vy: 0
         };
       });
     });
 
     // Create company circles
-    const companies = mainGroup.selectAll('.company-node')
+    const companies = mainGroup.selectAll<SVGCircleElement, CompanyNode>('.company-node')
       .data(companyNodes)
       .join('circle')
       .attr('class', 'company-node')
       .attr('r', d => d.radius)
-      .style('fill', d => colorScale(d.cluster.toString()))
+      .style('fill', d => colorScale(d.cluster.toString()) as string)
       .style('opacity', 0.7)
       .style('cursor', 'grab')
       .attr('cx', d => d.x)
@@ -177,116 +196,102 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
         tooltip.style('visibility', 'hidden');
       });
 
-    // Custom collision detection
-    function customCollide() {
-      const padding = 2;
-      const clusterPadding = 4;
-      
-      function force() {
-        const quadtree = d3.quadtree()
-          .x(d => (d as any).x)
-          .y(d => (d as any).y)
-          .addAll(companyNodes);
-
-        // Process fewer nodes each tick for better performance
-        const nodes = companyNodes.filter(() => Math.random() < 0.7);
-        for (let node of nodes) {
-          const r = node.radius + clusterPadding;
-          const nx1 = node.x - r;
-          const ny1 = node.y - r;
-          const nx2 = node.x + r;
-          const ny2 = node.y + r;
-          
-          quadtree.visit((quad, x1, y1, x2, y2) => {
-            if (!quad.length) {
-              const data = quad.data;
-              if (data && data !== node) {
-                let dx = node.x - data.x;
-                let dy = node.y - data.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                let minDistance = node.radius + (data as any).radius +
-                  (node.cluster === (data as any).cluster ? padding : clusterPadding);
-            
-                if (distance < minDistance) {
-                  distance = (distance - minDistance) / distance * 0.3; // Reduced force
-                  const moveX = dx * distance;
-                  const moveY = dy * distance;
-                  node.x -= moveX;
-                  node.y -= moveY;
-                  (data as any).x += moveX;
-                  (data as any).y += moveY;
-                }
-              }
-            }
-            return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
-          });
-        }
-      }
-      return force;
-    }
-
     // Setup simulation with adjusted forces
     const simulation = d3.forceSimulation(companyNodes)
-      .alphaDecay(0.2)
-      .velocityDecay(0.6)
-      .alpha(0.5)
-      .force('cluster', (alpha) => {
-        const k = alpha * 0.2;
-        for (let node of companyNodes) {
-          const targetX = node.cellX + cellWidth / 2;
-          const targetY = node.cellY + cellHeight / 2;
-          
-          node.vx = (node.vx || 0) + (targetX - node.x) * k;
-          node.vy = (node.vy || 0) + (targetY - node.y) * k;
-        }
-      })
-      .force('collide', customCollide())
-      .force('bound', () => {
-        const nodes = companyNodes.filter(() => Math.random() < 0.7);
-        for (let node of nodes) {
-          const padding = node.radius;
-          node.x = Math.max(node.cellX + padding, 
-                    Math.min(node.cellX + cellWidth - padding, node.x));
-          node.y = Math.max(node.cellY + padding, 
-                    Math.min(node.cellY + cellHeight - padding, node.y));
-        }
-      })
-      .on('tick', () => {
-        if (simulation.alpha() % 0.02 < 0.01) {
-          companies
-            .attr('cx', d => d.x)
-            .attr('cy', d => d.y);
-        }
+      .stop(); // Stop initial simulation
+
+    // Function to run simulation for a single partner's grid cell
+    const runGridSimulation = async (partnerIndex: number) => {
+      const partnerNodes = companyNodes.filter(node => node.cluster === partnerIndex);
+      if (partnerNodes.length === 0) return;
+
+      // Reset positions to initial spiral layout
+      const col = partnerIndex % cols;
+      const row = Math.floor(partnerIndex / cols);
+      const centerPosX = col * cellWidth + cellWidth / 2 - margin.left;
+      const centerPosY = row * cellHeight + cellHeight / 2 + margin.top;
+
+      partnerNodes.forEach((node, j) => {
+        const angle = (j / partnerNodes.length) * 2 * Math.PI;
+        const spiralRadius = Math.min(spacing * 0.4,
+          (Math.sqrt(j + 1) / Math.sqrt(partnerNodes.length)) * spacing * 0.8);
+        node.x = centerPosX + Math.cos(angle) * spiralRadius;
+        node.y = centerPosY + Math.sin(angle) * spiralRadius;
       });
 
-    // Store simulation reference
-    simulationRef.current = simulation;
-
-    // Setup intersection observer
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            simulationRef.current?.restart();
-          } else {
-            simulationRef.current?.stop();
+      // Adjust simulation parameters for the 6th partner (index 5)
+      const isSpecialPartner = partnerIndex === 5;
+      
+      // Create local simulation for this grid
+      const localSimulation = d3.forceSimulation(partnerNodes)
+        .alphaDecay(isSpecialPartner ? 0.2 : 0.2) // Much slower decay for 6th partner
+        .velocityDecay(isSpecialPartner ? 0.6 : 0.6) // Less velocity decay for more movement
+        .alpha(isSpecialPartner ? 0.5 : 0.5) // Higher initial alpha for longer simulation
+        .force('cluster', (alpha) => {
+          const k = alpha * (isSpecialPartner ? 0.4 : 0.4); // Gentler force for longer movement
+          for (let node of partnerNodes) {
+            const targetX = node.cellX + cellWidth / 2;
+            const targetY = node.cellY + cellHeight / 2;
+            node.vx = (node.vx || 0) + (targetX - node.x) * k;
+            node.vy = (node.vy || 0) + (targetY - node.y) * k;
+          }
+        })
+        .force('collide', d3.forceCollide((d: CompanyNode) => d.radius + 1).iterations(10))
+        .force('bound', () => {
+          for (let node of partnerNodes) {
+            const padding = node.radius;
+            node.x = Math.max(node.cellX + padding,
+                      Math.min(node.cellX + cellWidth - padding, node.x));
+            node.y = Math.max(node.cellY + padding,
+                      Math.min(node.cellY + cellHeight - padding, node.y));
           }
         });
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-      }
-    );
 
-    // Start observing the chart container
-    observer.observe(containerRef.current);
+      // Update positions during simulation
+      localSimulation.on('tick', () => {
+        companies
+          .filter(d => d.cluster === partnerIndex)
+          .attr('cx', d => d.x)
+          .attr('cy', d => d.y);
+      });
+
+      // Wait for simulation to complete or force end after 5 seconds
+      await Promise.race([
+        new Promise<void>(resolve => {
+          localSimulation.on('end', () => {
+            localSimulation.stop();
+            resolve();
+          });
+        }),
+        new Promise<void>(resolve => setTimeout(() => {
+          localSimulation.stop();
+          resolve();
+        }, 5000))
+      ]);
+    };
+
+    // Run simulations sequentially
+    const runAllSimulations = async () => {
+      for (let i = 0; i < partners.length; i += 2) {
+        // Run two simulations in parallel
+        const promises = [
+          runGridSimulation(i),
+          // Only run second simulation if there is a partner left
+          i + 1 < partners.length ? runGridSimulation(i + 1) : Promise.resolve()
+        ];
+        await Promise.all(promises);
+      }
+    };
+
+    // Store simulation reference (for cleanup)
+    simulationRef.current = simulation;
+
+    // Run simulations once when component mounts
+    runAllSimulations();
 
     // Cleanup
     return () => {
       simulation.stop();
-      observer.disconnect();
       tooltip.remove();
     };
   }, [data, dateRange]);
@@ -316,7 +321,7 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
             <div 
               className="legend-color" 
               style={{ 
-                backgroundColor: colorScale(i.toString()),
+                backgroundColor: colorScale(i.toString()) as string,
                 width: '12px',
                 height: '12px',
                 borderRadius: '50%',
@@ -332,10 +337,19 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
   };
 
   return (
-    <div className="partners-chart-container" ref={containerRef}>
+    <div className="partners-chart-container" 
+         ref={containerRef}
+         onMouseEnter={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(true); }}
+         onMouseLeave={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(false); }}
+         onClick={() => { if(!window.matchMedia('(hover: hover)').matches) setToolkitVisible(prev => !prev); }}>
       <div className="visualization-header">
         <h2 className="chart-title">Partners and Companies</h2>
       </div>
+      {toolkitVisible && (
+        <div className="toolkit" style={{ position: 'absolute', top: '10px', right: '10px', background: '#fff', padding: '8px', border: '1px solid #ccc', borderRadius: '4px', zIndex: 1000 }}>
+          <button>Action 2</button>
+        </div>
+      )}
       <div className="partners-chart-wrapper">
         <svg ref={svgRef}></svg>
       </div>

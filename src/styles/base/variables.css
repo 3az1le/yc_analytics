@@ -29,7 +29,7 @@
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
   --spacing-lg: 2rem;
-  --spacing-xl: 4rem;
+  --spacing-xl: 6rem;
 
   /* Layout */
   --max-width-container: 1200px;
@@ -80,11 +80,10 @@
   margin: 0 auto;
   background: var(--color-background);
   border-radius: var(--border-radius);
-  padding: var(--spacing-md);
+  /* padding: var(--spacing-md); */
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 80vh;
   gap: var(--spacing-lg);
   padding-bottom: var(--spacing-xl);
   padding-top: var(--spacing-xl);

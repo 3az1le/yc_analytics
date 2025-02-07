@@ -3,19 +3,31 @@
   width: 100%;
   max-width: var(--max-width-container);
   margin: 0 auto;
-  padding: var(--spacing-md);
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   background: white;
 }
 
+@media (min-width: 768px) {
+  .map-container {
+    padding: var(--spacing-md);
+  }
+}
+
 .map-wrapper {
   width: 100%;
-  height: var(--visualization-height);
+  height: 300px;
   position: relative;
   background: white;
   border-radius: var(--border-radius);
   overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .map-wrapper {
+    height: var(--visualization-height);
+  }
 }
 
 .map-wrapper svg {
@@ -122,16 +134,28 @@
 
 .map-title {
   font-family: 'Avenir', system-ui, -apple-system, sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   text-anchor: middle;
   fill: black;
 }
 
+@media (min-width: 768px) {
+  .map-title {
+    font-size: 20px;
+  }
+}
+
 .chart-title {
-  font-size: var(--chart-title-size);
+  font-size: calc(var(--chart-title-size) * 0.7);
   font-weight: 600;
   font-family: 'Avenir', system-ui, -apple-system, sans-serif;
   color: black;
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .chart-title {
+    font-size: var(--chart-title-size);
+  }
 }

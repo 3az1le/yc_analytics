@@ -48,6 +48,7 @@ const YearRangeSlider: React.FC<YearRangeSliderProps> = ({
 
   return (
     <div className={`slider-container ${isVisible ? 'visible' : ''}`}>
+      <h3 className="slider-title">Filter by Year</h3>
       <Slider.Root
         className="slider-root"
         value={value}

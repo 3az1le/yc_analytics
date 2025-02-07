@@ -10,19 +10,41 @@
 
 .slider-container {
   background: white;
-  border-radius: 1.5rem;
-  bottom: 2rem;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  border-radius: 1rem;
+  bottom: 1rem;
+  box-shadow: 0 5px 20px -3px rgb(0 0 0 / 0.1);
   left: 50%;
   max-width: 600px;
-  padding: 1.5rem;
+  width: calc(100% - 2rem);
+  padding: 1rem;
   position: fixed;
   transform: translateX(-50%);
-  width: 100%;
   z-index: 9999;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.05s;
+}
+
+.slider-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgb(75 85 99);
+  text-align: center;
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  .slider-container {
+    bottom: 2rem;
+    width: 100%;
+  }
+
+  .slider-title {
+    font-size: 1.12rem;
+    margin-bottom: 0.75rem;
+  }
 }
 
 .slider-container.visible {
@@ -35,17 +57,29 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 20px;
+  height: 16px;
   touch-action: none;
   user-select: none;
+}
+
+@media (min-width: 768px) {
+  .slider-root {
+    height: 20px;
+  }
 }
 
 .slider-track {
   background: rgb(254 215 170);
   position: relative;
   flex-grow: 1;
-  height: 0.5rem;
+  height: 0.4rem;
   border-radius: 9999px;
+}
+
+@media (min-width: 768px) {
+  .slider-track {
+    height: 0.5rem;
+  }
 }
 
 .slider-range {
@@ -57,12 +91,19 @@
 
 .slider-thumb {
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   background: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 70%;
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .slider-thumb {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .slider-thumb:hover {
@@ -82,13 +123,22 @@
 .year-labels {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
   color: rgb(75 85 99);
-  font-size: 0.875rem;
+  font-size: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .year-labels {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+  }
 }
 
 .year-label {
   font-weight: 500;
+  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
+  font-weight: 300;
 }
 
 .year-range-sliders {
