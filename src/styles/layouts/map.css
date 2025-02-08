@@ -3,16 +3,15 @@
   width: 100%;
   max-width: var(--max-width-container);
   margin: 0 auto;
-  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   background: white;
+  align-items: center;
 }
 
-@media (min-width: 768px) {
-  .map-container {
-    padding: var(--spacing-md);
-  }
+.map-container svg{
+  width: 100%;
+  height: auto;
 }
 
 .map-wrapper {

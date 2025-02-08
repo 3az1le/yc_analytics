@@ -135,11 +135,6 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
       <div className="visualization-header">
         <h2 className="chart-title">Geographic Distribution</h2>
       </div>
-      {toolkitVisible && (
-        <div className="toolkit" style={{ position: 'absolute', top: '10px', right: '10px', background: '#fff', padding: '8px', border: '1px solid #ccc', borderRadius: '4px', zIndex: 1000 }}>
-          <button>Map Action 2</button>
-        </div>
-      )}
       <svg
         ref={mapRef}
         width="1200"

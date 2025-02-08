@@ -32,7 +32,7 @@
   --spacing-xl: 6rem;
 
   /* Layout */
-  --max-width-container: 1200px;
+  --max-width-container: 1000px;
   --border-radius: 8px;
   --visualization-height: 70vh;
   --legend-width: 200px;

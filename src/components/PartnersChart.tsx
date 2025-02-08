@@ -1,23 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import * as d3 from 'd3';
 import '@/styles/components/chart.css';
 
 const orangeScale = [
-  '#FC844B',
-  '#DC510F',
-  '#F5CFBD',
-  '#EC9065',
-  '#E99C77',
-  '#F67537',
-  '#DC510E',
-  '#FF5B0E',
-  '#FBAF8B',
-  '#000000',
-  '#4A4A4A',
-  '#2D2D2D',
-  '#1B365D',
-  '#0A2744',
-  '#0F3A66'
+  '#C2C091',
+  '#F9F264', 
+  '#FFF52B', 
+  '#BE120C',
+  '#F8D1BF', 
+  '#EC9065', 
+  '#FC844B', 
+  '#FF0900', 
+  '#D44400', 
+  '#9E461C',  
+  '#E9E9E9', 
+  '#828282', 
+  '#000000', 
 ];
 
 interface Company {
@@ -71,21 +69,11 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
     d3.select(svgRef.current).selectAll('*').remove();
 
     // Setup dimensions with adjusted margins for better visibility
-    const width = 1200;
-    const height = 600;
-    const margin = { top: 40, right: 40, bottom: 40, left: 40 };
+    const containerWidth = containerRef.current.clientWidth;
+    const width = Math.min(containerWidth, 1200);
+    const margin = { top: 0, right: 0, bottom: 0, left: 0 };
     const innerWidth = width - margin.left - margin.right;
-    const innerHeight = height - margin.top - margin.bottom;
-
-    // Create SVG
-    const svg = d3.select(svgRef.current)
-      .attr('width', width)
-      .attr('height', height);
-
-    // Create main group
-    const mainGroup = svg.append('g')
-      .attr('transform', `translate(${margin.left},${margin.top})`);
-
+    
     // Process and filter data based on date range
     const partners = Object.entries(data).map(([name, partnerData]) => {
       const companies = Object.entries(partnerData.bybatch)
@@ -97,25 +85,39 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
       return { name, companies };
     }).filter(partner => partner.companies.length > 0); // Remove partners with no companies in range
 
+    // Calculate layout
+    const isMobile = width < 768; // Check if we're on mobile
+    const cols = isMobile ? 3 : 4; // 3 columns for mobile, 4 for desktop
+    const rows = Math.ceil(partners.length / cols);
+    const cellWidth = (width - margin.left - margin.right) / cols;
+    const cellHeight = cellWidth; // Make cells square
+    const totalHeight = cellHeight * rows + margin.top + margin.bottom;
+    
+    // Calculate bubble size scaling factor based on screen width
+    const bubbleScale = width * 0.001; // This will give us 1.2 for 1200px width, 0.8 for 800px width, etc.
+    
+    // Create SVG with dynamic height
+    const svg = d3.select(svgRef.current)
+      .attr('width', width)
+      .attr('height', totalHeight);
+
+    // Add a container group for proper margin handling
+    const g = svg.append('g')
+      .attr('transform', `translate(${margin.left},${margin.top})`);
+
     // Create color scale
     const colorScale = d3.scaleOrdinal()
       .domain(partners.map((_, i) => i.toString()))
       .range(orangeScale);
 
-    // Calculate optimal grid layout
-    const cols = Math.ceil(Math.sqrt(partners.length));
-    const rows = Math.ceil(partners.length / cols);
-    const cellWidth = innerWidth / cols;
-    const cellHeight = innerHeight / rows;
-    const minDimension = Math.min(cellWidth, cellHeight);
-    const spacing = minDimension * 0.4;
+    const spacing = Math.min(cellWidth, cellHeight) * 0.5;
 
     // Create company nodes with better initial positions
     const companyNodes: CompanyNode[] = partners.flatMap((partner, i) => {
       const col = i % cols;
       const row = Math.floor(i / cols);
-      const centerPosX = col * cellWidth + cellWidth / 2 - margin.left;
-      const centerPosY = row * cellHeight + cellHeight / 2 + margin.top;
+      const centerPosX = col * cellWidth + cellWidth / 2;
+      const centerPosY = row * cellHeight + cellHeight / 2;
 
       return partner.companies.map((company, j) => {
         const angle = (j / partner.companies.length) * 2 * Math.PI;
@@ -126,11 +128,11 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
           ...company,
           cluster: i,
           partnerId: partner.name,
-          radius: Math.sqrt(company.team_size) * 0.5,
+          radius: Math.sqrt(company.team_size) * bubbleScale,
           x: centerPosX + Math.cos(angle) * spiralRadius,
           y: centerPosY + Math.sin(angle) * spiralRadius,
-          cellX: col * cellWidth - margin.left,
-          cellY: row * cellHeight + margin.top,
+          cellX: col * cellWidth,
+          cellY: row * cellHeight,
           cellWidth,
           cellHeight,
           vx: 0,
@@ -140,37 +142,17 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
     });
 
     // Create company circles
-    const companies = mainGroup.selectAll<SVGCircleElement, CompanyNode>('.company-node')
+    const companies = g.selectAll<SVGCircleElement, CompanyNode>('.company-node')
       .data(companyNodes)
       .join('circle')
       .attr('class', 'company-node')
       .attr('r', d => d.radius)
       .style('fill', d => colorScale(d.cluster.toString()) as string)
-      .style('opacity', 0.7)
+      .style('opacity', 0.8)
       .style('cursor', 'grab')
       .attr('cx', d => d.x)
       .attr('cy', d => d.y);
 
-    // Add drag behavior
-    const drag = d3.drag<SVGCircleElement, any>()
-      .on('start', (event, d) => {
-        if (!event.active) simulation.alphaTarget(0.3).restart();
-        d.fx = d.x;
-        d.fy = d.y;
-        d3.select(event.sourceEvent.target).style('cursor', 'grabbing');
-      })
-      .on('drag', (event, d) => {
-        d.fx = event.x;
-        d.fy = event.y;
-      })
-      .on('end', (event, d) => {
-        if (!event.active) simulation.alphaTarget(0);
-        d.fx = null;
-        d.fy = null;
-        d3.select(event.sourceEvent.target).style('cursor', 'grab');
-      });
-
-    companies.call(drag as any);
 
     // Create tooltip
     const tooltip = d3.select('body').append('div')
@@ -178,19 +160,53 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
       .style('position', 'absolute')
       .style('visibility', 'hidden');
 
+    // Function to position tooltip within viewport bounds
+    const positionTooltip = (event: MouseEvent, content: string) => {
+      tooltip
+        .style('visibility', 'visible')
+        .html(content);
+
+      const tooltipNode = tooltip.node() as HTMLElement;
+      const tooltipRect = tooltipNode.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+
+      // Calculate position
+      let left = event.pageX + 10;
+      let top = event.pageY - 10;
+
+      // Adjust if tooltip would go off right edge
+      if (left + tooltipRect.width > viewportWidth) {
+        left = event.pageX - tooltipRect.width - 10;
+      }
+
+      // Adjust if tooltip would go off bottom edge
+      if (top + tooltipRect.height > viewportHeight) {
+        top = event.pageY - tooltipRect.height - 10;
+      }
+
+      // Ensure tooltip doesn't go off left or top edge
+      left = Math.max(10, left);
+      top = Math.max(10, top);
+
+      tooltip
+        .style('left', left + 'px')
+        .style('top', top + 'px');
+    };
+
     // Add hover interactions
     companies
       .on('mouseover', (event, d) => {
-        tooltip
-          .style('visibility', 'visible')
-          .html(`${d.company_name}<br>Team size: ${d.team_size}<br>Partner: ${d.partnerId}`)
-          .style('left', (event.pageX + 10) + 'px')
-          .style('top', (event.pageY - 10) + 'px');
+        positionTooltip(
+          event, 
+          `${d.company_name}<br>Team size: ${d.team_size}<br>Partner: ${d.partnerId}`
+        );
       })
-      .on('mousemove', (event) => {
-        tooltip
-          .style('left', (event.pageX + 10) + 'px')
-          .style('top', (event.pageY - 10) + 'px');
+      .on('mousemove', (event, d) => {
+        positionTooltip(
+          event,
+          `${d.company_name}<br>Team size: ${d.team_size}<br>Partner: ${d.partnerId}`
+        );
       })
       .on('mouseout', () => {
         tooltip.style('visibility', 'hidden');
@@ -208,8 +224,8 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
       // Reset positions to initial spiral layout
       const col = partnerIndex % cols;
       const row = Math.floor(partnerIndex / cols);
-      const centerPosX = col * cellWidth + cellWidth / 2 - margin.left;
-      const centerPosY = row * cellHeight + cellHeight / 2 + margin.top;
+      const centerPosX = col * cellWidth + cellWidth / 2;
+      const centerPosY = row * cellHeight + cellHeight / 2;
 
       partnerNodes.forEach((node, j) => {
         const angle = (j / partnerNodes.length) * 2 * Math.PI;
@@ -249,7 +265,7 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
 
       // Update positions during simulation
       localSimulation.on('tick', () => {
-        companies
+        svg.selectAll<SVGCircleElement, CompanyNode>('.company-node')
           .filter(d => d.cluster === partnerIndex)
           .attr('cx', d => d.x)
           .attr('cy', d => d.y);
@@ -296,9 +312,60 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
     };
   }, [data, dateRange]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      // Re-render chart when window resizes
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.clientWidth;
+        if (svgRef.current) {
+          const width = Math.min(containerWidth, 1200);
+          const height = width * 0.5;
+          d3.select(svgRef.current)
+            .attr('width', width)
+            .attr('height', height);
+        }
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Create legend component
   const Legend = () => {
-    // Filter partners to only show those with companies in the selected date range
+    const legendWrapperRef = useRef<HTMLDivElement>(null);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(false);
+
+    const checkScroll = useCallback(() => {
+      const element = legendWrapperRef.current?.querySelector('.legend-scroll') as HTMLElement;
+      if (element) {
+        const canScrollLeft = element.scrollLeft > 0;
+        const canScrollRight = element.scrollLeft < (element.scrollWidth - element.clientWidth - 1);
+        
+        setCanScrollLeft(canScrollLeft);
+        setCanScrollRight(canScrollRight);
+      }
+    }, []);
+
+    useEffect(() => {
+      const element = legendWrapperRef.current?.querySelector('.legend-scroll') as HTMLElement;
+      if (element) {
+        element.addEventListener('scroll', checkScroll);
+        // Initial check
+        checkScroll();
+        
+        // Check on resize
+        const resizeObserver = new ResizeObserver(checkScroll);
+        resizeObserver.observe(element);
+
+        return () => {
+          element.removeEventListener('scroll', checkScroll);
+          resizeObserver.disconnect();
+        };
+      }
+    }, [checkScroll]);
+
     const activePartners = Object.entries(data)
       .filter(([_, partnerData]) => {
         const hasCompaniesInRange = Object.entries(partnerData.bybatch)
@@ -315,23 +382,23 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
       .range(orangeScale);
 
     return (
-      <div className="partners-legend">
-        {activePartners.map((partner, i) => (
-          <div key={partner} className="legend-item">
-            <div 
-              className="legend-color" 
-              style={{ 
-                backgroundColor: colorScale(i.toString()) as string,
-                width: '12px',
-                height: '12px',
-                borderRadius: '50%',
-                display: 'inline-block',
-                marginRight: '8px'
-              }} 
-            />
-            <span>{partner}</span>
+      <div 
+        ref={legendWrapperRef}
+        className={`partner-legend ${canScrollLeft ? 'can-scroll-left' : ''} ${canScrollRight ? 'can-scroll-right' : ''}`}
+      >
+        <div className="legend-scroll">
+          <div>
+            {activePartners.map((partner, i) => (
+              <div key={partner} className="partner-legend-item">
+                <div 
+                  className="partner-legend-color" 
+                  style={{ backgroundColor: colorScale(i.toString()) as string }} 
+                />
+                <span>{partner}</span>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     );
   };
@@ -339,17 +406,13 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
   return (
     <div className="partners-chart-container" 
          ref={containerRef}
+         style={{ width: '100%', position: 'relative' }}
          onMouseEnter={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(true); }}
          onMouseLeave={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(false); }}
          onClick={() => { if(!window.matchMedia('(hover: hover)').matches) setToolkitVisible(prev => !prev); }}>
       <div className="visualization-header">
         <h2 className="chart-title">Partners and Companies</h2>
       </div>
-      {toolkitVisible && (
-        <div className="toolkit" style={{ position: 'absolute', top: '10px', right: '10px', background: '#fff', padding: '8px', border: '1px solid #ccc', borderRadius: '4px', zIndex: 1000 }}>
-          <button>Action 2</button>
-        </div>
-      )}
       <div className="partners-chart-wrapper">
         <svg ref={svgRef}></svg>
       </div>
