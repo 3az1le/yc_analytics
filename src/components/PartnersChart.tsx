@@ -94,7 +94,7 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
     const totalHeight = cellHeight * rows + margin.top + margin.bottom;
     
     // Calculate bubble size scaling factor based on screen width
-    const bubbleScale = width * 0.001; // This will give us 1.2 for 1200px width, 0.8 for 800px width, etc.
+    const bubbleScale = width * 0.0007; // This will give us 1.2 for 1200px width, 0.8 for 800px width, etc.
     
     // Create SVG with dynamic height
     const svg = d3.select(svgRef.current)
@@ -235,16 +235,13 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
         node.y = centerPosY + Math.sin(angle) * spiralRadius;
       });
 
-      // Adjust simulation parameters for the 6th partner (index 5)
-      const isSpecialPartner = partnerIndex === 5;
-      
       // Create local simulation for this grid
       const localSimulation = d3.forceSimulation(partnerNodes)
-        .alphaDecay(isSpecialPartner ? 0.2 : 0.2) // Much slower decay for 6th partner
-        .velocityDecay(isSpecialPartner ? 0.6 : 0.6) // Less velocity decay for more movement
-        .alpha(isSpecialPartner ? 0.5 : 0.5) // Higher initial alpha for longer simulation
+        .alphaDecay(0.2) // Much slower decay for 6th partner
+        .velocityDecay( 0.6) // Less velocity decay for more movement
+        .alpha(0.5) // Higher initial alpha for longer simulation
         .force('cluster', (alpha) => {
-          const k = alpha * (isSpecialPartner ? 0.4 : 0.4); // Gentler force for longer movement
+          const k = alpha * 0.4; // Gentler force for longer movement
           for (let node of partnerNodes) {
             const targetX = node.cellX + cellWidth / 2;
             const targetY = node.cellY + cellHeight / 2;
@@ -338,7 +335,7 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
     const [canScrollRight, setCanScrollRight] = useState(false);
 
     const checkScroll = useCallback(() => {
-      const element = legendWrapperRef.current?.querySelector('.legend-scroll') as HTMLElement;
+      const element = legendWrapperRef.current?.querySelector('.partners-legend-scroll') as HTMLElement;
       if (element) {
         const canScrollLeft = element.scrollLeft > 0;
         const canScrollRight = element.scrollLeft < (element.scrollWidth - element.clientWidth - 1);
@@ -349,7 +346,7 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
     }, []);
 
     useEffect(() => {
-      const element = legendWrapperRef.current?.querySelector('.legend-scroll') as HTMLElement;
+      const element = legendWrapperRef.current?.querySelector('.partners-legend-scroll') as HTMLElement;
       if (element) {
         element.addEventListener('scroll', checkScroll);
         // Initial check
@@ -386,7 +383,7 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
         ref={legendWrapperRef}
         className={`partner-legend ${canScrollLeft ? 'can-scroll-left' : ''} ${canScrollRight ? 'can-scroll-right' : ''}`}
       >
-        <div className="legend-scroll">
+        <div className="partners-legend-scroll">
           <div>
             {activePartners.map((partner, i) => (
               <div key={partner} className="partner-legend-item">

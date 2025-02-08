@@ -49,7 +49,7 @@
   border-radius: var(--border-radius);
 }
 
-.legend-scroll {
+.partners-legend-scroll {
   position: absolute;
   top: 0;
   left: 0;
@@ -62,10 +62,10 @@
   background: white;
 }
 
-.legend-scroll > div {
+.partners-legend-scroll > div {
   display: grid;
   grid-auto-flow: column;
-  grid-template-rows: repeat(2, 32px);
+  grid-template-rows: repeat(2, 28px);
   gap: 8px 16px;
   padding: 12px;
   width: fit-content;
@@ -79,8 +79,8 @@
     height: 124px;
   }
   
-  .legend-scroll > div {
-    grid-template-rows: repeat(3, 32px);
+  .partners-legend-scroll > div {
+    grid-template-rows: repeat(2, 28px);
   }
 }
 
@@ -124,7 +124,7 @@
   opacity: 1;
 }
 
-.legend-scroll::-webkit-scrollbar {
+.partners-legend-scroll::-webkit-scrollbar {
   display: none;
 }
 
@@ -238,4 +238,4 @@
   stroke: #ddd;
   stroke-width: 1;
   shape-rendering: crispEdges;
-} 
+}

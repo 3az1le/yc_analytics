@@ -170,34 +170,34 @@ export default function CompanyChart({
 
   // Check scroll position
   const checkScroll = useCallback(() => {
-    const element = legendWrapperRef.current?.querySelector('.legend-scroll') as HTMLElement
+    const element = legendWrapperRef.current?.querySelector('.stack-area-legend-scroll') as HTMLElement;
     if (element) {
-      const canScrollLeft = element.scrollLeft > 0
-      const canScrollRight = element.scrollLeft < (element.scrollWidth - element.clientWidth - 1)
+      const canScrollLeft = element.scrollLeft > 0;
+      const canScrollRight = element.scrollLeft < (element.scrollWidth - element.clientWidth - 1);
       
-      setCanScrollLeft(canScrollLeft)
-      setCanScrollRight(canScrollRight)
+      setCanScrollLeft(canScrollLeft);
+      setCanScrollRight(canScrollRight);
     }
-  }, [])
+  }, []);
 
   // Add scroll event listener
   useEffect(() => {
-    const element = legendWrapperRef.current?.querySelector('.legend-scroll') as HTMLElement
+    const element = legendWrapperRef.current?.querySelector('.stack-area-legend-scroll') as HTMLElement;
     if (element) {
-      element.addEventListener('scroll', checkScroll)
+      element.addEventListener('scroll', checkScroll);
       // Initial check
-      checkScroll()
+      checkScroll();
       
       // Check on resize
-      const resizeObserver = new ResizeObserver(checkScroll)
-      resizeObserver.observe(element)
+      const resizeObserver = new ResizeObserver(checkScroll);
+      resizeObserver.observe(element);
 
       return () => {
-        element.removeEventListener('scroll', checkScroll)
-        resizeObserver.disconnect()
-      }
+        element.removeEventListener('scroll', checkScroll);
+        resizeObserver.disconnect();
+      };
     }
-  }, [checkScroll])
+  }, [checkScroll]);
 
   // Add event listener for area clicks
   useEffect(() => {
@@ -230,7 +230,7 @@ export default function CompanyChart({
           ref={legendWrapperRef}
           className={`legend-wrapper ${canScrollLeft ? 'can-scroll-left' : ''} ${canScrollRight ? 'can-scroll-right' : ''}`}
         >
-          <div className="legend-scroll">
+          <div className="stack-area-legend-scroll">
             <div>
               {legendItems}
             </div>
