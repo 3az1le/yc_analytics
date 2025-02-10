@@ -29,7 +29,7 @@
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
   --spacing-lg: 2rem;
-  --spacing-xl: 6rem;
+  --spacing-xl: 4rem;
 
   /* Layout */
   --max-width-container: 1000px;
@@ -94,8 +94,34 @@
 /* Common Header Style */
 .visualization-header {
   display: flex;
-  align-items: baseline;
-  margin-bottom: var(--spacing-lg);
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
   width: 100%;
-  justify-content: center;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .visualization-header {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 1rem;
+    justify-content: center;
+  }
+}
+
+/* Common Container Style */
+.container-default {
+  width: 60%;
+  max-width: var(--max-width-container);
+  padding: 0 4rem;
+  text-align: left;
+  margin-bottom: 20vh;
+}
+
+@media (max-width: 767px) {
+  .container-default {
+    width: 90%;
+    padding: 0 1.5rem;
+  }
 } 

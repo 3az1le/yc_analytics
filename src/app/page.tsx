@@ -43,21 +43,35 @@ export default function Home() {
     debounce(() => {
       const hero = document.querySelector('.hero-section')
       const footer = document.querySelector('footer')
+      const mainContent = document.querySelector('.main-content')
       
-      if (hero && footer) {
+      if (hero && footer && mainContent) {
         const heroRect = hero.getBoundingClientRect()
         const footerRect = footer.getBoundingClientRect()
+        const mainContentRect = mainContent.getBoundingClientRect()
         const windowHeight = window.innerHeight
+        const documentHeight = document.documentElement.scrollHeight
+        const scrollPosition = window.scrollY + windowHeight
         
         // Calculate how much of the hero is visible
         const heroVisibleHeight = Math.min(heroRect.bottom, windowHeight) - Math.max(heroRect.top, 0)
         const heroVisiblePercentage = heroVisibleHeight / heroRect.height
-        
-        // Check if footer is completely visible
-        const isFooterFullyVisible = footerRect.top <= windowHeight && footerRect.bottom <= windowHeight
 
-        // Hide slider if hero is more than 50% visible or footer is fully visible
-        setIsSliderVisible(!(heroVisiblePercentage > 0.5 || isFooterFullyVisible))
+        // Check if footer is fully visible in the viewport
+        const isFooterFullyVisible = footerRect.top <= windowHeight && footerRect.bottom <= windowHeight
+        
+        // Check if we're near the bottom of the page (within 100px)
+        const isNearBottom = documentHeight - scrollPosition < 100
+
+        // Hide slider if:
+        // 1. Hero is more than 50% visible, or
+        // 2. Footer is fully visible, or
+        // 3. We're near the bottom of the page
+        setIsSliderVisible(!(
+          heroVisiblePercentage > 0.5 || 
+          isFooterFullyVisible || 
+          isNearBottom
+        ))
       }
     }, 100),
     []

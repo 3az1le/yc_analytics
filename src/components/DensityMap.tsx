@@ -58,6 +58,41 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
         .range(['#ffeae1', '#DC510F'] as any)
         .clamp(true)
 
+      // Function to position tooltip within viewport bounds
+      const positionTooltip = (event: MouseEvent, content: string) => {
+        const tooltip = d3.select('.map-tooltip');
+        tooltip
+          .style('visibility', 'visible')
+          .html(content);
+
+        const tooltipNode = tooltip.node() as HTMLElement;
+        const tooltipRect = tooltipNode.getBoundingClientRect();
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        // Calculate position
+        let left = event.pageX + 10;
+        let top = event.pageY - 10;
+
+        // Adjust if tooltip would go off right edge
+        if (left + tooltipRect.width > viewportWidth) {
+          left = event.pageX - tooltipRect.width - 10;
+        }
+
+        // Adjust if tooltip would go off bottom edge
+        if (top + tooltipRect.height > viewportHeight) {
+          top = event.pageY - tooltipRect.height - 10;
+        }
+
+        // Ensure tooltip doesn't go off left or top edge
+        left = Math.max(10, left);
+        top = Math.max(10, top);
+
+        tooltip
+          .style('left', left + 'px')
+          .style('top', top + 'px');
+      };
+
       // Initial setup of paths if they don't exist
       if (svg.select('path').empty()) {
         svg.selectAll('path')
@@ -77,6 +112,14 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
           return count > 0 ? colorScale(count) : '#ffffff'
         })
 
+      // Create tooltip if it doesn't exist
+      d3.select('body')
+        .selectAll('.map-tooltip')
+        .data([null])
+        .join('div')
+        .attr('class', 'map-tooltip')
+        .style('visibility', 'hidden');
+
       // Add event listeners
       svg.selectAll('path')
         .on('mouseover', (event, d: any) => {
@@ -88,23 +131,15 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
               .attr('stroke', '#000')
               .attr('stroke-width', 1)
             
-            d3.select('body')
-              .selectAll('.map-tooltip')
-              .data([null])
-              .join('div')
-              .attr('class', 'map-tooltip')
-              .style('visibility', 'visible')
-              .style('left', `${event.pageX + 10}px`)
-              .style('top', `${event.pageY - 10}px`)
-              .html(`${d.properties.ADMIN}: ${count} companies`)
+            const countryName = d.properties.ADMIN === 'United States of America' ? 'USA' : d.properties.ADMIN;
+            positionTooltip(event, `${countryName}: ${count} companies`);
           }
         })
         .on('mousemove', (event, d: any) => {
           const count = locationCounts.get(d.properties.ISO_A3) || 0
           if (count > 0) {
-            d3.select('.map-tooltip')
-              .style('left', `${event.pageX + 10}px`)
-              .style('top', `${event.pageY - 10}px`)
+            const countryName = d.properties.ADMIN === 'United States of America' ? 'USA' : d.properties.ADMIN;
+            positionTooltip(event, `${countryName}: ${count} companies`);
           }
         })
         .on('mouseout', (event) => {

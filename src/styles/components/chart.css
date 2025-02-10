@@ -3,7 +3,7 @@
   background: white;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0;
   max-width: 1200px;
   width: 100%;
   color: black;
@@ -15,13 +15,13 @@
   position: relative;
   z-index: 1;
   height: auto;
-  min-height: 500px;
-  margin: 1rem 0;
+  min-height: 250px;
 }
 
 @media (min-width: 768px) {
   .chart-wrapper {
     margin: 2rem 0;
+    min-height: 500px;
   }
 }
 
@@ -31,11 +31,18 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .chart-main-container {
+    padding: 1rem;
+  }
 }
 
 .chart-container {
   width: 100%;
-  height: 400px;
+  height: 250px;
   position: relative;
 }
 
@@ -47,43 +54,73 @@
 
 .chart-svg {
   flex: 1;
-}
-
-/* Chart Header */
-.chart-type-selector {
-  display: inline-flex;
-  align-items: baseline;
-  font-size: calc(var(--font-size-title) * 0.7);
-  font-weight: var(--font-weight-bold);
-  margin-right: var(--spacing-xs);
-  font-family: var(--font-family);
+  display: block;
+  height: 100%;
+  min-height: 250px;
+  width: 100%;
+  background: white;
 }
 
 @media (min-width: 768px) {
-  .chart-type-selector {
-    font-size: var(--font-size-title);
+  .chart-svg {
+    min-height: 500px;
   }
+}
+
+/* Chart Header */
+.chart-title {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family);
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.chart-type-selector {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family);
+  margin-right: var(--spacing-xs);
+  color: var(--color-text);
 }
 
 .chart-type-option {
   background: none;
   border: none;
   padding: 0;
+  margin: 0;
   font-size: var(--font-size-title);
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family);
   color: var(--color-text-secondary);
   cursor: pointer;
   transition: color 150ms ease;
+  text-decoration: underline;
 }
 
 .chart-type-option.active {
   color: var(--color-primary);
+  text-decoration: none;
 }
 
 .chart-type-separator {
   margin: 0 var(--spacing-xs);
   color: var(--color-text-secondary);
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family);
+}
+
+@media (max-width: 768px) {
+  .chart-title,
+  .chart-type-selector,
+  .chart-type-option,
+  .chart-type-separator {
+    font-size: 1.5rem;
+  }
 }
 
 /* Legend Styles */
@@ -241,23 +278,24 @@
 .axis-label {
   font-family: var(--font-family);
   font-size: 18px;
-  font-weight: var(--font-weight-normal);
-}
-
-.x-label, .y-label {
+  font-weight: 300;
   text-anchor: middle;
 }
 
 .x-label {
-  text-anchor: middle;
-  font-weight: 500;
   font-size: 16px;
   fill: #1F2937;
 }
 
-.y-label {
-  text-anchor: middle;
-  font-weight: 500;
+.grid-line {
+  stroke: #e5e7eb;
+  stroke-width: 1;
+  stroke-dasharray: 2,2;
+}
+
+.x-axis-line {
+  stroke: #000;
+  stroke-width: 1;
 }
 
 /* Rest of the styles... */ 
@@ -341,27 +379,6 @@
   color: black;
 }
 
-.chart-type-option {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: var(--chart-title-size);
-  font-weight: 600;
-  font-family: inherit;
-  color: #9CA3AF;
-  cursor: pointer;
-  transition: color 150ms ease;
-}
-
-.chart-type-option.active {
-  color: #F67537;
-}
-
-.chart-type-separator {
-  margin: 0 0.5rem;
-  color: #9CA3AF;
-}
-
 .map-header {
   display: flex;
   align-items: center;
@@ -369,37 +386,6 @@
   margin-bottom: 2rem;
   width: 100%;
   padding-top: 1rem;
-}
-
-/* Axis Styles */
-.axis {
-  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
-  font-size: 10px;
-}
-
-.grid-line {
-  stroke: #e5e7eb;
-  stroke-width: 1;
-  stroke-dasharray: 2,2;
-}
-
-.x-axis-line {
-  stroke: #000;
-  stroke-width: 1;
-}
-
-.axis-label {
-  font-family: 'Avenir', system-ui, -apple-system, sans-serif;
-  font-size: 18px;
-  font-weight: 300;
-}
-
-.x-label {
-  text-anchor: middle;
-}
-
-.y-label {
-  text-anchor: middle;
 }
 
 /* Legend Item Styles */
@@ -508,5 +494,16 @@
   .partner-legend-item {
     font-size: var(--font-size-base);
     padding: 4px 8px;
+  }
+}
+
+/* Mobile adjustments to reduce chart size */
+@media (max-width: 767px) {
+  .chart-container {
+    height: 50vh !important;
+  }
+  .chart-svg {
+    min-height: 50vh !important;
+    height: 50vh !important;
   }
 }

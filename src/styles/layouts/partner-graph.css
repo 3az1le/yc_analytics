@@ -142,7 +142,7 @@
   height: 28px;
   color: black;
   background: white;
-  width: 150px;
+  width: 100px;
 }
 
 .partner-legend-item span {
@@ -164,7 +164,7 @@
 
 .partners-legend {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   padding: 0.5rem;
   background: white;
   border-radius: var(--border-radius);
@@ -181,7 +181,7 @@
 
 @media (min-width: 768px) {
   .partners-legend {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     padding: var(--spacing-sm);
     max-height: 200px;
     gap: 0.5rem;

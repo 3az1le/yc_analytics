@@ -1,0 +1,25 @@
+export const metadata = {
+  title: 'YC Startup Visualization | Interactive Data Explorer',
+  description: 'Explore Y Combinator startups through interactive visualizations. Discover geographic distribution, industry trends, and partner networks from 2005 to present.',
+  keywords: 'Y Combinator, startups, data visualization, YC companies, startup trends, startup analytics, tech industry, venture capital',
+  openGraph: {
+    title: 'YC Startup Visualization',
+    description: 'Interactive visualization of Y Combinator startups, showing industry trends, geographic distribution, and partner networks.',
+    type: 'website',
+    url: 'https://yc-viz.vercel.app',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'YC Startup Visualization Preview',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'YC Startup Visualization',
+    description: 'Interactive visualization of Y Combinator startups and trends',
+    images: ['/og-image.png'],
+  },
+} 

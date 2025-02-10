@@ -1,0 +1,12 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import './base/variables.css';
+@import './components/components.css';
+@import './components/hero.css';
+@import './components/slider.css';
+@import './layouts/partner-graph.css';
+@import './layouts/map.css';
+@import './layouts/stack-area.css';
+@import './main.css'; 

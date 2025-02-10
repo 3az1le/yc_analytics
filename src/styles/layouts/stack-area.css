@@ -1,5 +1,17 @@
 /* Stack Area Chart Styles */
 
+/* Chart Container */
+.stack-area-chart {
+  height: 50vh !important;  /* Reduced height for mobile screens */
+  max-height: 50vh !important;
+}
+
+@media (min-width: 768px) {
+  .stack-area-chart {
+    height: 500px;  /* Original height for desktop */
+  }
+}
+
 /* Axis Styles */
 .axis {
   font-family: 'Avenir', system-ui, -apple-system, sans-serif;
@@ -19,7 +31,7 @@
 
 .axis-label {
   font-family: 'Avenir', system-ui, -apple-system, sans-serif;
-  font-size: 18px;
+  font-size: 0.9rem;
   font-weight: 300;
 }
 
@@ -31,7 +43,7 @@
 .stack-area-chart .legend-wrapper {
   position: relative;
   width: 100%;
-  height: 84px;
+  height: 64px;  /* Smaller height for mobile */
   background: white;
 }
 
@@ -55,7 +67,7 @@
 .stack-area-legend-scroll > div {
   display: grid;
   grid-auto-flow: column;
-  grid-template-rows: repeat(3, 28px);
+  grid-template-rows: repeat(2, 28px);
   gap: 8px 16px;
   padding: 12px;
   width: fit-content;
@@ -66,7 +78,7 @@
 
 @media (min-width: 768px) {
   .stack-area-chart .legend-wrapper {
-    height: 124px;
+    height: 124px;  /* Original height for desktop */
   }
   
   .stack-area-legend-scroll > div {

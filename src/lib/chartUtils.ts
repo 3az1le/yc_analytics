@@ -140,16 +140,15 @@ function createAxes(
     .attr('transform', `translate(${xStart},0)`)
     .call(d3.axisLeft(y).tickFormat(d => `${d}%`))
 
-  // X-axis
+  // X-axis with explicit tick values
   const xAxis = container.append('g')
     .attr('class', 'axis x-axis')
     .attr('transform', `translate(0,${height - margin.bottom})`)
     .call(
       d3.axisBottom(x)
-        .tickValues(tickValues)
+        .tickValues(tickValues)  // Use the filtered tick values
         .tickSize(6)
         .tickPadding(10)
-        .tickFormat((d, i) => d.toString())  // Ensure we're using the raw value
     )
 
   // Adjust tick positions to start of band
@@ -225,10 +224,24 @@ export function addAxes(
   // Clear existing elements
   container.selectAll('.axis, .grid-lines, .axis-label').remove()
 
-  // Calculate tick values
-  const tickValues = scales.x.domain().length > 30 
-    ? scales.x.domain().filter((_, i) => i % 2 === 0)
-    : scales.x.domain()
+  // Calculate tick values with logging
+  console.log('Chart width:', dimensions.width);
+  console.log('Total ticks:', scales.x.domain().length);
+  
+  let tickValues;
+  if (dimensions.width < 768) {
+    // Mobile: show very few ticks
+    tickValues = scales.x.domain().filter((_, i) => i === 0 || i === scales.x.domain().length - 1 || i % 5 === 0);
+    console.log('Mobile view - filtered ticks:', tickValues.length);
+  } else if (scales.x.domain().length > 30) {
+    // Many data points: show every other
+    tickValues = scales.x.domain().filter((_, i) => i % 2 === 0);
+    console.log('Many points view - filtered ticks:', tickValues.length);
+  } else {
+    // Desktop with few points: show all
+    tickValues = scales.x.domain();
+    console.log('Desktop view - all ticks:', tickValues.length);
+  }
 
   // Create chart elements
   createGridLines(container, scales, scales.y)

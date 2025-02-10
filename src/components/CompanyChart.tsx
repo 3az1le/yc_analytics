@@ -42,6 +42,7 @@ export default function CompanyChart({
   const [categories, setCategories] = useState<string[]>([])
   const rafRef = useRef<number>()
   const prevDataTypeRef = useRef(dataType)
+  const [isMobile, setIsMobile] = useState(false)
 
   const chartId = useMemo(() => title.toLowerCase().replace(/\s+/g, '-'), [title])
 
@@ -217,6 +218,13 @@ export default function CompanyChart({
     }
   }, [chartId, selectedCategory])
 
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="chart-wrapper">
       <div className="chart-main-container">
@@ -224,6 +232,7 @@ export default function CompanyChart({
           <svg
             ref={svgRef}
             className="chart-svg"
+            style={{ height: isMobile ? '33vh' : undefined }}
           />
         </div>
         <div 
