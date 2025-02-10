@@ -1,9 +1,14 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
   images: {
     unoptimized: false,
     domains: ['yc-viz.vercel.app'],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   // Enable static optimization
   experimental: {
@@ -40,7 +45,7 @@ const nextConfig = {
         buildDependencies: {
           config: [__filename],
         },
-        cacheDirectory: '.next/cache/webpack',
+        cacheDirectory: path.resolve(__dirname, '.next/cache/webpack'),
         name: isServer ? 'server' : 'client',
         version: '1.0.0'
       }

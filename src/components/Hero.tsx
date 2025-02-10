@@ -1,4 +1,5 @@
-import '@/styles/main.css'
+import '@/styles/globals.css'
+import Image from 'next/image'
 
 export default function Hero() {
   return (
@@ -7,7 +8,16 @@ export default function Hero() {
         <h1 className="hero-title">
           Bringing YC's startup universe to life, one visual at a time!
         </h1>
-        <img src="/svg/map.svg" alt="Hero Image" className="hero-image" />
+        <div className="hero-image-container">
+          <Image 
+            src="/svg/Map.svg" 
+            alt="Hero Image" 
+            className="hero-image"
+            fill
+            style={{ objectFit: 'contain' }}
+            priority
+          />
+        </div>
         <p className="hero-subtitle">
           Explore the evolution of YC companies through interactive visualizations
         </p>

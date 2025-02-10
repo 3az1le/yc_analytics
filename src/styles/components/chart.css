@@ -298,14 +298,6 @@
   stroke-width: 1;
 }
 
-/* Rest of the styles... */ 
-
-
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
-
 
 .chart-container {
   display: flex;

@@ -19,6 +19,21 @@ export const metadata: Metadata = {
   verification: {
     google: 'your-google-verification-code', // Add your Google verification code
   },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [
+      { url: '/favicon.svg' },
+    ],
+    other: [
+      {
+        rel: 'mask-icon',
+        url: '/favicon.svg',
+        color: '#FB651E',
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
@@ -31,7 +46,9 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#FB651E" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="mask-icon" href="/favicon.svg" color="#FB651E" />
         <link rel="canonical" href="https://yc-viz.vercel.app" />
         
         {/* Preconnect to external domains */}

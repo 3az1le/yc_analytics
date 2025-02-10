@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react'
 import * as Slider from '@radix-ui/react-slider'
-import '@/styles/main.css'
+import '@/styles/globals.css'
 
 interface YearRangeSliderProps {
   value: [number, number]

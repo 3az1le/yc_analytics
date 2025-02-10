@@ -8,7 +8,7 @@ import {
   drawStackedArea,
   updateChart
 } from '@/lib/chartDrawing'
-import '@/styles/main.css'
+import '@/styles/globals.css'
 
 export const orangeScale = [
   '#FC844B',

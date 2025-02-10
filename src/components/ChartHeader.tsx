@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import '@/styles/main.css'
+import '@/styles/globals.css'
 import { BatchData } from '@/lib/processData'
 
 type ChartHeaderProps = {

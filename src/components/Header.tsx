@@ -1,4 +1,5 @@
-import '@/styles/main.css'
+import '@/styles/globals.css'
+import Image from 'next/image'
 
 const GitHubIcon = () => (
   <svg height="24" width="24" viewBox="0 0 16 16" version="1.1">
@@ -11,7 +12,10 @@ export default function Header() {
     <header className="header">
       <nav className="header-nav">
         <div className="header-container">
-          <div className="header-title">YC Analytics</div>
+          <div className="header-title flex items-center gap-2">
+            <Image src="/favicon.svg" alt="YC Analytics Logo" width={24} height={24} />
+            YC Analytics
+          </div>
           <a 
             href="https://github.com/3az1le/yc_analytics" 
             target="_blank" 

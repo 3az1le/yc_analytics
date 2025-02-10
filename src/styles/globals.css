@@ -1,12 +1,13 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@charset "UTF-8";
 
+/* Import all other stylesheets first */
 @import './base/variables.css';
+@import './base/common.css';
 @import './components/components.css';
+@import './components/header.css';
 @import './components/hero.css';
 @import './components/slider.css';
+@import './components/chart.css';
 @import './layouts/partner-graph.css';
 @import './layouts/map.css';
 @import './layouts/stack-area.css';
-@import './main.css'; 

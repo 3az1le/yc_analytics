@@ -10,7 +10,7 @@ import DensityMap from '@/components/DensityMap'
 import ChartHeader from '@/components/ChartHeader'
 import PartnersChart from '@/components/PartnersChart'
 import Footer from '@/components/Footer'
-import '@/styles/main.css'
+import '@/styles/globals.css'
 import { debounce } from 'lodash'
 
 export default function Home() {
