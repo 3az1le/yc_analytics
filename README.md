@@ -2,6 +2,20 @@
 
 An interactive visualization tool that brings Y Combinator's startup universe to life through dynamic charts and maps.
 
+## Visualizations
+
+### Industry Distribution Over Time
+![Stack Chart showing industry distribution](./public/images/stack-chart.png)
+Track the evolution of YC startups across different industries and technologies.
+
+### Partner Network Analysis
+![Partner Network visualization](./public/images/partner-network.png)
+Explore the interconnected network of YC partners and their portfolio companies.
+
+### Geographic Distribution
+![World map showing startup distribution](./public/images/geo-distribution.png)
+Discover the global reach of YC startups with our interactive heatmap.
+
 ## Features
 
 - Geographic distribution of YC startups worldwide

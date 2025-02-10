@@ -31,4 +31,22 @@ const nextConfig = {
       },
     ]
   },
-} 
+  // Configure webpack
+  webpack: (config, { dev, isServer }) => {
+    // Optimize CSS only in production
+    if (!dev && !isServer) {
+      config.cache = {
+        type: 'filesystem',
+        buildDependencies: {
+          config: [__filename],
+        },
+        cacheDirectory: '.next/cache/webpack',
+        name: isServer ? 'server' : 'client',
+        version: '1.0.0'
+      }
+    }
+    return config
+  },
+}
+
+module.exports = nextConfig 
