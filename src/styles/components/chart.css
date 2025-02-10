@@ -16,6 +16,7 @@
   z-index: 1;
   height: auto;
   min-height: 250px;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
@@ -129,6 +130,8 @@
   width: 100%;
   height: 80px;
   background: white;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 @media (min-width: 768px) {
@@ -498,4 +501,25 @@
     min-height: 50vh !important;
     height: 50vh !important;
   }
+}
+
+/* Remove gap under charts and legend if they are last children */
+.chart-wrapper:last-child,
+.legend-wrapper:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Remove gap under main container of charts if it is the last child */
+.chart-main-container:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Add transparent bottom border to last chart-wrapper to prevent gap from margin collapse */
+.chart-wrapper:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+  display: block;
 }

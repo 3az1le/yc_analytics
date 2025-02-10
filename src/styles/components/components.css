@@ -21,17 +21,19 @@
 }
 
 .main-content {
-  padding: 1rem 0.5rem;
   width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  overflow: hidden;
 }
 
-@media (min-width: 768px) {
-  .main-content {
-    padding: 1rem 2rem;
-  }
+/* Remove gap under last child of main content */
+.main-content > *:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .input-default {
@@ -62,6 +64,7 @@
   width: 100%;
   margin-top: auto;
   margin-bottom: 0;
+  font-family: 'Avenir', sans-serif;
 }
 
 .footer-container {
@@ -135,7 +138,7 @@
   border-radius: 9999px;
   background-color: rgba(255, 255, 255, 0.1);
   min-width: 150px;
-  height: 36px;
+  height: 30px;
 }
 
 .footer-link:hover {
@@ -147,8 +150,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 150px;
-  height: 36px;
+  min-width: 120px;
+  height: 30px;
 }
 
 .bmc-button {
@@ -161,7 +164,8 @@
   background-color: #ffe910;
   border-radius: 9999px;
   border: 1px solid transparent;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
   letter-spacing: normal;
   box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5);
   font-family: inherit;
@@ -198,15 +202,6 @@
 
 .coffee-link:hover {
   background-color: #1a1a1a;
-}
-
-.hero-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  text-align: left;
-  padding-left: 0;
 }
 
 @media (min-width: 768px) {

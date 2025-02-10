@@ -8,6 +8,9 @@ export default function Hero() {
         <h1 className="hero-title">
           Bringing YC's startup universe to life, one visual at a time!
         </h1>
+        <h2 className="hero-subtitle">
+          Explore the evolution of YC companies through interactive visualizations
+        </h2>
         <div className="hero-image-container">
           <Image 
             src="/svg/Map.svg" 
@@ -18,9 +21,7 @@ export default function Hero() {
             priority
           />
         </div>
-        <p className="hero-subtitle">
-          Explore the evolution of YC companies through interactive visualizations
-        </p>
+
       </div>
     </section>
   )

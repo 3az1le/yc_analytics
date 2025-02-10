@@ -11,3 +11,14 @@
 @import './layouts/partner-graph.css';
 @import './layouts/map.css';
 @import './layouts/stack-area.css';
+
+/* Add rule to remove 8px default margin from the body and ensure full height */
+body {
+  margin: 0;
+  height: 100%;
+}
+
+/* Ensure full height for html */
+html {
+  height: 100%;
+}

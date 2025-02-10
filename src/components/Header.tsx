@@ -12,9 +12,9 @@ export default function Header() {
     <header className="header">
       <nav className="header-nav">
         <div className="header-container">
-          <div className="header-title flex items-center gap-2">
+          <div className="header-title">
             <Image src="/favicon.svg" alt="YC Analytics Logo" width={24} height={24} />
-            YC Analytics
+            <div className="header-title-text">YC Analytics</div>
           </div>
           <a 
             href="https://github.com/3az1le/yc_analytics" 

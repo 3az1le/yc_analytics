@@ -10,7 +10,7 @@
   bottom: 1rem;
   box-shadow: 0 5px 20px -3px rgb(0 0 0 / 0.1);
   left: 50%;
-  max-width: 600px;
+  max-width: min(600px, calc(100vw - 3rem));
   width: calc(100% - 2rem);
   padding: 1rem;
   position: fixed;
@@ -33,7 +33,6 @@
 @media (min-width: 768px) {
   .slider-container {
     bottom: 2rem;
-    width: 100%;
   }
 
   .slider-title {

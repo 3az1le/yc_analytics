@@ -3,7 +3,6 @@
 [![Next.js](https://img.shields.io/badge/Next.js-14.0-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![D3.js](https://img.shields.io/badge/D3.js-7.8-orange?style=flat&logo=d3.js)](https://d3js.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4?style=flat&logo=tailwindcss)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat)](LICENSE)
 
 An interactive visualization tool that brings Y Combinator's startup universe to life through dynamic charts and maps.
@@ -34,7 +33,6 @@ Discover the global reach of YC startups with our interactive heatmap.
 - Next.js
 - D3.js for data visualization
 - TypeScript
-- Tailwind CSS
 
 ## Getting Started
 
