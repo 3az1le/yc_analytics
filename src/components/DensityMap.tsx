@@ -32,7 +32,7 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
     const g = d3.select(gRef.current)
 
     const zoom = d3.zoom()
-      .scaleExtent([1, 8])
+      .scaleExtent([0.1, 8])
       .on('zoom', (event) => {
         g.attr('transform', event.transform)
       })
@@ -51,7 +51,7 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
 
       // Adjust scale and center based on screen size
       const isMobile = width < 768
-      const scale = isMobile ? 200 : 1000
+      const scale = isMobile ? 200 : 200
       const center: [number, number] = [-15, 56]
 
       const projection = d3.geoMercator()

@@ -74,23 +74,15 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
     const margin = { top: 0, right: 0, bottom: 0, left: 0 };
     const innerWidth = width - margin.left - margin.right;
     
-    // Process and filter data based on date range
-    const partners = Object.entries(data).map(([name, partnerData]) => {
-      const companies = Object.entries(partnerData.bybatch)
-        .filter(([batchName]) => {
-          const year = 2000 + parseInt(batchName.slice(-2));
-          return year >= dateRange[0] && year <= dateRange[1];
-        })
-        .flatMap(([_, companies]) => companies);
-      return { name, companies };
-    }).filter(partner => partner.companies.length > 0); // Remove partners with no companies in range
-
-    // Calculate layout
-    const isMobile = width < 768; // Check if we're on mobile
-    const cols = isMobile ? 3 : 4; // 3 columns for mobile, 4 for desktop
-    const rows = Math.ceil(partners.length / cols);
+    // Get total number of partners first (unfiltered)
+    const totalPartners = Object.keys(data).length;
+    
+    // Calculate layout dimensions based on total partners
+    const isMobile = width < 768;
+    const cols = isMobile ? 3 : 4;
+    const rows = Math.ceil(totalPartners / cols);
     const cellWidth = (width - margin.left - margin.right) / cols;
-    const cellHeight = cellWidth; // Make cells square
+    const cellHeight = cellWidth;
     const totalHeight = cellHeight * rows + margin.top + margin.bottom;
     
     // Calculate bubble size scaling factor based on screen width
@@ -116,13 +108,21 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
 
     // Create color scale
     const colorScale = d3.scaleOrdinal()
-      .domain(partners.map((_, i) => i.toString()))
+      .domain(Object.keys(data).map((_, i) => i.toString()))
       .range(orangeScale);
 
     const spacing = Math.min(cellWidth, cellHeight) * 0.5;
 
     // Create company nodes with better initial positions
-    const companyNodes: CompanyNode[] = partners.flatMap((partner, i) => {
+    const companyNodes: CompanyNode[] = Object.entries(data).map(([name, partnerData]) => {
+      const companies = Object.entries(partnerData.bybatch)
+        .filter(([batchName]) => {
+          const year = 2000 + parseInt(batchName.slice(-2));
+          return year >= dateRange[0] && year <= dateRange[1];
+        })
+        .flatMap(([_, companies]) => companies);
+      return { name, companies };
+    }).filter(partner => partner.companies.length > 0).flatMap((partner, i) => {
       const col = i % cols;
       const row = Math.floor(i / cols);
       const centerPosX = col * cellWidth + cellWidth / 2;
@@ -294,12 +294,12 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
 
     // Run simulations sequentially
     const runAllSimulations = async () => {
-      for (let i = 0; i < partners.length; i += 2) {
+      for (let i = 0; i < companyNodes.length; i += 2) {
         // Run two simulations in parallel
         const promises = [
           runGridSimulation(i),
           // Only run second simulation if there is a partner left
-          i + 1 < partners.length ? runGridSimulation(i + 1) : Promise.resolve()
+          i + 1 < companyNodes.length ? runGridSimulation(i + 1) : Promise.resolve()
         ];
         await Promise.all(promises);
       }
