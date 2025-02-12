@@ -5,7 +5,12 @@ const nextConfig = {
   output: 'standalone',
   images: {
     unoptimized: false,
-    domains: ['yc-viz.vercel.app'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'yc-viz.vercel.app',
+      },
+    ],
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

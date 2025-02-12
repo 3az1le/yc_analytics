@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 import Image from 'next/image'
+import { useEffect, useRef } from 'react'
 
 const GitHubIcon = () => (
   <svg height="24" width="24" viewBox="0 0 16 16" version="1.1">
@@ -8,8 +9,17 @@ const GitHubIcon = () => (
 )
 
 export default function Header() {
+  const headerRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    if (headerRef.current) {
+      const height = headerRef.current.offsetHeight
+      document.documentElement.style.setProperty('--header-height', `${height}px`)
+    }
+  }, [])
+
   return (
-    <header className="header">
+    <header ref={headerRef} className="header">
       <nav className="header-nav">
         <div className="header-container">
           <div className="header-title">

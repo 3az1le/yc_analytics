@@ -15,6 +15,7 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
   const mapRef = useRef<SVGSVGElement>(null)
   const [worldData, setWorldData] = useState<any>(null)
   const [toolkitVisible, setToolkitVisible] = useState(false);
+  const gRef = useRef<SVGGElement>(null)
 
   // Load GeoJSON data only once when component mounts
   useEffect(() => {
@@ -23,18 +24,39 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
     })
   }, [])
 
+  // Initialize zoom behavior with simplified settings
+  useEffect(() => {
+    if (!mapRef.current || !gRef.current) return
+
+    const svg = d3.select(mapRef.current)
+    const g = d3.select(gRef.current)
+
+    const zoom = d3.zoom()
+      .scaleExtent([1, 8])
+      .on('zoom', (event) => {
+        g.attr('transform', event.transform)
+      })
+
+    svg.call(zoom as any)
+  }, [])
+
   // Memoize the update function
   const updateMap = useMemo(() => {
     return (data: BatchData[], dateRange: [number, number], worldData: any) => {
-      if (!mapRef.current || !data?.length || !worldData) return
+      if (!mapRef.current || !gRef.current || !data?.length || !worldData) return
 
       const svg = d3.select(mapRef.current)
-      const width = 1200
-      const height = 600
+      const width = svg.node()?.getBoundingClientRect().width || 1200
+      const height = svg.node()?.getBoundingClientRect().height || 800
+
+      // Adjust scale and center based on screen size
+      const isMobile = width < 768
+      const scale = isMobile ? 200 : 1000
+      const center: [number, number] = [-15, 56]
 
       const projection = d3.geoMercator()
-        .scale(180)
-        .center([0, 20])
+        .scale(scale)
+        .center(center)
         .translate([width / 2, height / 2])
 
       const path = d3.geoPath().projection(projection)
@@ -70,21 +92,17 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
 
-        // Calculate position
         let left = event.pageX + 10;
         let top = event.pageY - 10;
 
-        // Adjust if tooltip would go off right edge
         if (left + tooltipRect.width > viewportWidth) {
           left = event.pageX - tooltipRect.width - 10;
         }
 
-        // Adjust if tooltip would go off bottom edge
         if (top + tooltipRect.height > viewportHeight) {
           top = event.pageY - tooltipRect.height - 10;
         }
 
-        // Ensure tooltip doesn't go off left or top edge
         left = Math.max(10, left);
         top = Math.max(10, top);
 
@@ -93,20 +111,13 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
           .style('top', top + 'px');
       };
 
-      // Initial setup of paths if they don't exist
-      if (svg.select('path').empty()) {
-        svg.selectAll('path')
-          .data(worldData.features)
-          .join('path')
-          .attr('d', path as any)
-          .attr('fill', '#ffffff')
-      }
-
-      // Update paths with transition
-      svg.selectAll('path')
+      const g = d3.select(gRef.current)
+      
+      // Update paths
+      const paths = g.selectAll('path')
         .data(worldData.features)
-        .transition()
-        .duration(750)
+        .join('path')
+        .attr('d', path as any)
         .attr('fill', (d: any) => {
           const count = locationCounts.get(d.properties.ISO_A3) || 0
           return count > 0 ? colorScale(count) : '#ffffff'
@@ -120,16 +131,16 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
         .attr('class', 'map-tooltip')
         .style('visibility', 'hidden');
 
-      // Add event listeners
-      svg.selectAll('path')
+      // Add event listeners to the paths in g
+      paths
         .on('mouseover', (event, d: any) => {
           const count = locationCounts.get(d.properties.ISO_A3) || 0
           if (count > 0) {
             d3.select(event.currentTarget)
               .transition()
-              .duration(150)
+              .duration(50)
               .attr('stroke', '#000')
-              .attr('stroke-width', 1)
+              .attr('stroke-width', 0.5)
             
             const countryName = d.properties.ADMIN === 'United States of America' ? 'USA' : d.properties.ADMIN;
             positionTooltip(event, `${countryName}: ${count} companies`);
@@ -145,7 +156,7 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
         .on('mouseout', (event) => {
           d3.select(event.currentTarget)
             .transition()
-            .duration(150)
+            .duration(50)
             .attr('stroke', null)
             .attr('stroke-width', null)
           
@@ -173,10 +184,12 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
       <svg
         ref={mapRef}
         width="1200"
-        height="600"
-        viewBox="0 0 1200 600"
+        height="800"
+        viewBox="0 0 1200 800"
         preserveAspectRatio="xMidYMid meet"
-      />
+      >
+        <g ref={gRef}></g>
+      </svg>
     </div>
   )
 } 

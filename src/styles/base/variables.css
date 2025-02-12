@@ -109,19 +109,3 @@
     justify-content: center;
   }
 }
-
-/* Common Container Style */
-.container-default {
-  width: 60%;
-  max-width: var(--max-width-container);
-  padding: 0 4rem;
-  text-align: left;
-  margin-bottom: 20vh;
-}
-
-@media (max-width: 767px) {
-  .container-default {
-    width: 90%;
-    padding: 0 1.5rem;
-  }
-} 

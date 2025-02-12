@@ -96,14 +96,23 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
     // Calculate bubble size scaling factor based on screen width
     const bubbleScale = width * 0.0007; // This will give us 1.2 for 1200px width, 0.8 for 800px width, etc.
     
-    // Create SVG with dynamic height
+    // Create SVG with dynamic height and zoom behavior
     const svg = d3.select(svgRef.current)
       .attr('width', width)
       .attr('height', totalHeight);
 
-    // Add a container group for proper margin handling
+    // Add a container group for proper margin handling and zooming
     const g = svg.append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    // Add zoom behavior
+    const zoom = d3.zoom()
+      .scaleExtent([1, 8])
+      .on('zoom', (event) => {
+        g.attr('transform', event.transform)
+      });
+
+    svg.call(zoom as any);
 
     // Create color scale
     const colorScale = d3.scaleOrdinal()

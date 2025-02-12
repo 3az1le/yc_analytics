@@ -523,3 +523,10 @@
   border-bottom: none !important;
   display: block;
 }
+
+/* Bubble Chart Adjustments */
+.bubble-chart-container {
+  height: calc(50vh);
+  max-height: 500px;
+  min-height: 300px;
+}

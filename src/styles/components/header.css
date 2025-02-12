@@ -1,6 +1,16 @@
+/* Add CSS variable for header height at the root level */
+:root {
+  --header-height: 0px;
+}
+
 .header {
   background-color: #FB651E;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
   /* box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); */
+  height: var(--header-height);
 }
 
 .header-nav {

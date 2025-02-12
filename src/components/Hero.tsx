@@ -17,8 +17,9 @@ export default function Hero() {
             src="/svg/Map.svg" 
             alt="Hero Image" 
             className="hero-image"
-            fill
-            style={{ objectFit: 'contain' }}
+            width={800}
+            height={800}
+            style={{ objectFit: 'contain', width: '80%' }}
             priority
           />
         </div>
