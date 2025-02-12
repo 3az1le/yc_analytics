@@ -15,11 +15,14 @@ export const orangeScale = [
   '#DC510F',
   '#F5CFBD',
   '#EC9065',
+  '#FF5656',
+
   '#E99C77',
   '#F67537',
   '#DC510E',
   '#FF5B0E',
-  '#FBAF8B'
+  '#FBAF8B',
+  '#FFE985'
 ]
 
 // Create a static color scale that will be reused

@@ -61,6 +61,36 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const simulationRef = useRef<d3.Simulation<any, undefined> | null>(null);
   const [toolkitVisible, setToolkitVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting);
+          // Reset zoom when chart comes back into view
+          if (entry.isIntersecting && svgRef.current && zoomRef.current) {
+            const svg = d3.select<SVGSVGElement, unknown>(svgRef.current);
+            svg.transition()
+              .duration(750)
+              .call(zoomRef.current.transform as any, d3.zoomIdentity);
+          }
+        });
+      },
+      {
+        threshold: 0.1 // Trigger when at least 10% of the element is visible
+      }
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     if (!svgRef.current || !data || !containerRef.current) return;
@@ -82,29 +112,43 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
     const cols = isMobile ? 3 : 4;
     const rows = Math.ceil(totalPartners / cols);
     const cellWidth = (width - margin.left - margin.right) / cols;
-    const cellHeight = cellWidth;
+    
+    // Calculate cell height based on viewport height (70vh)
+    const availableHeight = window.innerHeight * 0.7;
+    const cellHeight = (availableHeight - margin.top - margin.bottom) / rows;
     const totalHeight = cellHeight * rows + margin.top + margin.bottom;
     
-    // Calculate bubble size scaling factor based on screen width
-    const bubbleScale = width * 0.0007; // This will give us 1.2 for 1200px width, 0.8 for 800px width, etc.
+    // Calculate bubble size scaling factor based on the smaller of cell dimensions
+    const bubbleScale = Math.min(cellWidth, cellHeight) * 0.0032;
     
     // Create SVG with dynamic height and zoom behavior
-    const svg = d3.select(svgRef.current)
+    const svg = d3.select<SVGSVGElement, unknown>(svgRef.current)
       .attr('width', width)
-      .attr('height', totalHeight);
+      .attr('height', '70vh');
 
     // Add a container group for proper margin handling and zooming
     const g = svg.append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    // Add zoom behavior
-    const zoom = d3.zoom()
-      .scaleExtent([1, 8])
+    // Initialize zoom behavior
+    const zoom = d3.zoom<SVGSVGElement, unknown>()
+      .scaleExtent([0.9, 4])
+      .translateExtent([
+        [-width/2, -window.innerHeight * 0.7/2], // Adjust translate extent based on viewport height
+        [width * 1.5, window.innerHeight * 0.7 * 1.5]
+      ])
       .on('zoom', (event) => {
-        g.attr('transform', event.transform)
+        g.attr('transform', event.transform);
       });
 
-    svg.call(zoom as any);
+    // Store zoom reference for resetting later
+    zoomRef.current = zoom;
+
+    // Apply zoom behavior
+    svg.call(zoom);
+
+    // Set initial transform
+    svg.call(zoom.transform as any, d3.zoomIdentity);
 
     // Create color scale
     const colorScale = d3.scaleOrdinal()
@@ -325,10 +369,9 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
         const containerWidth = containerRef.current.clientWidth;
         if (svgRef.current) {
           const width = Math.min(containerWidth, 1200);
-          const height = width * 0.5;
           d3.select(svgRef.current)
             .attr('width', width)
-            .attr('height', height);
+            .attr('height', '70vh');
         }
       }
     };
@@ -410,12 +453,14 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
   };
 
   return (
-    <div className="partners-chart-container" 
-         ref={containerRef}
-         style={{ width: '100%', position: 'relative' }}
-         onMouseEnter={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(true); }}
-         onMouseLeave={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(false); }}
-         onClick={() => { if(!window.matchMedia('(hover: hover)').matches) setToolkitVisible(prev => !prev); }}>
+    <div 
+      ref={containerRef}
+      className="partners-chart-container" 
+      style={{ width: '100%', position: 'relative' }}
+      onMouseEnter={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(true); }}
+      onMouseLeave={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(false); }}
+      onClick={() => { if(!window.matchMedia('(hover: hover)').matches) setToolkitVisible(prev => !prev); }}
+    >
       <div className="visualization-header">
         <h2 className="chart-title">Partners and Companies</h2>
       </div>

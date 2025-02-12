@@ -13,9 +13,12 @@ type DensityMapProps = {
 
 export default function DensityMap({ data, dateRange }: DensityMapProps) {
   const mapRef = useRef<SVGSVGElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const [worldData, setWorldData] = useState<any>(null)
-  const [toolkitVisible, setToolkitVisible] = useState(false);
+  const [toolkitVisible, setToolkitVisible] = useState(false)
   const gRef = useRef<SVGGElement>(null)
+  const [isVisible, setIsVisible] = useState(true)
+  const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null)
 
   // Load GeoJSON data only once when component mounts
   useEffect(() => {
@@ -24,20 +27,55 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
     })
   }, [])
 
+  // Initialize Intersection Observer
+  useEffect(() => {
+    if (!containerRef.current) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting)
+          // Reset zoom when map comes back into view
+          if (entry.isIntersecting && mapRef.current && zoomRef.current) {
+            const svg = d3.select<SVGSVGElement, unknown>(mapRef.current)
+            svg.transition()
+              .duration(750)
+              .call(zoomRef.current.transform as any, d3.zoomIdentity)
+          }
+        })
+      },
+      {
+        threshold: 0.1 // Trigger when at least 10% of the element is visible
+      }
+    )
+
+    observer.observe(containerRef.current)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   // Initialize zoom behavior with simplified settings
   useEffect(() => {
     if (!mapRef.current || !gRef.current) return
 
-    const svg = d3.select(mapRef.current)
+    const svg = d3.select<SVGSVGElement, unknown>(mapRef.current)
     const g = d3.select(gRef.current)
 
-    const zoom = d3.zoom()
+    const zoom = d3.zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.1, 8])
       .on('zoom', (event) => {
         g.attr('transform', event.transform)
       })
 
-    svg.call(zoom as any)
+    // Store zoom reference for resetting later
+    zoomRef.current = zoom
+
+    svg.call(zoom)
+
+    // Set initial transform
+    svg.call(zoom.transform as any, d3.zoomIdentity)
   }, [])
 
   // Memoize the update function
@@ -173,11 +211,14 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
   }, [data, dateRange, worldData, updateMap])
 
   return (
-    <div className="visualization-container"
-         onMouseEnter={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(true); }}
-         onMouseLeave={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(false); }}
-         onClick={() => { if(!window.matchMedia('(hover: hover)').matches) setToolkitVisible(prev => !prev); }}
-         style={{ position: 'relative' }}>
+    <div 
+      ref={containerRef}
+      className="visualization-container"
+      onMouseEnter={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(true); }}
+      onMouseLeave={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(false); }}
+      onClick={() => { if(!window.matchMedia('(hover: hover)').matches) setToolkitVisible(prev => !prev); }}
+      style={{ position: 'relative' }}
+    >
       <div className="visualization-header">
         <h2 className="chart-title">Geographic Distribution</h2>
       </div>

@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import { metadata as siteMetadata } from './metadata'
 import '../styles/globals.css'
 import Script from 'next/script';
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   ...siteMetadata,
@@ -49,7 +51,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#FB651E" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="mask-icon" href="/favicon.svg" color="#FB651E" />
-        <link rel="canonical" href="https://yc-viz.vercel.app" />
+        <link rel="canonical" href="https://yc-analytics.com" />
         
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -59,7 +61,10 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
       </head>
-      <body className="h-full">{children}</body>
+      <body className="h-full">
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }
