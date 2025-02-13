@@ -73,15 +73,18 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
           setIsVisible(entry.isIntersecting);
           // Reset zoom when chart comes back into view
           if (entry.isIntersecting && svgRef.current && zoomRef.current) {
-            const svg = d3.select<SVGSVGElement, unknown>(svgRef.current);
-            svg.transition()
-              .duration(750)
-              .call(zoomRef.current.transform as any, d3.zoomIdentity);
+            requestAnimationFrame(() => {
+              const svg = d3.select<SVGSVGElement, unknown>(svgRef.current!);
+              svg.transition()
+                .duration(750)
+                .call(zoomRef.current!.transform as any, d3.zoomIdentity);
+            });
           }
         });
       },
       {
-        threshold: 0.1 // Trigger when at least 10% of the element is visible
+        threshold: 0.9,
+        rootMargin: '50px' // Add rootMargin to start loading earlier
       }
     );
 
@@ -302,23 +305,27 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
             node.vy = (node.vy || 0) + (targetY - node.y) * k;
           }
         })
-        .force('collide', d3.forceCollide((d: CompanyNode) => d.radius + 1).iterations(10))
+        .force('collide', d3.forceCollide((d: CompanyNode) => d.radius + 1).iterations(8))
         .force('bound', () => {
-          for (let node of partnerNodes) {
-            const padding = node.radius;
-            node.x = Math.max(node.cellX + padding,
-                      Math.min(node.cellX + cellWidth - padding, node.x));
-            node.y = Math.max(node.cellY + padding,
-                      Math.min(node.cellY + cellHeight - padding, node.y));
-          }
+          requestAnimationFrame(() => {
+            for (let node of partnerNodes) {
+              const padding = node.radius;
+              node.x = Math.max(node.cellX + padding,
+                        Math.min(node.cellX + cellWidth - padding, node.x));
+              node.y = Math.max(node.cellY + padding,
+                        Math.min(node.cellY + cellHeight - padding, node.y));
+            }
+          });
         });
 
-      // Update positions during simulation
+      // Update positions during simulation using requestAnimationFrame
       localSimulation.on('tick', () => {
-        svg.selectAll<SVGCircleElement, CompanyNode>('.company-node')
-          .filter(d => d.cluster === partnerIndex)
-          .attr('cx', d => d.x)
-          .attr('cy', d => d.y);
+        requestAnimationFrame(() => {
+          svg.selectAll<SVGCircleElement, CompanyNode>('.company-node')
+            .filter(d => d.cluster === partnerIndex)
+            .attr('cx', d => d.x)
+            .attr('cy', d => d.y);
+        });
       });
 
       // Wait for simulation to complete or force end after 5 seconds
@@ -336,14 +343,16 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
       ]);
     };
 
-    // Run simulations sequentially
+    // Run simulations sequentially in groups of 4
     const runAllSimulations = async () => {
-      for (let i = 0; i < companyNodes.length; i += 2) {
-        // Run two simulations in parallel
+      for (let i = 0; i < companyNodes.length; i += 4) {
+        // Run four simulations in parallel
         const promises = [
           runGridSimulation(i),
-          // Only run second simulation if there is a partner left
-          i + 1 < companyNodes.length ? runGridSimulation(i + 1) : Promise.resolve()
+          // Only run additional simulations if there are partners left
+          i + 1 < companyNodes.length ? runGridSimulation(i + 1) : Promise.resolve(),
+          i + 2 < companyNodes.length ? runGridSimulation(i + 2) : Promise.resolve(),
+          i + 3 < companyNodes.length ? runGridSimulation(i + 3) : Promise.resolve()
         ];
         await Promise.all(promises);
       }

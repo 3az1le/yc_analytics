@@ -232,6 +232,9 @@
   color: black;
   max-width: 200px;
   white-space: nowrap;
+  transform: translateZ(0);
+  will-change: transform;
+  contain: layout;
 }
 
 /* Grid Lines */
