@@ -73,7 +73,7 @@ export default function Home() {
           isNearBottom
         ))
       }
-    }, 100),
+    }, 50),
     []
   )
 

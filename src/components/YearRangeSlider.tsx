@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as Slider from '@radix-ui/react-slider'
 import '@/styles/globals.css'
 
@@ -19,8 +19,32 @@ const YearRangeSlider: React.FC<YearRangeSliderProps> = ({
   max,
   isVisible
 }) => {
+  // Keep track of the current value locally while dragging
+  const [localValue, setLocalValue] = useState<[number, number]>(value)
+
+  // Update local value when prop value changes
+  useEffect(() => {
+    setLocalValue(value)
+  }, [value])
+
   const handleChange = (newValue: number[]) => {
-    // Ensure minimum range of 2 years
+    // Update local value for visual feedback while dragging
+    const [start, end] = newValue
+    if (end - start < 1) {
+      // If dragging the start thumb
+      if (start > localValue[0]) {
+        setLocalValue([start, Math.min(start + 1, max)])
+      } else if (end < localValue[1]) {
+        // If dragging the end thumb
+        setLocalValue([Math.max(end - 1, min), end])
+      }
+      return
+    }
+    setLocalValue([newValue[0], newValue[1]])
+  }
+
+  const handleCommit = (newValue: number[]) => {
+    // Only call onChange when the user releases the slider
     const [start, end] = newValue
     if (end - start < 1) {
       // If dragging the start thumb
@@ -32,9 +56,7 @@ const YearRangeSlider: React.FC<YearRangeSliderProps> = ({
       }
       return
     }
-    
-    const typedValue: [number, number] = [newValue[0], newValue[1]]
-    onChange(typedValue)
+    onChange([newValue[0], newValue[1]])
   }
 
   const yearLabels = ['05', '10','15', '20', '25']
@@ -51,8 +73,9 @@ const YearRangeSlider: React.FC<YearRangeSliderProps> = ({
       <h3 className="slider-title">Incorporation Date Range</h3>
       <Slider.Root
         className="slider-root"
-        value={value}
+        value={localValue}
         onValueChange={handleChange}
+        onValueCommit={handleCommit}
         min={min}
         max={max}
         step={1}

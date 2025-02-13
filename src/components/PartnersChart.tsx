@@ -343,17 +343,17 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
       ]);
     };
 
-    // Run simulations sequentially in groups of 4
+    // Run simulations in parallel with batching
     const runAllSimulations = async () => {
-      for (let i = 0; i < companyNodes.length; i += 4) {
-        // Run four simulations in parallel
-        const promises = [
-          runGridSimulation(i),
-          // Only run additional simulations if there are partners left
-          i + 1 < companyNodes.length ? runGridSimulation(i + 1) : Promise.resolve(),
-          i + 2 < companyNodes.length ? runGridSimulation(i + 2) : Promise.resolve(),
-          i + 3 < companyNodes.length ? runGridSimulation(i + 3) : Promise.resolve()
-        ];
+      const batchSize = 4; // Increase batch size for faster processing
+      for (let i = 0; i < companyNodes.length; i += batchSize) {
+        // Run multiple simulations in parallel
+        const promises = Array.from({ length: batchSize }, (_, index) => {
+          const currentIndex = i + index;
+          return currentIndex < companyNodes.length ? 
+            runGridSimulation(currentIndex) : 
+            Promise.resolve();
+        });
         await Promise.all(promises);
       }
     };
