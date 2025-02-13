@@ -19,28 +19,22 @@ const YearRangeSlider: React.FC<YearRangeSliderProps> = ({
   max,
   isVisible
 }) => {
-  // Keep track of the current value locally while dragging
-  const [localValue, setLocalValue] = useState<[number, number]>(value)
-
-  // Update local value when prop value changes
-  useEffect(() => {
-    setLocalValue(value)
-  }, [value])
 
   const handleChange = (newValue: number[]) => {
-    // Update local value for visual feedback while dragging
     const [start, end] = newValue
     if (end - start < 1) {
       // If dragging the start thumb
-      if (start > localValue[0]) {
-        setLocalValue([start, Math.min(start + 1, max)])
-      } else if (end < localValue[1]) {
+      if (start > value[0]) {
+        onChange([start, Math.min(start + 1, max)])
+      } else if (end < value[1]) {
         // If dragging the end thumb
-        setLocalValue([Math.max(end - 1, min), end])
+        onChange([Math.max(end - 1, min), end])
       }
       return
     }
-    setLocalValue([newValue[0], newValue[1]])
+    
+    const typedValue: [number, number] = [newValue[0], newValue[1]]
+    onChange(typedValue)
   }
 
   const handleCommit = (newValue: number[]) => {
@@ -73,9 +67,8 @@ const YearRangeSlider: React.FC<YearRangeSliderProps> = ({
       <h3 className="slider-title">Incorporation Date Range</h3>
       <Slider.Root
         className="slider-root"
-        value={localValue}
+        value={value}
         onValueChange={handleChange}
-        onValueCommit={handleCommit}
         min={min}
         max={max}
         step={1}

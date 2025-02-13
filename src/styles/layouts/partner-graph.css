@@ -29,17 +29,12 @@
   width: 100%;
   height: 100%;
   background: white;
-  transform: translateZ(0);
-  will-change: transform;
-  contain: layout style paint;
 }
 
 /* Company Nodes */
 .company-node {
   transition: opacity 0.15s ease;
   cursor: pointer;
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 .company-node:hover {
