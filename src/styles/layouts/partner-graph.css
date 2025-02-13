@@ -16,12 +16,13 @@
 }
 
 .partners-chart-wrapper {
-  width: 100%;
+  width: 90vw;
   height: fit-content;
   position: relative;
   background: white;
   border-radius: var(--border-radius);
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .partners-chart-wrapper svg {

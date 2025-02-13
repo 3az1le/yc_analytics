@@ -90,7 +90,7 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
       // Adjust scale and center based on screen size
       const isMobile = width < 768
       const scale = isMobile ? 200 : 200
-      const center: [number, number] = [-15, 56]
+      const center: [number, number] = isMobile ? [-100, 66] : [-15, 56]
 
       const projection = d3.geoMercator()
         .scale(scale)
@@ -217,20 +217,22 @@ export default function DensityMap({ data, dateRange }: DensityMapProps) {
       onMouseEnter={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(true); }}
       onMouseLeave={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(false); }}
       onClick={() => { if(!window.matchMedia('(hover: hover)').matches) setToolkitVisible(prev => !prev); }}
-      style={{ position: 'relative' }}
+      style={{ position: 'relative', width: '90vw', margin: '0 auto' }}
     >
       <div className="visualization-header">
         <h2 className="chart-title">Geographic Distribution</h2>
       </div>
-      <svg
-        ref={mapRef}
-        width="1200"
-        height="800"
-        viewBox="0 0 1200 800"
-        preserveAspectRatio="xMidYMid meet"
-      >
-        <g ref={gRef}></g>
-      </svg>
+      <div className="map-wrapper">
+        <svg
+          ref={mapRef}
+          width="100%"
+          height="100%"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <g ref={gRef}></g>
+        </svg>
+      </div>
     </div>
   )
 } 

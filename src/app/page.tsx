@@ -44,7 +44,7 @@ export default function Home() {
       const hero = document.querySelector('.hero-section')
       const footer = document.querySelector('footer')
       const mainContent = document.querySelector('.main-content')
-      
+
       if (hero && footer && mainContent) {
         const heroRect = hero.getBoundingClientRect()
         const footerRect = footer.getBoundingClientRect()
@@ -52,14 +52,14 @@ export default function Home() {
         const windowHeight = window.innerHeight
         const documentHeight = document.documentElement.scrollHeight
         const scrollPosition = window.scrollY + windowHeight
-        
+
         // Calculate how much of the hero is visible
         const heroVisibleHeight = Math.min(heroRect.bottom, windowHeight) - Math.max(heroRect.top, 0)
         const heroVisiblePercentage = heroVisibleHeight / heroRect.height
 
         // Check if footer is fully visible in the viewport
         const isFooterFullyVisible = footerRect.top <= windowHeight && footerRect.bottom <= windowHeight
-        
+
         // Check if we're near the bottom of the page (within 100px)
         const isNearBottom = documentHeight - scrollPosition < 100
 
@@ -68,8 +68,8 @@ export default function Home() {
         // 2. Footer is fully visible, or
         // 3. We're near the bottom of the page
         setIsSliderVisible(!(
-          heroVisiblePercentage > 0.5 || 
-          isFooterFullyVisible || 
+          heroVisiblePercentage > 0.5 ||
+          isFooterFullyVisible ||
           isNearBottom
         ))
       }
@@ -129,13 +129,16 @@ export default function Home() {
           />
         </div>
         <div className="partners-visualization-container">
+          <div className="visualization-header">
+            <h2 className="chart-title">Partners and Companies</h2>
+          </div>
           <PartnersChart
             data={processedData.partnersStats}
             dateRange={yearRange}
           />
         </div>
         <div className='map-container'>
-          <DensityMap 
+          <DensityMap
             data={processedData.byBatch}
             dateRange={yearRange}
           />

@@ -453,17 +453,15 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
   };
 
   return (
+    
     <div 
       ref={containerRef}
       className="partners-chart-container" 
-      style={{ width: '100%', position: 'relative' }}
+      style={{ width: '90vw', position: 'relative', margin: '0 auto' }}
       onMouseEnter={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(true); }}
       onMouseLeave={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(false); }}
       onClick={() => { if(!window.matchMedia('(hover: hover)').matches) setToolkitVisible(prev => !prev); }}
     >
-      <div className="visualization-header">
-        <h2 className="chart-title">Partners and Companies</h2>
-      </div>
       <div className="partners-chart-wrapper">
         <svg ref={svgRef}></svg>
       </div>
