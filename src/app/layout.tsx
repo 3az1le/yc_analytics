@@ -64,6 +64,7 @@ export default function RootLayout({
       <body className="h-full">
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
