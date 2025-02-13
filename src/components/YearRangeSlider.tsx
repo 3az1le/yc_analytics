@@ -19,38 +19,44 @@ const YearRangeSlider: React.FC<YearRangeSliderProps> = ({
   max,
   isVisible
 }) => {
+  const [localValue, setLocalValue] = useState<[number, number]>(value);
+
+  useEffect(() => {
+    setLocalValue(value);
+  }, [value]);
 
   const handleChange = (newValue: number[]) => {
-    const [start, end] = newValue
+    const [start, end] = newValue;
     if (end - start < 1) {
       // If dragging the start thumb
-      if (start > value[0]) {
-        onChange([start, Math.min(start + 1, max)])
-      } else if (end < value[1]) {
+      if (start > localValue[0]) {
+        setLocalValue([start, Math.min(start + 1, max)]);
+      } else if (end < localValue[1]) {
         // If dragging the end thumb
-        onChange([Math.max(end - 1, min), end])
+        setLocalValue([Math.max(end - 1, min), end]);
       }
-      return
+      return;
     }
     
-    const typedValue: [number, number] = [newValue[0], newValue[1]]
-    onChange(typedValue)
+    const typedValue: [number, number] = [newValue[0], newValue[1]];
+    setLocalValue(typedValue);
   }
 
   const handleCommit = (newValue: number[]) => {
-    // Only call onChange when the user releases the slider
-    const [start, end] = newValue
+    const [start, end] = newValue;
     if (end - start < 1) {
       // If dragging the start thumb
-      if (start > value[0]) {
-        onChange([start, Math.min(start + 1, max)])
-      } else if (end < value[1]) {
+      if (start > localValue[0]) {
+        onChange([start, Math.min(start + 1, max)]);
+      } else if (end < localValue[1]) {
         // If dragging the end thumb
-        onChange([Math.max(end - 1, min), end])
+        onChange([Math.max(end - 1, min), end]);
       }
-      return
+      return;
     }
-    onChange([newValue[0], newValue[1]])
+    
+    const typedValue: [number, number] = [newValue[0], newValue[1]];
+    onChange(typedValue);
   }
 
   const yearLabels = ['05', '10','15', '20', '25']
@@ -67,8 +73,9 @@ const YearRangeSlider: React.FC<YearRangeSliderProps> = ({
       <h3 className="slider-title">Incorporation Date Range</h3>
       <Slider.Root
         className="slider-root"
-        value={value}
+        value={localValue}
         onValueChange={handleChange}
+        onValueCommit={handleCommit}
         min={min}
         max={max}
         step={1}
