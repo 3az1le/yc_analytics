@@ -47,15 +47,20 @@ const YearRangeSlider: React.FC<YearRangeSliderProps> = ({
     if (end - start < 1) {
       // If dragging the start thumb
       if (start > localValue[0]) {
-        onChange([start, Math.min(start + 1, max)]);
+        const updatedValue: [number, number] = [start, Math.min(start + 1, max)];
+        setLocalValue(updatedValue);
+        onChange(updatedValue);
       } else if (end < localValue[1]) {
         // If dragging the end thumb
-        onChange([Math.max(end - 1, min), end]);
+        const updatedValue: [number, number] = [Math.max(end - 1, min), end];
+        setLocalValue(updatedValue);
+        onChange(updatedValue);
       }
       return;
     }
     
     const typedValue: [number, number] = [newValue[0], newValue[1]];
+    setLocalValue(typedValue);
     onChange(typedValue);
   }
 
@@ -64,9 +69,20 @@ const YearRangeSlider: React.FC<YearRangeSliderProps> = ({
   // Ensure initial value has minimum range
   useEffect(() => {
     if (value[1] - value[0] < 1) {
-      onChange([value[0], Math.min(value[0] + 1, max)])
+      const updatedValue: [number, number] = [value[0], Math.min(value[0] + 1, max)];
+      onChange(updatedValue);
     }
-  }, [value, onChange, max])
+  }, [value, onChange, max]);
+
+  // Verify that local value and prop value are in sync
+  useEffect(() => {
+    const isOutOfSync = value[0] !== localValue[0] || value[1] !== localValue[1];
+    const hasValidRange = value[1] - value[0] >= 1;
+    
+    if (isOutOfSync && hasValidRange) {
+      setLocalValue(value);
+    }
+  }, [value, localValue]);
 
   return (
     <div className={`slider-container ${isVisible ? 'visible' : ''}`}>
