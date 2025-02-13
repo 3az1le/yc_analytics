@@ -34,6 +34,7 @@
 @media (min-width: 768px) {
   .map-wrapper {
     height: 800px;
+    width : 100%;
   }
 }
 
