@@ -18,15 +18,16 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code', // Add your Google verification code
-  },
   icons: {
     icon: [
+      { url: '/favicon.ico', sizes: 'any' },
       { url: '/favicon.svg', type: 'image/svg+xml' },
     ],
+    shortcut: [
+      { url: '/favicon.ico' }
+    ],
     apple: [
-      { url: '/favicon.svg' },
+      { url: '/favicon.svg' }
     ],
     other: [
       {
@@ -49,7 +50,7 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#FB651E" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
         <link rel="mask-icon" href="/favicon.svg" color="#FB651E" />
         <link rel="canonical" href="https://yc-analytics.com" />
         

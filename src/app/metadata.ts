@@ -10,10 +10,10 @@ export const metadata = {
     url: 'https://yc-analytics.com',
     images: [
       {
-        url: '/og-image.png',
+        url: '/images/landing-image.png',
         width: 1200,
         height: 630,
-        alt: 'YC Startup Visualization Preview',
+        alt: 'YC Startup Visualization landing page',
       },
     ],
   },
@@ -21,6 +21,6 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'YC Startup Visualization',
     description: 'Interactive visualization of Y Combinator startups and trends',
-    images: ['/og-image.png'],
+    images: ['/images/landing-image.png'],
   },
 } 
