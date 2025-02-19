@@ -17,7 +17,6 @@
 
 .partners-chart-wrapper {
   width: 100%;
-  height: fit-content;
   position: relative;
   background: white;
   border-radius: var(--border-radius);
