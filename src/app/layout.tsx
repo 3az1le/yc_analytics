@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.ico', sizes: '16x16 32x32', type: 'image/x-icon' },
       { url: '/favicon.svg', type: 'image/svg+xml' },
     ],
     shortcut: [
@@ -34,6 +34,11 @@ export const metadata: Metadata = {
         rel: 'mask-icon',
         url: '/favicon.svg',
         color: '#FB651E',
+      },
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        url: '/favicon.ico',
       },
     ],
   },
@@ -50,7 +55,9 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#FB651E" />
-        <link rel="icon" href="/favicon.ico" />
+        {/* Explicit favicon declarations for search engines */}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="16x16 32x32" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="mask-icon" href="/favicon.svg" color="#FB651E" />
         <link rel="canonical" href="https://yc-analytics.com" />
         
