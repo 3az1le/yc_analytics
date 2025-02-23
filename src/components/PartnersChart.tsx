@@ -466,7 +466,6 @@ const PartnersChart = ({ data, dateRange }: PartnersChartProps) => {
     <div 
       ref={containerRef}
       className="partners-chart-container" 
-      style={{ width: '90vw', position: 'relative', margin: '0 auto' }}
       onMouseEnter={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(true); }}
       onMouseLeave={() => { if(window.matchMedia('(hover: hover)').matches) setToolkitVisible(false); }}
       onClick={() => { if(!window.matchMedia('(hover: hover)').matches) setToolkitVisible(prev => !prev); }}

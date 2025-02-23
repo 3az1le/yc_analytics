@@ -1,17 +1,22 @@
 /* Partner Graph Styles */
 .partners-chart-container {
-  width: 100%;
+  width: 90vw;
   max-width: var(--max-width-container);
   margin: 0 auto;
-  /* padding: 0.5rem; */
   display: flex;
   flex-direction: column;
   background: white;
+  position: relative;
+  margin: 0 auto;
+  min-height: 400px; /* Minimum height for mobile */
+  height: 60vh; /* Default height for mobile */
 }
 
 @media (min-width: 768px) {
   .partners-chart-container {
     padding: var(--spacing-md);
+    min-height: 600px;
+    height: 70vh;
   }
 }
 
@@ -22,12 +27,17 @@
   border-radius: var(--border-radius);
   overflow: hidden;
   margin: 0 auto;
+  flex: 1;
+  min-height: inherit; /* Inherit minimum height from container */
+  display: flex;
+  flex-direction: column;
 }
 
 .partners-chart-wrapper svg {
   width: 100%;
-  height: 100%;
+  height: 100% !important; /* Force height to 100% */
   background: white;
+  flex: 1;
 }
 
 /* Company Nodes */
