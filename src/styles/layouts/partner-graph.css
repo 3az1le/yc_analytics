@@ -8,14 +8,12 @@
   background: white;
   position: relative;
   margin: 0 auto;
-  min-height: 400px; /* Minimum height for mobile */
-  height: 60vh; /* Default height for mobile */
+  height: fit-content; /* Default height for mobile */
 }
 
 @media (min-width: 768px) {
   .partners-chart-container {
     padding: var(--spacing-md);
-    min-height: 600px;
     height: 70vh;
   }
 }
@@ -28,10 +26,16 @@
   overflow: hidden;
   margin: 0 auto;
   flex: 1;
-  min-height: inherit; /* Inherit minimum height from container */
   display: flex;
   flex-direction: column;
 }
+
+/* @media (max-width: 768px) {
+  .partners-chart-wrapper  {
+    min-height: 600px; 
+
+  }
+} */
 
 .partners-chart-wrapper svg {
   width: 100%;
